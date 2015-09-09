@@ -44,8 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GoldenRatioMethod.cs" />
-    <Compile Include="OneDimentionalOptimisationMethod.cs" />
+    <Compile Include="Одномерные\GoldenRatioMethod1.cs" />
+    <Compile Include="Одномерные\GoldenRatioMethod2.cs" />
+    <Compile Include="Одномерные\OneDimentionalOptimisationMethod.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tester.cs" />
@@ -55,7 +56,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Многомерные\" />
-    <Folder Include="Одномерные\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

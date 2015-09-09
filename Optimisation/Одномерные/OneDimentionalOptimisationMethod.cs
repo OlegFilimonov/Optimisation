@@ -14,6 +14,18 @@ namespace Optimisation
         //Макс. количество итераций
         protected const int MAX_ITERATIONS = 50;
 
+        //Точность вычислений метода
+        protected readonly double eps;
+        
+        //Имя метода для логов
+        protected readonly string methodName;
+
+        //Количество итераций для логов
+        protected int iterationCount;
+
+        //Ответ
+        protected double answer;
+
         //Начальный интервал
         protected double a;
         protected double b;
@@ -24,13 +36,16 @@ namespace Optimisation
         //Функция
         protected function f;
 
+        //Реализация метода
+        protected abstract void execute();
+
         //Метод Свена
         private void svenInterval(double startingX = 0, double h = 0.01)
         {
             a = startingX;
             double x1 = a, x2 = a, x3 = a + h;
             var k = 0;
-            Console.WriteLine("- Выбран метод Свена (МС)");
+            Console.WriteLine("НАЧАЛО МЕТОДА СВЕНА");
 
             //Начальный этап
             if (f(x2) < f(x3))
@@ -68,16 +83,35 @@ namespace Optimisation
         {
             a = 0;
             b = 1;
-            Console.WriteLine("- Выбран стандартный начальный интервал: [0,1]");
+            Console.WriteLine("ВЫБРАН СТАНДАРТНЫЙ НАЧАЛЬНЫЙ ИНТЕРВАЛ [0,1]");
+        }
+
+        //Вывод ответа
+        public void generateReport()
+        {
+            Console.WriteLine(methodName + " закончил работу за " + iterationCount + 
+                " итераций и получил ответ " + answer);
         }
 
         //Конструктор
-        protected OneDimentionalOptimisationMethod(function f, bool useStandartInterval = false)
+        protected OneDimentionalOptimisationMethod(function f, double eps, string methodName, bool useStandartInterval = false)
         {
+            //Функция должна существовать
             if (f == null) throw new ArgumentNullException(nameof(f));
+
+            this.methodName = methodName;
             this.f = f;
+            this.eps = eps;
+
+            //Выбор начального интервала
             if (useStandartInterval) standartInterval();
             else svenInterval();
+
+            //Запуск метода
+            execute();
+
+            //Вывод ответа
+            generateReport();
         }
     }
 }

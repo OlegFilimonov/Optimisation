@@ -26,16 +26,24 @@ namespace Optimisation
 
     class Tester
     {
-        private GoldenRatioMethod goldenRatioMethod;
+        private OneDimentionalOptimisationMethod 
+            goldenRatioMethod1, 
+            goldenRatioMethod2;
         private TestingFunctions testingFunctions;
 
         public Tester()
         {
             testingFunctions = new TestingFunctions();
             Console.WriteLine("======================================================");
-            Console.WriteLine("\tЛОГИ МЕТОДОВ");
+            Console.WriteLine("\t\tЛОГИ МЕТОДОВ");
             Console.WriteLine("======================================================");
-            goldenRatioMethod = new GoldenRatioMethod(testingFunctions.f2);
+            goldenRatioMethod1 = new GoldenRatioMethod1(testingFunctions.f2);
+            goldenRatioMethod2 = new GoldenRatioMethod2(testingFunctions.f2);
+            Console.WriteLine("======================================================");
+            Console.WriteLine("\t\tОТВЕТЫ МЕТОДОВ");
+            Console.WriteLine("======================================================");
+            goldenRatioMethod1.generateReport();
+            goldenRatioMethod2.generateReport();
         }
     }
 }

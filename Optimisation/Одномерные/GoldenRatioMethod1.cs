@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 namespace Optimisation
 {
     //Метод Золотого Сечения 1 - МЗС 1
-    class GoldenRatioMethod : OneDimentionalOptimisationMethod
+    class GoldenRatioMethod1 : OneDimentionalOptimisationMethod
     {
-        private readonly double eps;
         private readonly double goldenLeft = (3 - Math.Sqrt(5)) / 2;
         private readonly double goldenRight = (-1 + Math.Sqrt(5)) / 2;
-        private double answer;
 
-        private void execute()
+        protected override void execute()
         {
+            Console.WriteLine("НАЧАЛО" + methodName);
+
             //Начальный этап
             var length = Math.Abs(b - a);
             var lambda = a + goldenLeft * length;
@@ -39,21 +39,20 @@ namespace Optimisation
                     length = Math.Abs(b - a);
                     mu = a + goldenRight * length;
                 }
-                Console.WriteLine("- МЗС: Итерация № " + k + ", \tТИЛ: [" + a + ";"+ b + "]");
                 k++;
+                Console.WriteLine(methodName + ": Итерация № " + k + ", \tТИЛ: [" + a + ";" + b + "]");
+
             } while (length > eps && k < MAX_ITERATIONS);
-            Console.WriteLine("- МЗС: Закончена работа за " + k + " итераций");
+            iterationCount = k;
 
             //Окончание
-            answer = (a + b)/2;
+            answer = (a + b) / 2;
         }
 
-        public GoldenRatioMethod(function f, double eps = 1e-6, bool useStandartInterval = false)
-            : base(f, useStandartInterval)
+        public GoldenRatioMethod1(function f, double eps = 1e-6, bool useStandartInterval = false)
+            : base(f, eps,"МЗС1", useStandartInterval)
         {
-            this.eps = eps;
-            execute();
-            Console.WriteLine( "МЗС: Закончена работа, найденый минимум: " + answer );
         }
+
     }
 }
