@@ -8,10 +8,6 @@ namespace Optimisation
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            Console.Write("Hello, universe!");
-            //testing visual studio git
-        }
+        static void Main(string[] args) => Console.Write("Hello, universe!");
     }
 }
