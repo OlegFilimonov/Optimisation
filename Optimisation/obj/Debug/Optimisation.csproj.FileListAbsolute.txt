@@ -1,1 +1,7 @@
 C:\Users\Oleg-PC\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\Optimisation.exe.config
+C:\Users\Oleg\VisualStudioProjects\Optimisation\bin\Debug\Optimisation.exe.config
+C:\Users\Oleg\VisualStudioProjects\Optimisation\obj\Debug\Optimisation.exe
+C:\Users\Oleg\VisualStudioProjects\Optimisation\obj\Debug\Optimisation.pdb
+C:\Users\Oleg\VisualStudioProjects\Optimisation\obj\Debug\Optimisation.csprojResolveAssemblyReference.cache
+C:\Users\Oleg\VisualStudioProjects\Optimisation\bin\Debug\Optimisation.exe
+C:\Users\Oleg\VisualStudioProjects\Optimisation\bin\Debug\Optimisation.pdb
