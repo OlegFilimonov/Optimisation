@@ -35,7 +35,7 @@ namespace Optimisation
 
         protected override void execute()
         {
-            Console.WriteLine("НАЧАЛО " + methodName);
+            
 
             //Начальный этап
             var length = Math.Abs(b - a);
@@ -73,6 +73,7 @@ namespace Optimisation
                     mu = a + fibonacciList[n - k - 1] / fibonacciList[n - k] * length;
                 }
                 k++;
+                Console.WriteLine(methodName + ": Итерация № " + k + ", \tТИЛ: [" + a + ";" + b + "]");
             }
             mu = lambda + eps;
             if (f(lambda) > f(mu))
@@ -87,7 +88,7 @@ namespace Optimisation
 
         //Конструктор
         public FibonacciMethod1(function f, double eps = 1e-6, bool useStandartInterval = false)
-            : base(f, eps, "МФ1", useStandartInterval)
+            : base(f,null, eps, "МФ1", useStandartInterval)
         {
             length_n = eps;
         }

@@ -14,7 +14,6 @@ namespace Optimisation
 
         protected override void execute()
         {
-            Console.WriteLine("НАЧАЛО" + methodName);
 
             //Начальный этап
             var length = Math.Abs(b - a);
@@ -50,7 +49,7 @@ namespace Optimisation
         }
 
         public GoldenRatioMethod1(function f, double eps = 1e-6, bool useStandartInterval = false)
-            : base(f, eps,"МЗС1", useStandartInterval)
+            : base(f,null, eps,"МЗС1", useStandartInterval)
         {
         }
 

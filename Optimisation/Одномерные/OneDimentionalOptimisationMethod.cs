@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Runtime.Remoting.Messaging;
+using DoubleConverter = Optimisation.Одномерные.DoubleConverter;
 
 namespace Optimisation
 {
@@ -35,6 +37,7 @@ namespace Optimisation
 
         //Функция
         protected function f;
+        protected function df;
 
         //Реализация метода
         protected abstract void execute();
@@ -89,27 +92,43 @@ namespace Optimisation
         //Вывод ответа
         public void generateReport()
         {
-            Console.WriteLine(methodName + " закончил работу за " + iterationCount + 
-                " итераций и получил ответ " + answer);
+            double floatNumberCount = Math.Abs(Math.Log10(eps)) + 5 + 6;
+            Console.WriteLine("{0}:\tИтерации: {1}\t Ответ:"+ DoubleConverter.ToExactString(answer) +"\tТочность: {3}", methodName,iterationCount, answer,eps)
+                ;
         }
 
         //Конструктор
-        protected OneDimentionalOptimisationMethod(function f, double eps, string methodName, bool useStandartInterval = false)
+        protected OneDimentionalOptimisationMethod(function f, function df, double eps, string methodName, bool useStandartInterval = false)
         {
             //Функция должна существовать
             if (f == null) throw new ArgumentNullException(nameof(f));
+            
 
             this.methodName = methodName;
             this.f = f;
+            this.df = df;
             this.eps = eps;
 
             //Выбор начального интервала
             if (useStandartInterval) standartInterval();
-            else svenInterval();
+            else
+            {
+                if (df != null)
+                {
+                    //TODO: реализовать метод свена-2 и выбрать его
+                    svenInterval();
+                }
+                else
+                {
+                    svenInterval();
+                }
+            }
 
+            Console.WriteLine("НАЧАЛО " + methodName);
             //Запуск метода
             execute();
 
+            Console.WriteLine("КОНЕЦ " + methodName);
             //Вывод ответа
             generateReport();
         }

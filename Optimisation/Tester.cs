@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Optimisation.Одномерные;
 
 namespace Optimisation
 {
@@ -22,6 +23,11 @@ namespace Optimisation
             return Math.Pow(x, 2) + 3 * x - 7;
 
         }
+
+        public double df2(double x)
+        {
+            return 2*x + 3;
+        }
     }
 
     class Tester
@@ -32,9 +38,12 @@ namespace Optimisation
         private void populateList()
         {
             OneDimentionalOptimisationMethod.function f = testingFunctions.f2;
+            OneDimentionalOptimisationMethod.function df = testingFunctions.df2;
             oneDimentionalMethods.Add(new GoldenRatioMethod1(f));
             oneDimentionalMethods.Add(new GoldenRatioMethod2(f));
             oneDimentionalMethods.Add(new FibonacciMethod1(f));
+            oneDimentionalMethods.Add(new FibonacciMethod2(f));
+            oneDimentionalMethods.Add(new BolzanoMethod(f,df));
         }
 
         private void generateAllReports()
@@ -56,6 +65,8 @@ namespace Optimisation
             Console.WriteLine("\t\tОТВЕТЫ МЕТОДОВ");
             Console.WriteLine("======================================================");
             generateAllReports();
+
+            Console.ReadLine();
         }
     }
 }

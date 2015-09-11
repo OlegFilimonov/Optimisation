@@ -13,7 +13,6 @@ namespace Optimisation
 
         protected override void execute()
         {
-            Console.WriteLine("НАЧАЛО " + methodName);
             //Начальный этап
             var length = Math.Abs(b - a);
             var x1 = a + goldenRight * length;
@@ -48,14 +47,13 @@ namespace Optimisation
                 Console.WriteLine(methodName + ": Итерация № " + k + " \tТИЛ: [" + a + ";" + b + "]");
             } while (length > eps && k < MAX_ITERATIONS);
             iterationCount = k;
-            Console.WriteLine(methodName + ": Закончена работа за " + iterationCount + " итераций");
 
             //Окончание
             answer = (a + b) / 2;
         }
 
         public GoldenRatioMethod2(function f, double eps = 1e-6, bool useStandartInterval = false)
-            : base(f, eps, "МЗС2", useStandartInterval)
+            : base(f,null, eps, "МЗС2", useStandartInterval)
         { }
     }
 }

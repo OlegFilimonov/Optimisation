@@ -36,7 +36,6 @@ namespace Optimisation
 
         protected override void execute()
         {
-            Console.WriteLine("НАЧАЛО " + methodName);
 
             //Начальный этап
             var length = Math.Abs(b - a);
@@ -50,45 +49,53 @@ namespace Optimisation
             var eps = length / f_n;
 
             //Находим две стартовые точки
-            var lambda = a + fibonacciList[n - 2] / fibonacciList[n] * length;
-            var mu = a + fibonacciList[n - 1] / fibonacciList[n] * length;
+            var x1 = a + fibonacciList[n - 1]/fibonacciList[n]*length + Math.Pow(-1, n)/fibonacciList[n]*eps;
             var k = 1;
-
-            iterationCount = n - 1;
+            double x2;
+            iterationCount = n;
 
             //Основной этап
-            while (k != n - 1)
+            do
             {
-                if (f(lambda) < f(mu))
+                x2 = a + b - x1;
+
+                if ((f(x2) < f(x1)) && (x2 < x1))
                 {
-                    b = mu;
-                    length = Math.Abs(b - a);
-                    mu = lambda;
-                    lambda = a + fibonacciList[n - k - 2] / fibonacciList[n - k] * length;
+                    b = x1;
+                    x1 = x2;
                 }
-                else
+                else if ((f(x2) >= f(x1)) && (x2 < x1))
                 {
-                    a = lambda;
-                    lambda = mu;
-                    length = Math.Abs(b - a);
-                    mu = a + fibonacciList[n - k - 1] / fibonacciList[n - k] * length;
+                    a = x2;
+                }
+                else if ((f(x2) < f(x1)) && (x2 >= x1))
+                {
+                    a = x1;
+                    x1 = x2;
+                }
+                else if ((f(x2) >= f(x1)) && (x2 >= x1))
+                {
+                    b = x2;
                 }
                 k++;
-            }
-            mu = lambda + eps;
-            if (f(lambda) > f(mu))
+                length = Math.Abs(b - a);
+                Console.WriteLine(methodName + ": Итерация № " + k + " \tТИЛ: [" + a + ";" + b + "]");
+            } while (k!=n);
+            
+
+            if (f(x1) > f(x2))
             {
-                answer = (lambda + b) / 2;
+                answer = (x1 + b) / 2;
             }
             else
             {
-                answer = (a + mu) / 2;
+                answer = (a + x2) / 2;
             }
         }
 
         //Конструктор
         public FibonacciMethod2(function f, double eps = 1e-6, bool useStandartInterval = false)
-            : base(f, eps, "МФ2", useStandartInterval)
+            : base(f,null, eps, "МФ2", useStandartInterval)
         {
             length_n = eps;
         }

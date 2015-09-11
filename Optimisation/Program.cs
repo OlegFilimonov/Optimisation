@@ -11,9 +11,9 @@ namespace Optimisation
     //Основной класс программы
     class Program
     {
-        static void Main(string[] args)
-        {
-            try
+        static void Main(string[] args) => new Tester();
+        
+            /* try
             {
                 var tester = new Tester();
             }
@@ -26,7 +26,8 @@ namespace Optimisation
             {
                 //Останавливает закрытие консоли
                 Console.ReadLine();
-            }
-        }
+            } 
+            */
+        
     }
 }

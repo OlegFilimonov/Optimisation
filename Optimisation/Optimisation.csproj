@@ -44,7 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Одномерные\Fibonacci2.cs" />
+    <Compile Include="Одномерные\BolzanoMethod.cs" />
+    <Compile Include="Одномерные\DoubleConverter.cs" />
+    <Compile Include="Одномерные\FibonacciMethod2.cs" />
     <Compile Include="Одномерные\FibonacciMethod1.cs" />
     <Compile Include="Одномерные\GoldenRatioMethod1.cs" />
     <Compile Include="Одномерные\GoldenRatioMethod2.cs" />
