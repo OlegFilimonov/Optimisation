@@ -37,8 +37,8 @@ namespace Optimisation
 
         private void populateList()
         {
-            OneDimentionalOptimisationMethod.function f = testingFunctions.f2;
-            OneDimentionalOptimisationMethod.function df = testingFunctions.df2;
+            function f = testingFunctions.f2;
+            function df = testingFunctions.df2;
             oneDimentionalMethods.Add(new GoldenRatioMethod1(f));
             oneDimentionalMethods.Add(new GoldenRatioMethod2(f));
             oneDimentionalMethods.Add(new FibonacciMethod1(f));

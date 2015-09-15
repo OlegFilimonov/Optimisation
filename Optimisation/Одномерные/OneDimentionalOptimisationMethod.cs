@@ -10,6 +10,10 @@ using DoubleConverter = Optimisation.Одномерные.DoubleConverter;
 
 namespace Optimisation
 {
+    //Делегат функции
+    public delegate double function(double x);
+
+
     //Класс одномерных методов оптимизации
     public abstract class OneDimentionalOptimisationMethod
     {
@@ -32,9 +36,7 @@ namespace Optimisation
         protected double a;
         protected double b;
 
-        //Делегат функции
-        public delegate double function(double x);
-
+  
         //Функция
         protected function f;
         protected function df;
