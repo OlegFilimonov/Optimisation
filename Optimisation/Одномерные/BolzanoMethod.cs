@@ -36,7 +36,7 @@ namespace Optimisation.Одномерные
                 }
                 k++;
                 Console.WriteLine(methodName + ": Итерация № " + k + ", \tТИЛ: [" + a + ";" + b + "]");
-            } while ((Math.Abs(df(x)) > eps) || (length > eps));
+            } while (((Math.Abs(df(x)) > eps) || (length > eps)) && (k<maxIterations));
             x = (a + b) / 2;
             iterationCount = k;
             answer = x;

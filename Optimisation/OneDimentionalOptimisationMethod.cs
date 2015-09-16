@@ -105,7 +105,7 @@ namespace Optimisation
         //Вывод ответа
         public void generateReport()
         {
-            Console.WriteLine("{0}:\tИтерации: {1}\t Ответ:"+ DoubleConverter.ToExactString(answer) +"\tТочность: {3}", methodName,iterationCount, answer,eps);
+            Console.WriteLine("{0}:\tИтерации: {1}\t Ответ: "+ DoubleConverter.ToExactString(answer).PadRight(20) +"\tТочность: {3}", methodName,iterationCount, answer,eps);
         }
 
         //Конструктор
@@ -120,10 +120,11 @@ namespace Optimisation
             this.eps = eps;
             this.maxIterations = maxIterations;
 
-            startMethod(useStandartInterval);
+            executeMethod(useStandartInterval);
         }
 
-        public void startMethod(bool useStandartInterval)
+        //Запуск метода с предварительным поиском интервала
+        public void executeMethod(bool useStandartInterval = false)
         {
             //Выбор начального интервала
             if (useStandartInterval) setStandartInterval();
@@ -147,6 +148,11 @@ namespace Optimisation
             execute();
 
             Console.WriteLine("КОНЕЦ " + methodName);
+        }
+
+        public string MethodName
+        {
+            get { return methodName; }
         }
     }
 }

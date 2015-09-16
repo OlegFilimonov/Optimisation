@@ -43,7 +43,7 @@ namespace Optimisation.Одномерные
                 kr2 = Math.Abs(f(d) - f(b)) / Math.Abs(f(b));
                 Console.WriteLine(methodName + ": Итерация № " + k + ", \tТИЛ: [" + a + ";" + b + "]");
                 k++;
-            } while ((kr1 >= eps1) && (kr2 >= eps2));
+            } while (((kr1 >= eps1) || (kr2 >= eps2)) && (k < maxIterations));
             iterationCount += k;
             answer = (b + d) / 2;
         }
