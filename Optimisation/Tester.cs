@@ -64,7 +64,7 @@ namespace Optimisation
             populateMethods(currFunc.F, currFunc.Df);
 
             Console.WriteLine("\nВсе методы инициированы. Нажмите любую клавишу, чтобы войти в главное меню.");
-            Console.ReadKey(true);
+        //    Console.ReadKey(true);
             executeLauncher();
         }
 
@@ -103,6 +103,11 @@ namespace Optimisation
                 try
                 {
                     currMethod.executeMethod();
+                    Console.WriteLine(("").PadRight(79, '='));
+                    Console.WriteLine("\t\t\tОТВЕТ МЕТОДА");
+                    Console.WriteLine(("").PadRight(79, '='));
+                    currMethod.generateReport();
+                    Console.WriteLine("\n\n");
                 }
                 catch (Exception ignored)
                 {
@@ -111,8 +116,8 @@ namespace Optimisation
             }
             Console.WriteLine("\nКонец работы, нажмите \"r\" чтобы начать заного или \"m\" чтобы выбрать новую функцию");
             chosenValue = Convert.ToChar(Console.ReadKey(true).KeyChar.ToString());
-            if (chosenValue == 'r' || chosenValue == 'к') new Tester();
-            if (chosenValue == 'ь' || chosenValue == 'm') executeLauncher();
+            if (chosenValue == 'r' || chosenValue == 'к') executeLauncher();
+            if (chosenValue == 'ь' || chosenValue == 'm') new Tester();
         }
     }
 }
