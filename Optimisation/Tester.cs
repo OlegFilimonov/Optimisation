@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Optimisation.Одномерные;
 
-namespace Optimisation
+namespace Optimisation.Testing
 {
 
     //Тестер
@@ -100,24 +100,25 @@ namespace Optimisation
             {
                 var currMethod = oneDimentionalMethods[chosenValue - 1];
 
-                try
-                {
+                //try
+                //{
                     currMethod.executeMethod();
                     Console.WriteLine(("").PadRight(79, '='));
                     Console.WriteLine("\t\t\tОТВЕТ МЕТОДА");
                     Console.WriteLine(("").PadRight(79, '='));
                     currMethod.generateReport();
                     Console.WriteLine("\n\n");
-                }
-                catch (Exception ignored)
-                {
-                    Console.WriteLine("Exception: " + ignored.ToString());
-                }
+                //}
+                //catch (Exception ignored)
+                //{
+                //    Console.WriteLine("Exception: " + ignored.ToString());
+                //}
             }
             Console.WriteLine("\nКонец работы, нажмите \"r\" чтобы начать заного или \"m\" чтобы выбрать новую функцию");
             chosenValue = Convert.ToChar(Console.ReadKey(true).KeyChar.ToString());
-            if (chosenValue == 'r' || chosenValue == 'к') executeLauncher();
+            if (chosenValue == 'r' || chosenValue == 'к') executeLauncher(); else
             if (chosenValue == 'ь' || chosenValue == 'm') new Tester();
+
         }
     }
 }

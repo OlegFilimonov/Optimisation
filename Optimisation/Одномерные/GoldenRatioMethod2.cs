@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Optimisation
+namespace Optimisation.Одномерные
 {
     //Метод золотого сечения 2 - МЗС2
     class GoldenRatioMethod2 : OneDimentionalOptimisationMethod

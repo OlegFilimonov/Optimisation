@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Optimisation.Одномерные;
 
-namespace Optimisation
+namespace Optimisation.Testing
 {
     //Класс типичных функций для тестирования
     class TestingFunctions

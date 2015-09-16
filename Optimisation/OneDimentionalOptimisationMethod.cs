@@ -8,7 +8,7 @@ using System.Drawing;
 using System.Runtime.Remoting.Messaging;
 using DoubleConverter = Optimisation.Одномерные.DoubleConverter;
 
-namespace Optimisation
+namespace Optimisation.Одномерные
 {
     //Делегат функции
     public delegate double function(double x);
