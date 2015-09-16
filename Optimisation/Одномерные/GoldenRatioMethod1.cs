@@ -41,7 +41,7 @@ namespace Optimisation
                 k++;
                 Console.WriteLine(methodName + ": Итерация № " + k + ", \tТИЛ: [" + a + ";" + b + "]");
 
-            } while (length > eps && k < MAX_ITERATIONS);
+            } while (length > eps && k < maxIterations);
             iterationCount = k;
 
             //Окончание

@@ -18,7 +18,7 @@ namespace Optimisation
     public abstract class OneDimentionalOptimisationMethod
     {
         //Макс. количество итераций
-        protected const int MAX_ITERATIONS = 50;
+        protected int maxIterations = 50;
 
         //Точность вычислений метода
         protected readonly double eps;
@@ -35,8 +35,8 @@ namespace Optimisation
         //Начальный интервал
         protected double a;
         protected double b;
+        protected double c;
 
-  
         //Функция
         protected function f;
         protected function df;
@@ -45,12 +45,14 @@ namespace Optimisation
         protected abstract void execute();
 
         //Метод Свена
-        private void svenInterval(double startingX = 0, double h = 0.01)
+        private void setSvenInterval(double startingX = 0, double h = 0.01)
         {
             a = startingX;
             double x1 = a, x2 = a, x3 = a + h;
             var k = 0;
-            Console.WriteLine("НАЧАЛО МЕТОДА СВЕНА");
+
+            Console.WriteLine("НАЧАЛО МЕТОДА СВЕНА-1");
+            Console.WriteLine(("").PadRight(80, '-'));
 
             //Начальный этап
             if (f(x2) < f(x3))
@@ -59,14 +61,14 @@ namespace Optimisation
             }
 
             //Основной этап
-            while ((f(x2) > f(x3)) && (k <= MAX_ITERATIONS))
+            while (f(x2) > f(x3))
             {
                 Console.WriteLine("- МС: Итерация № " + k + " \tТИЛ: [" + x1 + ";" + x3 + "]");
                 k++;
                 h *= 2;
+                x1 = x2;
                 x2 = x3;
                 x3 += h;
-                x1 = x2;
             }
 
             //Окончание
@@ -84,55 +86,67 @@ namespace Optimisation
         }
 
         //Стандартный интервал
-        private void standartInterval()
+        private void setStandartInterval()
         {
             a = 0;
             b = 1;
             Console.WriteLine("ВЫБРАН СТАНДАРТНЫЙ НАЧАЛЬНЫЙ ИНТЕРВАЛ [0,1]");
         }
 
+        //Свен - 3
+        public void setSven3Interval(double startingX = 0, double h = 0.01)
+        {
+            //TODO: do this properly
+            setSvenInterval(startingX,h);
+            c = b;
+            b = (a + c)/2;
+        }
+
         //Вывод ответа
         public void generateReport()
         {
-            double floatNumberCount = Math.Abs(Math.Log10(eps)) + 5 + 6;
-            Console.WriteLine("{0}:\tИтерации: {1}\t Ответ:"+ DoubleConverter.ToExactString(answer) +"\tТочность: {3}", methodName,iterationCount, answer,eps)
-                ;
+            Console.WriteLine("{0}:\tИтерации: {1}\t Ответ:"+ DoubleConverter.ToExactString(answer) +"\tТочность: {3}", methodName,iterationCount, answer,eps);
         }
 
         //Конструктор
-        protected OneDimentionalOptimisationMethod(function f, function df, double eps, string methodName, bool useStandartInterval = false)
+        protected OneDimentionalOptimisationMethod(function f, function df, double eps, string methodName, bool useStandartInterval = false,int maxIterations = 50)
         {
             //Функция должна существовать
             if (f == null) throw new ArgumentNullException(nameof(f));
             
-
             this.methodName = methodName;
             this.f = f;
             this.df = df;
             this.eps = eps;
+            this.maxIterations = maxIterations;
 
+            startMethod(useStandartInterval);
+        }
+
+        public void startMethod(bool useStandartInterval)
+        {
             //Выбор начального интервала
-            if (useStandartInterval) standartInterval();
+            if (useStandartInterval) setStandartInterval();
             else
             {
                 if (df != null)
                 {
                     //TODO: реализовать метод свена-2 и выбрать его
-                    svenInterval();
+                    setSvenInterval();
                 }
                 else
                 {
-                    svenInterval();
+                    setSvenInterval();
                 }
             }
 
-            Console.WriteLine("НАЧАЛО " + methodName);
+
+            Console.WriteLine("\nНАЧАЛО " + methodName);
+            Console.WriteLine(("").PadRight(80, '-'));
             //Запуск метода
             execute();
 
             Console.WriteLine("КОНЕЦ " + methodName);
-            //Вывод ответа
-            generateReport();
         }
     }
 }

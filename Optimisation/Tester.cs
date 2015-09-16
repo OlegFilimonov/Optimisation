@@ -44,6 +44,9 @@ namespace Optimisation
             oneDimentionalMethods.Add(new FibonacciMethod1(f));
             oneDimentionalMethods.Add(new FibonacciMethod2(f));
             oneDimentionalMethods.Add(new BolzanoMethod(f,df));
+            oneDimentionalMethods.Add(new ExtrapolationMethod(f));
+            oneDimentionalMethods.Add(new PaulMethod(f,df));
+            oneDimentionalMethods.Add(new DSK_Method(f));
         }
 
         private void generateAllReports()
@@ -57,13 +60,10 @@ namespace Optimisation
         public Tester()
         {
             testingFunctions = new TestingFunctions();
-            Console.WriteLine("======================================================");
-            Console.WriteLine("\t\tЛОГИ МЕТОДОВ");
-            Console.WriteLine("======================================================");
             populateList();
-            Console.WriteLine("======================================================");
-            Console.WriteLine("\t\tОТВЕТЫ МЕТОДОВ");
-            Console.WriteLine("======================================================");
+            Console.WriteLine(("").PadRight(80,'='));
+            Console.WriteLine("\t\t\tОТВЕТЫ МЕТОДОВ");
+            Console.WriteLine(("").PadRight(80, '='));
             generateAllReports();
 
             Console.ReadLine();

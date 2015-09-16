@@ -46,14 +46,17 @@
   <ItemGroup>
     <Compile Include="Одномерные\BolzanoMethod.cs" />
     <Compile Include="Одномерные\DoubleConverter.cs" />
+    <Compile Include="Одномерные\DSK_Method.cs" />
+    <Compile Include="Одномерные\ExtrapolationMethod.cs" />
     <Compile Include="Одномерные\FibonacciMethod2.cs" />
     <Compile Include="Одномерные\FibonacciMethod1.cs" />
     <Compile Include="Одномерные\GoldenRatioMethod1.cs" />
     <Compile Include="Одномерные\GoldenRatioMethod2.cs" />
-    <Compile Include="Одномерные\OneDimentionalOptimisationMethod.cs" />
+    <Compile Include="OneDimentionalOptimisationMethod.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tester.cs" />
+    <Compile Include="Одномерные\PaulMethod.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
