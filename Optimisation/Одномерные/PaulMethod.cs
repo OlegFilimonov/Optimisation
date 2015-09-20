@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Optimisation.Одномерные
 {
-    class PaulMethod : OneDimentionalOptimisationMethod
+    public class PaulMethod : OneDimentionalOptimisationMethod
     {
         public PaulMethod(function f, function df, double eps = 1e-6, bool useStandartInterval = false)
             : base(f, df, eps, "PAUL", useStandartInterval)

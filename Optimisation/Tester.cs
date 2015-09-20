@@ -1,27 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using Optimisation.Одномерные;
 
 namespace Optimisation.Testing
 {
 
     //Тестер
-    class Tester
+    public class Tester
     {
         private List<OneDimentionalOptimisationMethod> oneDimentionalMethods = new List<OneDimentionalOptimisationMethod>();
         private List<Function> testingFunctions = new List<Function>();
 
         private void populateFunctions()
         {
-            testingFunctions.Add(new Function(TestingFunctions.f1, TestingFunctions.df1, "x^2 + 4"));
-            testingFunctions.Add(new Function(TestingFunctions.f2, TestingFunctions.df2, "x^2 + 3 * x - 7"));
-            testingFunctions.Add(new Function(TestingFunctions.f3, TestingFunctions.df3, "2*x^2 + 8*x - 7"));
-            testingFunctions.Add(new Function(TestingFunctions.f4, TestingFunctions.df4, "15*x^2 - 4*x + 7"));
+            testingFunctions.Add(new Function(TestingFunctions.f1,TestingFunctions.f2,"2x^2+16/x"));
         }
 
         private void populateMethods(function f, function df)
@@ -34,6 +26,7 @@ namespace Optimisation.Testing
             oneDimentionalMethods.Add(new ExtrapolationMethod(f));
             oneDimentionalMethods.Add(new PaulMethod(f, df));
             oneDimentionalMethods.Add(new DSK_Method(f));
+            oneDimentionalMethods.Add(new DavidonMethod(f,df));
         }
 
         private void generateAllReports()

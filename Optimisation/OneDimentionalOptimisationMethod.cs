@@ -22,7 +22,7 @@ namespace Optimisation.Одномерные
 
         //Точность вычислений метода
         protected readonly double eps;
-        
+
         //Имя метода для логов
         protected readonly string methodName;
 
@@ -66,9 +66,9 @@ namespace Optimisation.Одномерные
                 Console.WriteLine("- МС: Итерация № " + k + " \tТИЛ: [" + x1 + ";" + x3 + "]");
                 k++;
                 h *= 2;
-                x1 = x2;
                 x2 = x3;
                 x3 += h;
+                x1 = x2;
             }
 
             //Окончание
@@ -97,23 +97,23 @@ namespace Optimisation.Одномерные
         public void setSven3Interval(double startingX = 0, double h = 0.01)
         {
             //TODO: do this properly
-            setSvenInterval(startingX,h);
+            setSvenInterval(startingX, h);
             c = b;
-            b = (a + c)/2;
+            b = (a + c) / 2;
         }
 
         //Вывод ответа
         public void generateReport()
         {
-            Console.WriteLine("{0}:\tИтерации: {1}\t Ответ: "+ DoubleConverter.ToExactString(answer).PadRight(20) +"\tТочность: {3}", methodName,iterationCount, answer,eps);
+            Console.WriteLine("{0}:\tИтерации: {1}\t Ответ: " + DoubleConverter.ToExactString(answer).PadRight(20) + "\tТочность: {3}", methodName, iterationCount, answer, eps);
         }
 
         //Конструктор
-        protected OneDimentionalOptimisationMethod(function f, function df, double eps, string methodName, bool useStandartInterval = false,int maxIterations = 50)
+        protected OneDimentionalOptimisationMethod(function f, function df, double eps, string methodName, bool useStandartInterval = false, int maxIterations = 50)
         {
             //Функция должна существовать
             if (f == null) throw new ArgumentNullException(nameof(f));
-            
+
             this.methodName = methodName;
             this.f = f;
             this.df = df;
@@ -153,6 +153,26 @@ namespace Optimisation.Одномерные
         public string MethodName
         {
             get { return methodName; }
+        }
+
+        public double A
+        {
+            get { return a; }
+        }
+
+        public double B
+        {
+            get { return b; }
+        }
+
+        public double C
+        {
+            get { return c; }
+        }
+
+        public double Eps
+        {
+            get { return eps; }
         }
     }
 }

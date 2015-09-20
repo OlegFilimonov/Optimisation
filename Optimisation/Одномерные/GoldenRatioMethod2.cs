@@ -1,24 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Optimisation.Одномерные
 {
     //Метод золотого сечения 2 - МЗС2
-    class GoldenRatioMethod2 : OneDimentionalOptimisationMethod
+    public class GoldenRatioMethod2 : OneDimentionalOptimisationMethod
     {
-        public double A
-        {
-            get { return a; }
-        }
-
-        public double B
-        {
-            get { return b; }
-        }
-
         private readonly double goldenRight = (-1 + Math.Sqrt(5)) / 2;
 
         protected override void execute()

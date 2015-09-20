@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Optimisation.Одномерные
 {
-    class FibonacciMethod1 : OneDimentionalOptimisationMethod
+    public class FibonacciMethod1 : OneDimentionalOptimisationMethod
     {
         private List<double> fibonacciList = null;
         private int n = 1;
@@ -84,10 +84,12 @@ namespace Optimisation.Одномерные
             if (f(lambda) > f(mu))
             {
                 answer = (lambda + b) / 2;
+                a = lambda; 
             }
             else
             {
                 answer = (a + mu) / 2;
+                b = mu;
             }
         }
 

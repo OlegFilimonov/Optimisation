@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Optimisation.Одномерные
 {
-    class BolzanoMethod : OneDimentionalOptimisationMethod
+    public class BolzanoMethod : OneDimentionalOptimisationMethod
     {
-        public BolzanoMethod(function f,function df, double eps=1e-6, bool useStandartInterval = false) : 
-            base(f,df, eps, "МБц", useStandartInterval=false)
+        public BolzanoMethod(function f,function df, double eps=1e-6, bool useStandartInterval = false, int maxIterations = 50) : 
+            base(f,df, eps, "МБц", useStandartInterval=false,maxIterations)
         {
             //Производная должна существовать для Больцано
             if (df == null) throw new ArgumentNullException(nameof(df));

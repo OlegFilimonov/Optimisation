@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Optimisation.Одномерные
 {
-    class ExtrapolationMethod : OneDimentionalOptimisationMethod
+    public class ExtrapolationMethod : OneDimentionalOptimisationMethod
     {
         public ExtrapolationMethod(function f, function df = null, double eps = 1e-6)
             : base(f, df, eps, "ЭКС", false)

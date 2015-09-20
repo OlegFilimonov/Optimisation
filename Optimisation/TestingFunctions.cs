@@ -8,17 +8,17 @@ using Optimisation.Одномерные;
 namespace Optimisation.Testing
 {
     //Класс типичных функций для тестирования
-    class TestingFunctions
+    public class TestingFunctions
     {
         // Функция y = x^2
         public static double f1(double x)
         {
-            return 4 * Math.Pow(x, 2);
+            return 2*Math.Pow(x, 2) + 3*Math.Pow(Math.E, x);
         }
 
         public static double df1(double x)
         {
-            return 8 * x;
+            return 4*x + 3* Math.Pow(Math.E, x);
         }
         // Функция y = x*x + 3*x - 7
         public static double f2(double x)
@@ -55,7 +55,7 @@ namespace Optimisation.Testing
     }
 
     //Класс, хранящий функции для тестирования
-    class Function
+    public class Function
     {
         private function f;
         private function df;

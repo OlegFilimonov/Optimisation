@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Optimisation.Одномерные
 {
-    class DSK_Method : OneDimentionalOptimisationMethod
+    public class DSK_Method : OneDimentionalOptimisationMethod
     {
         public DSK_Method(function f, bool useStandartInterval = false, int maxIterations = 50)
             : base(f, null, eps: 1e-6, methodName: "ДСК", useStandartInterval: useStandartInterval, maxIterations: maxIterations)

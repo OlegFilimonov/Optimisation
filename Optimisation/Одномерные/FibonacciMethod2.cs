@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Optimisation.Одномерные
 {
 
-    class FibonacciMethod2 : OneDimentionalOptimisationMethod
+    public class FibonacciMethod2 : OneDimentionalOptimisationMethod
     {
         private List<double> fibonacciList;
         private int n = 1;
@@ -93,10 +93,12 @@ namespace Optimisation.Одномерные
             if (f(x1) > f(x2))
             {
                 answer = (x1 + b) / 2;
+                a = x1;
             }
             else
             {
                 answer = (a + x2) / 2;
+                b = x2;
             }
         }
 
