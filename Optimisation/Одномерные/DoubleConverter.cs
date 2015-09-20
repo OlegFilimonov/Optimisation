@@ -87,11 +87,17 @@ namespace Optimisation.Одномерные
                     ad.MultiplyBy(2);
             }
 
+            string tmp;
+
             // Finally, return the string with an appropriate sign
             if (negative)
-                return "-" + ad.ToString();
+                tmp = "-" + ad.ToString();
             else
-                return ad.ToString();
+                tmp = ad.ToString();
+
+            if (tmp.Length > 20) tmp = tmp.Substring(0, 20);
+
+            return tmp;
         }
 
         /// <summary>Private class used for manipulating

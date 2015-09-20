@@ -1,49 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Optimisation.Одномерные;
 
-namespace Optimisation
+namespace Optimisation.Testing
 {
-    //   Класс типичных функций для тестирования
-    class TestingFunctions
+
+    //Тестер
+    public class Tester
     {
-        // Функция y = x^2
-        public double f1(double x)
+        private List<OneDimentionalOptimisationMethod> oneDimentionalMethods = new List<OneDimentionalOptimisationMethod>();
+        private List<Function> testingFunctions = new List<Function>();
+
+        private void populateFunctions()
         {
-            return Math.Pow(x, 2);
+            testingFunctions.Add(new Function(TestingFunctions.f1,TestingFunctions.f2,"2x^2+16/x"));
         }
 
-        // Функция y = x*x + 3*x - 7
-        public double f2(double x)
+        private void populateMethods(function f, function df)
         {
-            return Math.Pow(x, 2) + 3 * x - 7;
-
-        }
-
-        public double df2(double x)
-        {
-            return 2*x + 3;
-        }
-    }
-
-    class Tester
-    {
-        private List<OneDimentionalOptimisationMethod> oneDimentionalMethods = new List<OneDimentionalOptimisationMethod>(); 
-        private TestingFunctions testingFunctions;
-
-        private void populateList()
-        {
-            OneDimentionalOptimisationMethod.function f = testingFunctions.f2;
-            OneDimentionalOptimisationMethod.function df = testingFunctions.df2;
             oneDimentionalMethods.Add(new GoldenRatioMethod1(f));
             oneDimentionalMethods.Add(new GoldenRatioMethod2(f));
             oneDimentionalMethods.Add(new FibonacciMethod1(f));
             oneDimentionalMethods.Add(new FibonacciMethod2(f));
-            oneDimentionalMethods.Add(new BolzanoMethod(f,df));
+            oneDimentionalMethods.Add(new BolzanoMethod(f, df));
+            oneDimentionalMethods.Add(new ExtrapolationMethod(f));
+            oneDimentionalMethods.Add(new PaulMethod(f, df));
+            oneDimentionalMethods.Add(new DSK_Method(f));
+            oneDimentionalMethods.Add(new DavidonMethod(f,df));
         }
 
         private void generateAllReports()
@@ -56,17 +39,79 @@ namespace Optimisation
 
         public Tester()
         {
-            testingFunctions = new TestingFunctions();
-            Console.WriteLine("======================================================");
-            Console.WriteLine("\t\tЛОГИ МЕТОДОВ");
-            Console.WriteLine("======================================================");
-            populateList();
-            Console.WriteLine("======================================================");
-            Console.WriteLine("\t\tОТВЕТЫ МЕТОДОВ");
-            Console.WriteLine("======================================================");
-            generateAllReports();
+            Console.Clear();
+            populateFunctions();
+            Console.WriteLine("Выберите функцию, полный список:\n");
+            int k = 0;
+            foreach (var func in testingFunctions)
+            {
+                k++;
+                Console.WriteLine("[{0}] Функция {1}", k,func.Name);
+            }
+            var chosenValue = Convert.ToInt32(Console.ReadKey(true).KeyChar.ToString());
 
-            Console.ReadLine();
+            Console.Clear();
+            var currFunc = testingFunctions[chosenValue - 1];
+
+
+            populateMethods(currFunc.F, currFunc.Df);
+
+            Console.WriteLine("\nВсе методы инициированы. Нажмите любую клавишу, чтобы войти в главное меню.");
+        //    Console.ReadKey(true);
+            executeLauncher();
+        }
+
+        public void executeLauncher()
+        {
+            Console.Clear();
+            Console.WriteLine("Выберите метод, полный список:\n");
+            int k = 0;
+            Console.WriteLine("[0] Запустить все методы");
+            foreach (var method in oneDimentionalMethods)
+            {
+                k++;
+                Console.WriteLine("[{0}] Метод \"{1}\"", k, method.MethodName);
+            }
+            var chosenValue = Convert.ToInt32(Console.ReadKey(true).KeyChar.ToString());
+            Console.Clear();
+            if (chosenValue == 0)
+            {
+                try
+                {
+                    Console.WriteLine(("").PadRight(79, '='));
+                    Console.WriteLine("\t\t\tОТВЕТЫ МЕТОДОВ");
+                    Console.WriteLine(("").PadRight(79, '='));
+                    generateAllReports();
+                }
+                catch (Exception ignored)
+                {
+                    Console.WriteLine("Exception: " + ignored.ToString());
+                }
+
+            }
+            else
+            {
+                var currMethod = oneDimentionalMethods[chosenValue - 1];
+
+                //try
+                //{
+                    currMethod.executeMethod();
+                    Console.WriteLine(("").PadRight(79, '='));
+                    Console.WriteLine("\t\t\tОТВЕТ МЕТОДА");
+                    Console.WriteLine(("").PadRight(79, '='));
+                    currMethod.generateReport();
+                    Console.WriteLine("\n\n");
+                //}
+                //catch (Exception ignored)
+                //{
+                //    Console.WriteLine("Exception: " + ignored.ToString());
+                //}
+            }
+            Console.WriteLine("\nКонец работы, нажмите \"r\" чтобы начать заного или \"m\" чтобы выбрать новую функцию");
+            chosenValue = Convert.ToChar(Console.ReadKey(true).KeyChar.ToString());
+            if (chosenValue == 'r' || chosenValue == 'к') executeLauncher(); else
+            if (chosenValue == 'ь' || chosenValue == 'm') new Tester();
+
         }
     }
 }

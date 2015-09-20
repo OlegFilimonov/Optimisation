@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Optimisation
+namespace Optimisation.Одномерные
 {
     //Метод золотого сечения 2 - МЗС2
-    class GoldenRatioMethod2 : OneDimentionalOptimisationMethod
+    public class GoldenRatioMethod2 : OneDimentionalOptimisationMethod
     {
         private readonly double goldenRight = (-1 + Math.Sqrt(5)) / 2;
 
@@ -45,15 +41,15 @@ namespace Optimisation
                 k++;
                 length = Math.Abs(b - a);
                 Console.WriteLine(methodName + ": Итерация № " + k + " \tТИЛ: [" + a + ";" + b + "]");
-            } while (length > eps && k < MAX_ITERATIONS);
+            } while (length > eps && k < maxIterations);
             iterationCount = k;
 
             //Окончание
             answer = (a + b) / 2;
         }
 
-        public GoldenRatioMethod2(function f, double eps = 1e-6, bool useStandartInterval = false)
-            : base(f,null, eps, "МЗС2", useStandartInterval)
+        public GoldenRatioMethod2(function f, double eps = 1e-6, int maxIterations=50, bool useStandartInterval = false)
+            : base(f,null, eps, "МЗС2", useStandartInterval,maxIterations)
         { }
     }
 }

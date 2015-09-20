@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Optimisation
+namespace Optimisation.Одномерные
 {
-    class FibonacciMethod1 : OneDimentionalOptimisationMethod
+    public class FibonacciMethod1 : OneDimentionalOptimisationMethod
     {
-        private List<double> fibonacciList = new List<double>();
+        private List<double> fibonacciList = null;
         private int n = 1;
         double length_n = 1e-6;
 
@@ -35,7 +35,12 @@ namespace Optimisation
 
         protected override void execute()
         {
-            
+            n = 1;
+            if(fibonacciList == null) fibonacciList = new List<double>();
+            else
+            {
+                fibonacciList.Clear();
+            }
 
             //Начальный этап
             var length = Math.Abs(b - a);
@@ -79,10 +84,12 @@ namespace Optimisation
             if (f(lambda) > f(mu))
             {
                 answer = (lambda + b) / 2;
+                a = lambda; 
             }
             else
             {
                 answer = (a + mu) / 2;
+                b = mu;
             }
         }
 
