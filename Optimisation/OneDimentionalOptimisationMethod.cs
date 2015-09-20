@@ -42,7 +42,14 @@ namespace Optimisation.Одномерные
         protected function df;
 
         //Реализация метода
-        protected abstract void execute();
+        public abstract void execute();
+
+        //Стандартный интервал
+        public void setStandartInterval()
+        {
+            a = 0;
+            b = 1;
+        }
 
         //Метод Свена
         private void setSvenInterval(double startingX = 0, double h = 0.01)
@@ -50,9 +57,6 @@ namespace Optimisation.Одномерные
             a = startingX;
             double x1 = a, x2 = a, x3 = a + h;
             var k = 0;
-
-            Console.WriteLine("НАЧАЛО МЕТОДА СВЕНА-1");
-            Console.WriteLine(("").PadRight(80, '-'));
 
             //Начальный этап
             if (f(x2) < f(x3))
@@ -63,7 +67,6 @@ namespace Optimisation.Одномерные
             //Основной этап
             while (f(x2) > f(x3))
             {
-                Console.WriteLine("- МС: Итерация № " + k + " \tТИЛ: [" + x1 + ";" + x3 + "]");
                 k++;
                 h *= 2;
                 x2 = x3;
@@ -82,15 +85,6 @@ namespace Optimisation.Одномерные
                 a = x3;
                 b = x1;
             }
-            Console.WriteLine("- МС: Начальный интервал: [" + a + ";" + b + "]");
-        }
-
-        //Стандартный интервал
-        private void setStandartInterval()
-        {
-            a = 0;
-            b = 1;
-            Console.WriteLine("ВЫБРАН СТАНДАРТНЫЙ НАЧАЛЬНЫЙ ИНТЕРВАЛ [0,1]");
         }
 
         //Свен - 3
@@ -102,52 +96,18 @@ namespace Optimisation.Одномерные
             b = (a + c) / 2;
         }
 
-        //Вывод ответа
-        public void generateReport()
-        {
-            Console.WriteLine("{0}:\tИтерации: {1}\t Ответ: " + DoubleConverter.ToExactString(answer).PadRight(20) + "\tТочность: {3}", methodName, iterationCount, answer, eps);
-        }
 
         //Конструктор
-        protected OneDimentionalOptimisationMethod(function f, function df, double eps, string methodName, bool useStandartInterval = false, int maxIterations = 50)
+        protected OneDimentionalOptimisationMethod(function f, function df, double eps, string methodName, int maxIterations = 50)
         {
             //Функция должна существовать
             if (f == null) throw new ArgumentNullException(nameof(f));
-
             this.methodName = methodName;
             this.f = f;
             this.df = df;
             this.eps = eps;
             this.maxIterations = maxIterations;
 
-            executeMethod(useStandartInterval);
-        }
-
-        //Запуск метода с предварительным поиском интервала
-        public void executeMethod(bool useStandartInterval = false)
-        {
-            //Выбор начального интервала
-            if (useStandartInterval) setStandartInterval();
-            else
-            {
-                if (df != null)
-                {
-                    //TODO: реализовать метод свена-2 и выбрать его
-                    setSvenInterval();
-                }
-                else
-                {
-                    setSvenInterval();
-                }
-            }
-
-
-            Console.WriteLine("\nНАЧАЛО " + methodName);
-            Console.WriteLine(("").PadRight(80, '-'));
-            //Запуск метода
-            execute();
-
-            Console.WriteLine("КОНЕЦ " + methodName);
         }
 
         public string MethodName

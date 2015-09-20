@@ -8,19 +8,15 @@ namespace Optimisation.Одномерные
 {
     public class PaulMethod : OneDimentionalOptimisationMethod
     {
-        public PaulMethod(function f, function df, double eps = 1e-6, bool useStandartInterval = false)
-            : base(f, df, eps, "PAUL", useStandartInterval)
+        public PaulMethod(function f, function df, double eps = 1e-6, bool useStandartInterval = false, int maxIterations = 50)
+            : base(f: f, df: df, eps: eps, methodName: "Метод ПАУЛА",maxIterations: maxIterations)
         {
         }
 
-        protected override void execute()
+        public override void execute()
         {
-            //Разгонный метод
-            var tempGoldenRatioMethod2 = new GoldenRatioMethod2(f, 1e-6, 5);
-            iterationCount += 5;
-            a = tempGoldenRatioMethod2.A;
-            c = tempGoldenRatioMethod2.B;
-            b = (a + c) / 2;
+            //Сбрасываем счетчик
+            iterationCount = 0;
 
             //Начальный этап
             double eps1 = eps, eps2 = eps;
@@ -66,17 +62,14 @@ namespace Optimisation.Одномерные
                     d = (a + b) / 2 + (f(a) - f(b)) * (b - c) * (c - a) / (f(a) * (b - c) + f(b) * (c - a) + f(c) * (a - b)) / 2;
                 }
 
-
-
-
                 //Критерий близости центральных точек
                 kr1 = Math.Abs(d - b) / Math.Abs(b);
                 kr2 = Math.Abs(f(d) - f(b)) / Math.Abs(f(b));
-
-
-                Console.WriteLine(methodName + ": Итерация № " + k + ", \tТИЛ: [" + a + ";" + b + "]");
+                
             } while (((kr1 >= eps1) || (kr2 >= eps2)) && (k < maxIterations));
+
             iterationCount += k;
+
             answer = (b + d) / 2;
 
         }

@@ -21,6 +21,7 @@ namespace Optimisation.Одномерные
             var lambda = middle + eps;
             var mu = middle - eps;
             var k = 0;
+           
 
             //Основной этап
             do
@@ -42,7 +43,6 @@ namespace Optimisation.Одномерные
                     mu = middle - eps;
                 }
                 k++;
-                Console.WriteLine(methodName + ": Итерация № " + k + ", \tТИЛ: [" + a + ";" + b + "]");
 
             } while (length > eps && k < MAX_ITERATIONS);
             iterationCount = k;

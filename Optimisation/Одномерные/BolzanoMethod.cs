@@ -8,15 +8,18 @@ namespace Optimisation.Одномерные
 {
     public class BolzanoMethod : OneDimentionalOptimisationMethod
     {
-        public BolzanoMethod(function f,function df, double eps=1e-6, bool useStandartInterval = false, int maxIterations = 50) : 
-            base(f,df, eps, "МБц", useStandartInterval=false,maxIterations)
+        public BolzanoMethod(function f,function df, double eps=1e-6, int maxIterations = 50) : 
+            base(f,df, eps, "Метод БОЛЬЦАНО",maxIterations)
         {
             //Производная должна существовать для Больцано
             if (df == null) throw new ArgumentNullException(nameof(df));
         }
 
-        protected override void execute()
+        public override void execute()
         {
+            //Сбрасываем счетчик
+            iterationCount = 0;
+
             //Начальный этап
             var k = 1;
             //Основной этап
@@ -35,7 +38,7 @@ namespace Optimisation.Одномерные
                     a = x;
                 }
                 k++;
-                Console.WriteLine(methodName + ": Итерация № " + k + ", \tТИЛ: [" + a + ";" + b + "]");
+
             } while (((Math.Abs(df(x)) > eps) || (length > eps)) && (k<maxIterations));
             x = (a + b) / 2;
             iterationCount = k;

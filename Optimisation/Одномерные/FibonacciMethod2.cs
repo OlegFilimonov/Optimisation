@@ -13,7 +13,7 @@ namespace Optimisation.Одномерные
         private int n = 1;
         double length_n = 1e-6;
 
-        private double populateFibonacci(double treshHold)
+        public double populateFibonacci(double treshHold)
         {
             double f_n = 1;
             double f_n2 = 1, f_n1 = 1;
@@ -34,8 +34,11 @@ namespace Optimisation.Одномерные
 
 
 
-        protected override void execute()
+        public override void execute()
         {
+            //Сбрасываем счетчик
+            iterationCount = 0;
+
             n = 1;
 
             if (fibonacciList == null) fibonacciList = new List<double>();
@@ -85,8 +88,7 @@ namespace Optimisation.Одномерные
                     b = x2;
                 }
                 k++;
-                length = Math.Abs(b - a);
-                Console.WriteLine(methodName + ": Итерация № " + k + " \tТИЛ: [" + a + ";" + b + "]");
+
             } while (k!=n);
             
 
@@ -103,8 +105,8 @@ namespace Optimisation.Одномерные
         }
 
         //Конструктор
-        public FibonacciMethod2(function f, double eps = 1e-6, bool useStandartInterval = false)
-            : base(f,null, eps, "МФ2", useStandartInterval)
+        public FibonacciMethod2(function f, double eps = 1e-6, int maxIterations=50)
+            : base(f: f, df: null, eps: eps, methodName: "Метод ФИБОНАЧЧИ-2", maxIterations: maxIterations)
         {
             length_n = eps;
         }

@@ -7,8 +7,11 @@ namespace Optimisation.Одномерные
     {
         private readonly double goldenRight = (-1 + Math.Sqrt(5)) / 2;
 
-        protected override void execute()
+        public override void execute()
         {
+            //Сбрасываем счетчик
+            iterationCount = 0;
+
             //Начальный этап
             var length = Math.Abs(b - a);
             var x1 = a + goldenRight * length;
@@ -40,7 +43,6 @@ namespace Optimisation.Одномерные
                 }
                 k++;
                 length = Math.Abs(b - a);
-                Console.WriteLine(methodName + ": Итерация № " + k + " \tТИЛ: [" + a + ";" + b + "]");
             } while (length > eps && k < maxIterations);
             iterationCount = k;
 
@@ -48,8 +50,8 @@ namespace Optimisation.Одномерные
             answer = (a + b) / 2;
         }
 
-        public GoldenRatioMethod2(function f, double eps = 1e-6, int maxIterations=50, bool useStandartInterval = false)
-            : base(f,null, eps, "МЗС2", useStandartInterval,maxIterations)
+        public GoldenRatioMethod2(function f, double eps = 1e-6, int maxIterations=50)
+            : base(f,null, eps, "Метод ЗОЛОТОГО СЕЧЕНИЯ-2",maxIterations)
         { }
     }
 }
