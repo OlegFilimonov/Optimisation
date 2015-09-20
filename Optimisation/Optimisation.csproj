@@ -36,6 +36,10 @@
     <StartupObject>Optimisation.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="cscompmgd, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Windows\Microsoft.NET\Framework\v2.0.50727\cscompmgd.dll</HintPath>
+    </Reference>
     <Reference Include="FPlotLibrary">
       <HintPath>lib\FPlotLibrary.dll</HintPath>
     </Reference>
@@ -74,7 +78,6 @@
     <Compile Include="OneDimentionalOptimisationMethod.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ConsoleTester.cs" />
     <Compile Include="Одномерные\PaulMethod.cs" />
   </ItemGroup>
   <ItemGroup>

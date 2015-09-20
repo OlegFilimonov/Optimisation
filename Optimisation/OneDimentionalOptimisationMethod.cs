@@ -100,8 +100,6 @@ namespace Optimisation.Одномерные
         //Конструктор
         protected OneDimentionalOptimisationMethod(function f, function df, double eps, string methodName, int maxIterations = 50)
         {
-            //Функция должна существовать
-            if (f == null) throw new ArgumentNullException(nameof(f));
             this.methodName = methodName;
             this.f = f;
             this.df = df;
@@ -134,5 +132,7 @@ namespace Optimisation.Одномерные
         {
             get { return eps; }
         }
+
+
     }
 }

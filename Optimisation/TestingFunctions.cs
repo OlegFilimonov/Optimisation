@@ -20,6 +20,7 @@ namespace Optimisation.Testing
         {
             return 4*x + 3* Math.Pow(Math.E, x);
         }
+
         // Функция y = x*x + 3*x - 7
         public static double f2(double x)
         {
