@@ -6,14 +6,14 @@ namespace Optimisation.Testing
 {
 
     //Тестер
-    public class Tester
+    public class ConsoleTester
     {
         private List<OneDimentionalOptimisationMethod> oneDimentionalMethods = new List<OneDimentionalOptimisationMethod>();
         private List<Function> testingFunctions = new List<Function>();
 
         private void populateFunctions()
         {
-            testingFunctions.Add(new Function(TestingFunctions.f1,TestingFunctions.f2,"2x^2+16/x"));
+            testingFunctions.Add(new Function(TestingFunctions.f1, TestingFunctions.f2, "2x^2+16/x"));
         }
 
         private void populateMethods(function f, function df)
@@ -26,18 +26,18 @@ namespace Optimisation.Testing
             oneDimentionalMethods.Add(new ExtrapolationMethod(f));
             oneDimentionalMethods.Add(new PaulMethod(f, df));
             oneDimentionalMethods.Add(new DSK_Method(f));
-            oneDimentionalMethods.Add(new DavidonMethod(f,df));
+            oneDimentionalMethods.Add(new DavidonMethod(f, df));
         }
 
         private void generateAllReports()
         {
             foreach (var method in oneDimentionalMethods)
             {
-                method.generateReport();
+                //TODO: fix this
             }
         }
 
-        public Tester()
+        public ConsoleTester()
         {
             Console.Clear();
             populateFunctions();
@@ -46,7 +46,7 @@ namespace Optimisation.Testing
             foreach (var func in testingFunctions)
             {
                 k++;
-                Console.WriteLine("[{0}] Функция {1}", k,func.Name);
+                Console.WriteLine("[{0}] Функция {1}", k, func.Name);
             }
             var chosenValue = Convert.ToInt32(Console.ReadKey(true).KeyChar.ToString());
 
@@ -57,7 +57,7 @@ namespace Optimisation.Testing
             populateMethods(currFunc.F, currFunc.Df);
 
             Console.WriteLine("\nВсе методы инициированы. Нажмите любую клавишу, чтобы войти в главное меню.");
-        //    Console.ReadKey(true);
+            //    Console.ReadKey(true);
             executeLauncher();
         }
 
@@ -93,24 +93,19 @@ namespace Optimisation.Testing
             {
                 var currMethod = oneDimentionalMethods[chosenValue - 1];
 
-                //try
-                //{
-                    currMethod.executeMethod();
-                    Console.WriteLine(("").PadRight(79, '='));
-                    Console.WriteLine("\t\t\tОТВЕТ МЕТОДА");
-                    Console.WriteLine(("").PadRight(79, '='));
-                    currMethod.generateReport();
-                    Console.WriteLine("\n\n");
-                //}
-                //catch (Exception ignored)
-                //{
-                //    Console.WriteLine("Exception: " + ignored.ToString());
-                //}
+                currMethod.execute();
+                Console.WriteLine(("").PadRight(79, '='));
+                Console.WriteLine("\t\t\tОТВЕТ МЕТОДА");
+                Console.WriteLine(("").PadRight(79, '='));
+                //TODO: fix generate report
+                Console.WriteLine("\n\n");
+
             }
             Console.WriteLine("\nКонец работы, нажмите \"r\" чтобы начать заного или \"m\" чтобы выбрать новую функцию");
             chosenValue = Convert.ToChar(Console.ReadKey(true).KeyChar.ToString());
-            if (chosenValue == 'r' || chosenValue == 'к') executeLauncher(); else
-            if (chosenValue == 'ь' || chosenValue == 'm') new Tester();
+            if (chosenValue == 'r' || chosenValue == 'к') executeLauncher();
+            else
+            if (chosenValue == 'ь' || chosenValue == 'm') new ConsoleTester();
 
         }
     }

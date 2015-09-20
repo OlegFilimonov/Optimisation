@@ -8,24 +8,20 @@ namespace Optimisation.Одномерные
 {
     public class ExtrapolationMethod : OneDimentionalOptimisationMethod
     {
-        public ExtrapolationMethod(function f, function df = null, double eps = 1e-6)
-            : base(f, df, eps, "ЭКС", false)
+        public ExtrapolationMethod(function f, double eps = 1e-6, int maxIteratons = 50)
+            : base(f: f, df: null, eps: eps, methodName: "Метод ЭКСТРАПОЛЯЦИИ", maxIterations: maxIteratons)
         {
         }
 
-        protected override void execute()
+        public override void execute()
         {
-            var random = new Random(DateTime.Now.Millisecond);
-            //Начальный этап
-            var tempGoldenRatioMethod2 = new GoldenRatioMethod2(f, 1e-6, 5);
-            iterationCount += 5;
-            a = tempGoldenRatioMethod2.A;
-            b = tempGoldenRatioMethod2.B;
-            
+            //Сбрасываем счетчик
+            iterationCount = 0;
+
             double eps1 = eps, eps2 = eps;
             const double h = 0.01;
             var k = 0;
-            var d = (a + b)/2;  //random.NextDouble()*(b - a);
+            var d = (a + b) / 2;  //random.NextDouble()*(b - a);
             double kr1, kr2; //критерии окончания поиска
 
             //Основной этап
@@ -41,9 +37,9 @@ namespace Optimisation.Одномерные
                 //Критерий близости центральных точек
                 kr1 = Math.Abs(d - b) / Math.Abs(b);
                 kr2 = Math.Abs(f(d) - f(b)) / Math.Abs(f(b));
-                Console.WriteLine(methodName + ": Итерация № " + k + ", \tТИЛ: [" + a + ";" + b + "]");
                 k++;
             } while (((kr1 >= eps1) || (kr2 >= eps2)) && (k < maxIterations));
+
             iterationCount += k;
             answer = (b + d) / 2;
         }

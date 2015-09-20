@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Optimisation.Одномерные
 {
-    //Метод Золотого Сечения 1 - МЗС 1
-    public class GoldenRatioMethod1 : OneDimentionalOptimisationMethod
+    class DichotomyMethod : OneDimentionalOptimisationMethod
     {
-        private readonly double goldenLeft = (3 - Math.Sqrt(5)) / 2;
-        private readonly double goldenRight = (-1 + Math.Sqrt(5)) / 2;
+        public DichotomyMethod(function f, double eps = 1e-6, int maxIterations = 50) :
+            base(f: f, df: null, eps: eps, methodName: "Метод ДИХТОМИИ",maxIterations: maxIterations)
+        {
+        }
 
         public override void execute()
         {
@@ -19,26 +20,30 @@ namespace Optimisation.Одномерные
 
             //Начальный этап
             var length = Math.Abs(b - a);
-            var lambda = a + goldenLeft * length;
-            var mu = a + goldenRight * length;
+            var middle = (a + b) / 2;
+            var lambda = middle + eps;
+            var mu = middle - eps;
             var k = 0;
+
 
             //Основной этап
             do
             {
-                if (f(lambda) < f(mu))
+                if (f(lambda) >= f(mu))
                 {
                     b = mu;
                     length = Math.Abs(b - a);
-                    mu = lambda;
-                    lambda = a + goldenLeft * length;
+                    middle = (a + b) / 2;
+                    lambda = middle + eps;
+                    mu = middle - eps;
                 }
                 else
                 {
                     a = lambda;
-                    lambda = mu;
                     length = Math.Abs(b - a);
-                    mu = a + goldenRight * length;
+                    middle = (a + b) / 2;
+                    lambda = middle + eps;
+                    mu = middle - eps;
                 }
                 k++;
 
@@ -48,11 +53,5 @@ namespace Optimisation.Одномерные
             //Окончание
             answer = (a + b) / 2;
         }
-
-        public GoldenRatioMethod1(function f, double eps = 1e-6, int maxIterations=50)
-            : base(f,null, eps,"Метод ЗОЛОТОГО СЕЧЕНИЯ-1")
-        {
-        }
-
     }
 }

@@ -9,17 +9,12 @@ namespace Optimisation.Одномерные
     class DavidonMethod : OneDimentionalOptimisationMethod
     {
         public DavidonMethod(function f, function df, double eps=1e-6, int maxIterations=50) : 
-            base(f, df, eps, "ДАВ", false, maxIterations)
+            base(f: f, df: df, eps: eps, methodName: "Метод ДАВИДОНА", maxIterations: maxIterations)
         {
         }
 
-        protected override void execute()
+        public override void execute()
         {
-            //Разгон
-            OneDimentionalOptimisationMethod bolzanoMethod = new BolzanoMethod(f,df,eps,false,5);
-            a = bolzanoMethod.A;
-            b = bolzanoMethod.B;
-
             //Сбрасываем счетчик
             iterationCount = 0;
             
@@ -31,8 +26,6 @@ namespace Optimisation.Одномерные
             {
                 iterationCount ++;
                 if(iterationCount > maxIterations) break;
-
-                Console.WriteLine(methodName + ": Итерация № " + iterationCount + ", \tТИЛ: [" + a + ";" + b + "]");
 
                 double z = df(a) + df(b) + 3*(f(a) - f(b))/(b - a);
                 double w = Math.Sqrt(Math.Pow(z, 2) - df(a)*df(b));
