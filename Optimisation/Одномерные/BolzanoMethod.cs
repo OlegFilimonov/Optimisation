@@ -11,12 +11,13 @@ namespace Optimisation.Одномерные
         public BolzanoMethod(function f,function df, double eps=1e-6, int maxIterations = 50) : 
             base(f,df, eps, "Метод БОЛЬЦАНО",maxIterations)
         {
-            //Производная должна существовать для Больцано
-            if (df == null) throw new ArgumentNullException(nameof(df));
         }
 
         public override void execute()
         {
+            //Производная должна существовать для Больцано
+            if (df == null) throw new ArgumentNullException(nameof(df));
+
             //Сбрасываем счетчик
             iterationCount = 0;
 
