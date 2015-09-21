@@ -32,6 +32,7 @@ namespace Optimisation.Testing
         private function df;
         private string name;
         private double min;
+        private double startingX;
 
         public Function(function f, function df, string name,double min)
         {

@@ -52,7 +52,7 @@ namespace Optimisation.Одномерные
         }
 
         //Метод Свена
-        private void setSvenInterval(double startingX = 0, double h = 0.01)
+        public void setSvenInterval(double startingX = 0, double h = 0.01)
         {
             a = startingX;
             double x1 = a, x2 = a, x3 = a + h;

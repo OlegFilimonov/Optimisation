@@ -60,6 +60,10 @@ namespace Optimisation
             {
                 functionList.Items.Add(func.Name);
             }
+            foreach (var method in oneDimentionalMethods)
+            {
+                methodList.Items.Add(method.MethodName);
+            }
         }
 
         public MainForm()
@@ -81,8 +85,20 @@ namespace Optimisation
             var index = functionList.SelectedIndex;
             var min = testingFunctions[index].Min;
             var f = testingFunctions[index].F;
-            graph.x0 = min - 3;
-            graph.x1 = min + 3;
+
+            var length = 3;
+
+            var x0 = min - length/2;
+            var x1 = min + length/2;
+            
+            var f0 = f(min);
+            var y0 = f(min) - length / 2;
+            var y1 = f(min) + length/2;
+            graph.x0 = x0;
+            graph.x1 = x1;
+
+            graph.y0 = y0;
+            graph.y1 = y1;
 
             graph.Model.Items.Add(graphFunctions[index]);
             graph.Invalidate();
@@ -101,6 +117,17 @@ namespace Optimisation
 
             methodList.Enabled = !playListRadioButton.Checked;
             playList.Enabled = playListRadioButton.Checked;
+        }
+
+        private void methodList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var method = oneDimentionalMethods[methodList.SelectedIndex];
+            method.setSven3Interval();
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
