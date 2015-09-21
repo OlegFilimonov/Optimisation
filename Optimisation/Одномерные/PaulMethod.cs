@@ -72,6 +72,9 @@ namespace Optimisation.Одномерные
 
             answer = (b + d) / 2;
 
+            a = b;
+            b = d;
+
         }
     }
 }

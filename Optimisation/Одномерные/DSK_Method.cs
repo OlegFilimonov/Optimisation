@@ -42,6 +42,7 @@ namespace Optimisation.Одномерные
             } while (((kr1 >= eps1) || (kr2 >= eps2)) && (k < maxIterations));
             iterationCount += k;
             answer = (b + d) / 2;
+            b = c;
         }
     }
 }

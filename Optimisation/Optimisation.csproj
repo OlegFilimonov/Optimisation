@@ -68,7 +68,7 @@
     <Compile Include="Одномерные\BolzanoMethod.cs" />
     <Compile Include="Одномерные\DavidonMethod.cs" />
     <Compile Include="Одномерные\DihotomyMethod.cs" />
-    <Compile Include="Одномерные\DoubleConverter.cs" />
+    <Compile Include="DoubleConverter.cs" />
     <Compile Include="Одномерные\DSK_Method.cs" />
     <Compile Include="Одномерные\ExtrapolationMethod.cs" />
     <Compile Include="Одномерные\FibonacciMethod2.cs" />
@@ -78,13 +78,16 @@
     <Compile Include="OneDimentionalOptimisationMethod.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Одномерные\NewtonMethod.cs" />
     <Compile Include="Одномерные\PaulMethod.cs" />
+    <Compile Include="Одномерные\Цепочки\svenn-bolz-fib2.cs" />
+    <Compile Include="Одномерные\Цепочки\svenn-bolz-gr1.cs" />
+    <Compile Include="Одномерные\Цепочки\svenn-dih-newton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="lib\" />
     <Folder Include="Многомерные\" />
   </ItemGroup>
   <ItemGroup>

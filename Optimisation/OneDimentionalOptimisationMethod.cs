@@ -21,7 +21,7 @@ namespace Optimisation.Одномерные
         protected int maxIterations = 50;
 
         //Точность вычислений метода
-        protected readonly double eps;
+        protected double eps;
 
         //Имя метода для логов
         protected readonly string methodName;
@@ -65,13 +65,13 @@ namespace Optimisation.Одномерные
             }
 
             //Основной этап
-            while (f(x2) > f(x3))
+            while (f(x2) >= f(x3))
             {
                 k++;
                 h *= 2;
+                x1 = x2;
                 x2 = x3;
                 x3 += h;
-                x1 = x2;
             }
 
             //Окончание
@@ -87,14 +87,68 @@ namespace Optimisation.Одномерные
             }
         }
 
+        public void setSven2Interval(double startingX = 0, double h = 0.01)
+        {
+            if (startingX != 0) h *= Math.Abs(startingX);
+            if (df(startingX) > 0) h = -h;
+            double sign = df(startingX);
+            while (sign * df(startingX + h) > 0)
+            {
+                startingX += h;
+                h *= 2;
+            }
+            if (h < 0)
+            {
+                a = startingX + h;
+                b = startingX;
+            }
+            else
+            {
+                a = startingX;
+                b = startingX + h;
+            }
+        }
+
         //Свен - 3
         public void setSven3Interval(double startingX = 0, double h = 0.01)
         {
-            //TODO: do this properly
-            setSvenInterval(startingX, h);
-            c = b;
-            b = (a + c) / 2;
+            if (startingX != 0) h *= Math.Abs(startingX);
+            if (f(startingX) < f(startingX + h)) h = -h;
+
+            var x = startingX;
+
+            while (f(x) > f(x + h))
+            {
+                x += h; h *= 2;
+            }
+
+            if (f(x) > f(x + h / 2) && (h < 0)) //Первый случай
+            {
+
+                a = x + h;
+                b = x + h / 2;
+                c = x;
+            }
+            else if (f(x) > f(x + h / 2) && (h >= 0)) //Второй случай
+            {
+                a = x;
+                b = x + h / 2;
+                c = x + h;
+            }
+            else if (f(x) <= f(x + h / 2) && (h < 0)) //Третий случай
+            {
+                a = x + h / 2;
+                b = x;
+                c = x - h / 2;
+            }
+            else //Четвертный случай
+            {
+                a = x - h / 2;
+                b = x;
+                c = x + h / 2;
+            }
         }
+
 
 
         //Конструктор
@@ -131,8 +185,29 @@ namespace Optimisation.Одномерные
         public double Eps
         {
             get { return eps; }
+            set { eps = value; }
         }
 
+        public double Answer
+        {
+            get { return answer; }
+        }
 
+        public int IterationCount
+        {
+            get { return iterationCount; }
+        }
+
+        public function F
+        {
+            get { return f; }
+            set { f = value; }
+        }
+
+        public function Df
+        {
+            get { return df; }
+            set { df = value; }
+        }
     }
 }

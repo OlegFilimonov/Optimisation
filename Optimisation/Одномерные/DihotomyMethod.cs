@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Optimisation.Одномерные
 {
-    class DichotomyMethod : OneDimentionalOptimisationMethod
+    public class DichotomyMethod : OneDimentionalOptimisationMethod
     {
+        
+
         public DichotomyMethod(function f, double eps = 1e-6, int maxIterations = 50) :
             base(f: f, df: null, eps: eps, methodName: "Метод ДИХТОМИИ",maxIterations: maxIterations)
         {

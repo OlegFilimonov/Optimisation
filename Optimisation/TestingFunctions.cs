@@ -12,11 +12,11 @@ namespace Optimisation.Testing
     //Класс типичных функций для тестирования
     public class TestingFunctions
     {
-        public static double f1(double x) => 2*Math.Pow(x, 2) + 3*Math.Pow(Math.E, -x);
-        public static double df1(double x) => 4*x + 3* Math.Pow(Math.E, -x);
+        public static double f1(double x) => 2*Math.Pow(x, 2) + 3*Math.Exp(-x);
+        public static double df1(double x) => 4*x - 3* Math.Pow(Math.E, -x);
 
         public static double f2(double x) => -Math.Pow(Math.E, -x) *Math.Log(x);
-        public static double df2(double x) => -Math.Pow(Math.E, -x)*(x*Math.Log(x) - 1)/x;
+        public static double df2(double x) => Math.Pow(Math.E, -x)*(x*Math.Log(x) - 1)/x;
 
         public static double f3(double x) => 2*Math.Pow(x, 2) - Math.Exp(x);
         public static double df3(double x) => 4*x - Math.Exp(x);
@@ -32,7 +32,6 @@ namespace Optimisation.Testing
         private function df;
         private string name;
         private double min;
-        private double startingX;
 
         public Function(function f, function df, string name,double min)
         {

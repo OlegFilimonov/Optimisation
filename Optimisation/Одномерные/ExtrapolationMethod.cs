@@ -42,6 +42,8 @@ namespace Optimisation.Одномерные
 
             iterationCount += k;
             answer = (b + d) / 2;
+
+            b = d;
         }
     }
 }

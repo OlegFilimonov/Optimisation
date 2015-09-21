@@ -11,7 +11,6 @@ namespace Optimisation.Одномерные
     {
         private List<double> fibonacciList;
         private int n = 1;
-        double length_n = 1e-6;
 
         public double populateFibonacci(double treshHold)
         {
@@ -50,16 +49,16 @@ namespace Optimisation.Одномерные
             //Начальный этап
             var length = Math.Abs(b - a);
 
-            var treshHold = length / length_n;
+            var treshHold = length / (eps/10);
             double f_n;
 
             f_n = populateFibonacci(treshHold);
 
             //Находим эпсилон для последнего шага
-            var eps = length / f_n;
+            var eps2 = length / f_n;
 
             //Находим две стартовые точки
-            var x1 = a + fibonacciList[n - 1]/fibonacciList[n]*length + Math.Pow(-1, n)/fibonacciList[n]*eps;
+            var x1 = a + fibonacciList[n - 1]/fibonacciList[n]*length + Math.Pow(-1, n)/fibonacciList[n]*eps2;
             var k = 1;
             double x2;
             iterationCount = n;
@@ -95,12 +94,10 @@ namespace Optimisation.Одномерные
             if (f(x1) > f(x2))
             {
                 answer = (x1 + b) / 2;
-                a = x1;
             }
             else
             {
                 answer = (a + x2) / 2;
-                b = x2;
             }
         }
 
@@ -108,7 +105,6 @@ namespace Optimisation.Одномерные
         public FibonacciMethod2(function f, double eps = 1e-6, int maxIterations=50)
             : base(f: f, df: null, eps: eps, methodName: "Метод ФИБОНАЧЧИ-2", maxIterations: maxIterations)
         {
-            length_n = eps;
         }
     }
 }
