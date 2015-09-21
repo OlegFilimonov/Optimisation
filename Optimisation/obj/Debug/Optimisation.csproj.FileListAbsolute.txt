@@ -20,3 +20,5 @@ C:\Users\Oleg\VisualStudioProjects\Optimisation\obj\Debug\Optimisation.MainForm.
 C:\Users\Oleg\VisualStudioProjects\Optimisation\obj\Debug\Optimisation.csproj.GenerateResource.Cache
 C:\Users\Oleg-PC\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\cscompmgd.dll
 C:\Users\Oleg-PC\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.csproj.Optimisation.exe.config
+C:\Users\Oleg\VisualStudioProjects\Optimisation\bin\Debug\cscompmgd.dll
+C:\Users\Oleg\VisualStudioProjects\Optimisation\obj\Debug\Optimisation.csproj.Optimisation.exe.config
