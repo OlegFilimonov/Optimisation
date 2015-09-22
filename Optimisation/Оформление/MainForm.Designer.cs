@@ -36,17 +36,17 @@
             this.startingPoint = new System.Windows.Forms.TextBox();
             this.playListRadioButton = new System.Windows.Forms.RadioButton();
             this.methodRadioButton = new System.Windows.Forms.RadioButton();
-            this.playList = new System.Windows.Forms.ComboBox();
+            this.chainList = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.methodList = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.diffBox = new System.Windows.Forms.TextBox();
             this.iterationBox = new System.Windows.Forms.TextBox();
             this.ansBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.diffBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -109,7 +109,7 @@
             this.groupBox1.Controls.Add(this.startingPoint);
             this.groupBox1.Controls.Add(this.playListRadioButton);
             this.groupBox1.Controls.Add(this.methodRadioButton);
-            this.groupBox1.Controls.Add(this.playList);
+            this.groupBox1.Controls.Add(this.chainList);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.methodList);
@@ -151,10 +151,10 @@
             this.playListRadioButton.Location = new System.Drawing.Point(17, 111);
             this.playListRadioButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.playListRadioButton.Name = "playListRadioButton";
-            this.playListRadioButton.Size = new System.Drawing.Size(93, 21);
+            this.playListRadioButton.Size = new System.Drawing.Size(87, 21);
             this.playListRadioButton.TabIndex = 5;
             this.playListRadioButton.TabStop = true;
-            this.playListRadioButton.Text = "Плейлист";
+            this.playListRadioButton.Text = "Цепочки";
             this.playListRadioButton.UseVisualStyleBackColor = true;
             this.playListRadioButton.CheckedChanged += new System.EventHandler(this.playListRadioButton_CheckedChanged);
             // 
@@ -171,16 +171,16 @@
             this.methodRadioButton.Text = "Метод";
             this.methodRadioButton.UseVisualStyleBackColor = true;
             // 
-            // playList
+            // chainList
             // 
-            this.playList.Enabled = false;
-            this.playList.FormattingEnabled = true;
-            this.playList.Location = new System.Drawing.Point(125, 110);
-            this.playList.Margin = new System.Windows.Forms.Padding(4);
-            this.playList.Name = "playList";
-            this.playList.Size = new System.Drawing.Size(327, 24);
-            this.playList.TabIndex = 3;
-            this.playList.SelectedIndexChanged += new System.EventHandler(this.playList_SelectedIndexChanged);
+            this.chainList.Enabled = false;
+            this.chainList.FormattingEnabled = true;
+            this.chainList.Location = new System.Drawing.Point(125, 110);
+            this.chainList.Margin = new System.Windows.Forms.Padding(4);
+            this.chainList.Name = "chainList";
+            this.chainList.Size = new System.Drawing.Size(327, 24);
+            this.chainList.TabIndex = 3;
+            this.chainList.SelectedIndexChanged += new System.EventHandler(this.playList_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -228,6 +228,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Панель вывода";
             // 
+            // diffBox
+            // 
+            this.diffBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.diffBox.Location = new System.Drawing.Point(122, 110);
+            this.diffBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.diffBox.Name = "diffBox";
+            this.diffBox.ReadOnly = true;
+            this.diffBox.Size = new System.Drawing.Size(351, 22);
+            this.diffBox.TabIndex = 0;
+            this.diffBox.Text = " ";
+            // 
             // iterationBox
             // 
             this.iterationBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -248,6 +259,15 @@
             this.ansBox.Size = new System.Drawing.Size(351, 22);
             this.ansBox.TabIndex = 0;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(25, 113);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(91, 17);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Разница A-B";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -265,26 +285,6 @@
             this.label1.Size = new System.Drawing.Size(68, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "Минимум";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 113);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 17);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Разница A-B";
-            // 
-            // diffBox
-            // 
-            this.diffBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.diffBox.Location = new System.Drawing.Point(122, 110);
-            this.diffBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.diffBox.Name = "diffBox";
-            this.diffBox.ReadOnly = true;
-            this.diffBox.Size = new System.Drawing.Size(351, 22);
-            this.diffBox.TabIndex = 0;
-            this.diffBox.Text = " ";
             // 
             // MainForm
             // 
@@ -315,7 +315,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton playListRadioButton;
         private System.Windows.Forms.RadioButton methodRadioButton;
-        private System.Windows.Forms.ComboBox playList;
+        private System.Windows.Forms.ComboBox chainList;
         private System.Windows.Forms.ComboBox methodList;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox ansBox;

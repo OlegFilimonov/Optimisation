@@ -12,19 +12,21 @@ using System.Windows.Forms;
 using FPlotLibrary;
 using Optimisation.Testing;
 using Optimisation.Одномерные;
+using Optimisation.Одномерные.Цепочки;
 using DoubleConverter = Optimisation.Одномерные.DoubleConverter;
 
 namespace Optimisation
 {
     public partial class MainForm : Form
     {
-        private List<OneDimentionalOptimisationMethod> oneDimentionalMethods = new List<OneDimentionalOptimisationMethod>();
+        private List<OneDimMethod> oneDimentionalChains = new List<OneDimMethod>();
+        private List<OneDimMethod> oneDimentionalMethods = new List<OneDimMethod>();
         private List<Function> testingFunctions = new List<Function>();
         private List<Function1D> graphFunctions = new List<Function1D>();
         private Function currFunction;
-        private OneDimentionalOptimisationMethod currMethod = null;
+        private OneDimMethod currMethod;
 
-        void addFunction(string source, function f, function df, double min, string name)
+        void addFunction(string source, function f, function df, double min, string name, function d2f = null)
         {
             var graphFunction = new Function1D();
             graphFunction.source = source;
@@ -32,30 +34,37 @@ namespace Optimisation
             graphFunction.Color = Color.Blue;
             graphFunction.lineWidth = 3;
             graphFunctions.Add(graphFunction);
-            testingFunctions.Add(new Function(f, df, name, min));
+            testingFunctions.Add(new Function(f, df, name, min,d2f));
         }
 
         private void populateFunctions()
         {
            
-            addFunction("return 2*pow(x,2) + 3*exp(-x);", TestingFunctions.f1, TestingFunctions.df1, 0.469150D, "Функция #1: y = 2x^2 + 3e^-x");
-            addFunction("return -exp(-x)*log(x);", TestingFunctions.f2, TestingFunctions.df2, 1.763223D, "Функция #2: -e^-x*ln(x)");
-            addFunction("return 2*pow(x,2)-pow(e,x);", TestingFunctions.f3, TestingFunctions.df3, 0.357403D, "Функция #3: 2x^2-e^x");
-            addFunction("return pow(x,4)-14*pow(x,3)+60*pow(x,2)-70*x;", TestingFunctions.f4, TestingFunctions.df4, 0.780884D, "Функция #4: x^4-14x^3+60x^2-70x");
+            addFunction("return 2*pow(x,2) + 3*exp(-x);", TestingFunctions.f1, TestingFunctions.df1, 0.469150D, "Функция #1: y = 2x^2 + 3e^-x",TestingFunctions.d2f1);
+            addFunction("return -exp(-x)*log(x);", TestingFunctions.f2, TestingFunctions.df2, 1.763223D, "Функция #2: -e^-x*ln(x)", TestingFunctions.d2f2);
+            addFunction("return 2*pow(x,2)-pow(e,x);", TestingFunctions.f3, TestingFunctions.df3, 0.357403D, "Функция #3: 2x^2-e^x", TestingFunctions.d2f3);
+            addFunction("return pow(x,4)-14*pow(x,3)+60*pow(x,2)-70*x;", TestingFunctions.f4, TestingFunctions.df4, 0.780884D, "Функция #4: x^4-14x^3+60x^2-70x", TestingFunctions.d2f4);
         }
 
-        private void populateMethods(function f, function df)
+        private void populateMethods()
         {
-            oneDimentionalMethods.Add(new GoldenRatioMethod1(f));
-            oneDimentionalMethods.Add(new GoldenRatioMethod2(f));
-            oneDimentionalMethods.Add(new DichotomyMethod(f));
-            oneDimentionalMethods.Add(new FibonacciMethod1(f));
-            oneDimentionalMethods.Add(new FibonacciMethod2(f));
-            oneDimentionalMethods.Add(new BolzanoMethod(f, df));
-            oneDimentionalMethods.Add(new ExtrapolationMethod(f));
-            oneDimentionalMethods.Add(new PaulMethod(f, df));
-            oneDimentionalMethods.Add(new DSK_Method(f));
-            oneDimentionalMethods.Add(new DavidonMethod(f, df));
+            oneDimentionalMethods.Add(new GoldenRatioMethod1(null));
+            oneDimentionalMethods.Add(new GoldenRatioMethod2(null));
+            oneDimentionalMethods.Add(new DichotomyMethod(null));
+            oneDimentionalMethods.Add(new FibonacciMethod1(null));
+            oneDimentionalMethods.Add(new FibonacciMethod2(null));
+            oneDimentionalMethods.Add(new BolzanoMethod(null, null));
+            oneDimentionalMethods.Add(new ExtrapolationMethod(null));
+            oneDimentionalMethods.Add(new PaulMethod(null, null));
+            oneDimentionalMethods.Add(new DSK_Method(null));
+            oneDimentionalMethods.Add(new DavidonMethod(null, null));
+            oneDimentionalMethods.Add(new NewtonMethod(null,null,null));
+        }
+
+        private void populateChains()
+        {
+            oneDimentionalChains.Add(new svenn_dih_newt());
+            oneDimentionalChains.Add(new svenn_bolz_gr1());
         }
 
         private void populateList()
@@ -68,6 +77,11 @@ namespace Optimisation
             {
                 methodList.Items.Add(method.MethodName);
             }
+
+            foreach (var method in oneDimentionalChains)
+            {
+                chainList.Items.Add(method.MethodName);
+            }
         }
 
         public MainForm()
@@ -78,7 +92,8 @@ namespace Optimisation
         private void Form1_Load(object sender, EventArgs e)
         {
             populateFunctions();
-            populateMethods(null, null);
+            populateMethods();
+            populateChains();
             populateList();
         }
 
@@ -130,22 +145,20 @@ namespace Optimisation
         {
 
             methodList.Enabled = !playListRadioButton.Checked;
-            playList.Enabled = playListRadioButton.Checked;
+            chainList.Enabled = playListRadioButton.Checked;
         }
 
-        private void methodList_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void makeMethod(OneDimMethod method)
         {
-            if (methodList.SelectedIndex == -1)
+            if (method.MethodName == "Метод НЬЮТОНА")
             {
-                return;
+                ((NewtonMethod)method).D2F = currFunction.D2F;
             }
-            currMethod = oneDimentionalMethods[methodList.SelectedIndex];
-            makeMethod();
-        }
-
-        private void makeMethod()
-        {
-            var method = oneDimentionalMethods[methodList.SelectedIndex];
+            if (method.MethodName == "М5 - Свенн - дихтомии - Ньютона")
+            {
+                ((svenn_dih_newt)method).D2F = currFunction.D2F;
+            }
             method.F = currFunction.F;
             method.Df = currFunction.Df;
             
@@ -197,7 +210,7 @@ namespace Optimisation
             bFunction.p[1] = 0.001F;
             bFunction.lineWidth = 0.001F;
             bFunction.Color = Color.MediumVioletRed;
-
+            
             var cFunction = new Function2D();
             cFunction.source = "return (abs(x-p[0])<p[1])?0:1f;";
             cFunction.Compile(true);
@@ -228,7 +241,7 @@ namespace Optimisation
             bool correct = double.TryParse(startingEps.Text, out tmp);
             if (correct&&currMethod != null)
             {
-                makeMethod();
+                makeMethod(currMethod);
             }
         }
 
@@ -238,13 +251,26 @@ namespace Optimisation
             bool correct = double.TryParse(startingEps.Text, out tmp);
             if (correct && currMethod != null)
             {
-                makeMethod();
+                makeMethod(currMethod);
             }
         }
 
+        private void methodList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (methodList.SelectedIndex == -1)
+            {
+                return;
+            }
+            currMethod = oneDimentionalMethods[methodList.SelectedIndex];
+            makeMethod(currMethod);
+        }
+
+
         private void playList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (chainList.SelectedIndex == -1) return;
+            currMethod = oneDimentionalChains[chainList.SelectedIndex];
+            makeMethod(currMethod);
         }
     }
 }

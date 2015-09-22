@@ -14,8 +14,10 @@ namespace Optimisation.Одномерные
     public delegate double function(double x);
 
 
-    //Класс одномерных методов оптимизации
-    public abstract class OneDimentionalOptimisationMethod
+    /// <summary>
+    /// Базовый класс
+    /// </summary>
+    public abstract class OneDimMethod
     {
         //Макс. количество итераций
         protected int maxIterations = 50;
@@ -152,7 +154,7 @@ namespace Optimisation.Одномерные
 
 
         //Конструктор
-        protected OneDimentionalOptimisationMethod(function f, function df, double eps, string methodName, int maxIterations = 50)
+        protected OneDimMethod(function f, function df, double eps, string methodName, int maxIterations = 50)
         {
             this.methodName = methodName;
             this.f = f;
@@ -167,30 +169,34 @@ namespace Optimisation.Одномерные
             get { return methodName; }
         }
 
+        public double Answer
+        {
+            get { return answer; }
+            set { answer = value; }
+        }
+
         public double A
         {
             get { return a; }
+            set { a = value; }
         }
 
         public double B
         {
             get { return b; }
+            set { b = value; }
         }
 
         public double C
         {
             get { return c; }
+            set { c = value; }
         }
 
         public double Eps
         {
             get { return eps; }
             set { eps = value; }
-        }
-
-        public double Answer
-        {
-            get { return answer; }
         }
 
         public int IterationCount

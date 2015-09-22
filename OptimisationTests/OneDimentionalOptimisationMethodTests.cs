@@ -12,7 +12,7 @@ namespace Optimisation.Одномерные.Tests
     [TestClass()]
     public class OneDimentional
     {
-        private OneDimentionalOptimisationMethod test;
+        private OneDimMethod test;
         private Function f = new Function(TestingFunctions.f1,TestingFunctions.df1,"test",0.46915021069498823332105D);
 
         [TestMethod()]

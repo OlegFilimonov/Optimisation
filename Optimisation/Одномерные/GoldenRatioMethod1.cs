@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Optimisation.Одномерные
 {
     //Метод Золотого Сечения 1 - МЗС 1
-    public class GoldenRatioMethod1 : OneDimentionalOptimisationMethod
+    public class GoldenRatioMethod1 : OneDimMethod
     {
         private readonly double goldenLeft = (3 - Math.Sqrt(5)) / 2;
         private readonly double goldenRight = (-1 + Math.Sqrt(5)) / 2;

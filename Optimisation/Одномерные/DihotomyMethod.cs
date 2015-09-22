@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Optimisation.Одномерные
 {
-    public class DichotomyMethod : OneDimentionalOptimisationMethod
+    public class DichotomyMethod : OneDimMethod
     {
         
 

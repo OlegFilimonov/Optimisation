@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Optimisation.Одномерные
 {
-    public class BolzanoMethod : OneDimentionalOptimisationMethod
+    public class BolzanoMethod : OneDimMethod
     {
         public BolzanoMethod(function f,function df, double eps=1e-6, int maxIterations = 50) : 
             base(f,df, eps, "Метод БОЛЬЦАНО",maxIterations)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Optimisation.Одномерные
 {
 
-    public class FibonacciMethod2 : OneDimentionalOptimisationMethod
+    public class FibonacciMethod2 : OneDimMethod
     {
         private List<double> fibonacciList;
         private int n = 1;

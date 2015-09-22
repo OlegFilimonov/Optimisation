@@ -3,7 +3,7 @@
 namespace Optimisation.Одномерные
 {
     //Метод золотого сечения 2 - МЗС2
-    public class GoldenRatioMethod2 : OneDimentionalOptimisationMethod
+    public class GoldenRatioMethod2 : OneDimMethod
     {
         private readonly double goldenRight = (-1 + Math.Sqrt(5)) / 2;
 

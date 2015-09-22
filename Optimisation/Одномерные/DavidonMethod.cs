@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Optimisation.Одномерные
 {
-    class DavidonMethod : OneDimentionalOptimisationMethod
+    class DavidonMethod : OneDimMethod
     {
         public DavidonMethod(function f, function df, double eps=1e-6, int maxIterations=50) : 
             base(f: f, df: df, eps: eps, methodName: "Метод ДАВИДОНА", maxIterations: maxIterations)
@@ -47,8 +47,12 @@ namespace Optimisation.Одномерные
                 }
 
                 double temp = Math.Abs(df(x1));
+
+
                 if (temp < eps || x1 == a || x1 == b)
                     break;
+
+
                 if (df(x1) > 0)
                 {
                     b = x1;
