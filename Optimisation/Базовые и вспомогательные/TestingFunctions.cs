@@ -9,7 +9,9 @@ using Optimisation.Одномерные;
 
 namespace Optimisation.Testing
 {
-    //Класс типичных функций для тестирования
+    /// <summary>
+    /// Класс типичных функций для тестирования
+    /// </summary>
     public class TestingFunctions
     {
         public static double f1(double x) => 2*Math.Pow(x, 2) + 3*Math.Exp(-x);
@@ -29,7 +31,9 @@ namespace Optimisation.Testing
         public static double d2f4(double x) => 12*Math.Pow(x,2) - 84*x + 120;
     }
 
-    //Класс, хранящий функции для тестирования
+    /// <summary>
+    /// Класс, хранящий функции для тестирования
+    /// </summary>
     public class Function
     {
         private function f;

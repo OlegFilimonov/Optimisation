@@ -50,7 +50,7 @@ namespace Optimisation.Одномерные
         }
 
         public GoldenRatioMethod1(function f, double eps = 1e-6, int maxIterations=50)
-            : base(f,null, eps,"Метод ЗОЛОТОГО СЕЧЕНИЯ-1")
+            : base(f,null, eps,"Метод ЗОЛОТОГО СЕЧЕНИЯ-1",maxIterations)
         {
         }
 

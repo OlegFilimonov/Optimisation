@@ -25,7 +25,7 @@ namespace Optimisation.Одномерные
             do
             {
                 iterationCount ++;
-                if(iterationCount > maxIterations) break;
+                if(iterationCount >= maxIterations) break;
 
                 double z = df(a) + df(b) + 3*(f(a) - f(b))/(b - a);
                 double w = Math.Sqrt(Math.Pow(z, 2) - df(a)*df(b));

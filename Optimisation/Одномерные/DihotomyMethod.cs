@@ -50,7 +50,7 @@ namespace Optimisation.Одномерные
                 k++;
 
             } while (length > eps && k < maxIterations);
-            iterationCount = k;
+            iterationCount += k;
 
             //Окончание
             answer = (a + b) / 2;

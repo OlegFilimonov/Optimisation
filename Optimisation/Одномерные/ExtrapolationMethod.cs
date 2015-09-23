@@ -43,7 +43,16 @@ namespace Optimisation.Одномерные
             iterationCount += k;
             answer = (b + d) / 2;
 
-            b = d;
+            if (b < d)
+            {
+                a = b;
+                b = d;
+            }
+            else
+            {
+                a = d;
+            }
+
         }
     }
 }

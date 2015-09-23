@@ -87,6 +87,7 @@ namespace Optimisation.Одномерные
                     b = x2;
                 }
                 k++;
+                if(k>maxIterations) break;
 
             } while (k!=n);
             
@@ -94,10 +95,12 @@ namespace Optimisation.Одномерные
             if (f(x1) > f(x2))
             {
                 answer = (x1 + b) / 2;
+                a = x1;
             }
             else
             {
                 answer = (a + x2) / 2;
+                b = x2;
             }
         }
 

@@ -8,7 +8,7 @@ namespace Optimisation.Одномерные
 {
     public class PaulMethod : OneDimMethod
     {
-        public PaulMethod(function f, function df, double eps = 1e-6, bool useStandartInterval = false, int maxIterations = 50)
+        public PaulMethod(function f, function df, double eps = 1e-6, int maxIterations = 50)
             : base(f: f, df: df, eps: eps, methodName: "Метод ПАУЛА",maxIterations: maxIterations)
         {
         }

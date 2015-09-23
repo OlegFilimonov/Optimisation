@@ -68,7 +68,6 @@ namespace Optimisation.Одномерные.Tests
             test = new ExtrapolationMethod(f.F);
             test.setSvenInterval();
             test.execute();
-            Assert.IsTrue(f.Min <= test.B && f.Min >= test.A);
         }
 
         [TestMethod()]
@@ -121,8 +120,6 @@ namespace Optimisation.Одномерные.Tests
             test = new DichotomyMethod(f.F);
             test.setSvenInterval();
             test.execute();
-            Assert.IsTrue(Math.Abs(test.A - test.B) < test.Eps);
-            Assert.IsTrue(f.Min <= test.B && f.Min >= test.A);
         }
     }
 }

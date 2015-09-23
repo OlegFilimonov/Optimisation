@@ -78,15 +78,18 @@ namespace Optimisation.Одномерные
                     mu = a + fibonacciList[n - k - 1] / fibonacciList[n - k] * length;
                 }
                 k++;
+                if(k>maxIterations) break;
             }
             mu = lambda + eps2;
             if (f(lambda) > f(mu))
             {
                 answer = (lambda + b) / 2;
+                a = lambda;
             }
             else
             {
                 answer = (a + mu) / 2;
+                b = mu;
             }
         }
 

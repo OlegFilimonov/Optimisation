@@ -58,6 +58,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Одномерные цепочки\bolz-paul.cs" />
+    <Compile Include="Одномерные цепочки\dih-dav.cs" />
+    <Compile Include="Одномерные цепочки\dih-paul.cs" />
+    <Compile Include="Одномерные цепочки\extr-dav.cs" />
+    <Compile Include="Одномерные цепочки\fib1-dsk.cs" />
+    <Compile Include="Одномерные цепочки\fib2-dsk.cs" />
+    <Compile Include="Одномерные цепочки\gr1-extr.cs" />
+    <Compile Include="Одномерные цепочки\gr2-paul.cs" />
     <Compile Include="Оформление\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,9 +88,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Одномерные\NewtonMethod.cs" />
     <Compile Include="Одномерные\PaulMethod.cs" />
-    <Compile Include="Одномерные\Цепочки\svenn-dih-newt.cs" />
-    <Compile Include="Одномерные\Цепочки\svenn-bolz-gr1.cs" />
-    <Compile Include="Одномерные\Цепочки\svenn-bolz-fib2.cs" />
+    <Compile Include="Одномерные цепочки\svenn-dih-newt.cs" />
+    <Compile Include="Одномерные цепочки\svenn-bolz-gr1.cs" />
+    <Compile Include="Одномерные цепочки\svenn-bolz-fib2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

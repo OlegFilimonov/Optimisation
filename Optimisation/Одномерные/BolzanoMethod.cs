@@ -42,7 +42,7 @@ namespace Optimisation.Одномерные
 
             } while (((Math.Abs(df(x)) > eps) || (length > eps)) && (k<maxIterations));
             x = (a + b) / 2;
-            iterationCount = k;
+            iterationCount += k;
             answer = x;
         }
     }

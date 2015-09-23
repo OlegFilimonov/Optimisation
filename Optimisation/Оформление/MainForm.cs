@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -13,6 +14,7 @@ using FPlotLibrary;
 using Optimisation.Testing;
 using Optimisation.Одномерные;
 using Optimisation.Одномерные.Цепочки;
+using Optimisation.Одномерные_цепочки;
 using DoubleConverter = Optimisation.Одномерные.DoubleConverter;
 
 namespace Optimisation
@@ -65,6 +67,16 @@ namespace Optimisation
         {
             oneDimentionalChains.Add(new svenn_dih_newt());
             oneDimentionalChains.Add(new svenn_bolz_gr1());
+            oneDimentionalChains.Add(new svenn_bolz_fib2());
+            
+            oneDimentionalChains.Add(new fib1_dsk());
+            oneDimentionalChains.Add(new fib2_dsk());
+            oneDimentionalChains.Add(new dih_paul());
+            oneDimentionalChains.Add(new bolz_paul());
+            oneDimentionalChains.Add(new gr1_extr());
+            oneDimentionalChains.Add(new dih_dav());
+            oneDimentionalChains.Add(new extr_dav());
+            oneDimentionalChains.Add(new gr2_paul());
         }
 
         private void populateList()
@@ -138,6 +150,7 @@ namespace Optimisation
                 playListRadioButton.Enabled = true;
                 methodRadioButton.Checked = true;
                 methodList.Enabled = true;
+                button1.Enabled = true;
             }
         }
 
@@ -271,6 +284,57 @@ namespace Optimisation
             if (chainList.SelectedIndex == -1) return;
             currMethod = oneDimentionalChains[chainList.SelectedIndex];
             makeMethod(currMethod);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<OneDimMethod> metgods = oneDimentionalMethods.Concat(oneDimentionalChains).ToList();
+            string report = "";
+            foreach (var method in metgods)
+            {
+                if (method.MethodName == "Метод НЬЮТОНА")
+                {
+                    ((NewtonMethod)method).D2F = currFunction.D2F;
+                }
+                if (method.MethodName == "М5 - Свенн - дихтомии - Ньютона")
+                {
+                    ((svenn_dih_newt)method).D2F = currFunction.D2F;
+                }
+                method.F = currFunction.F;
+                method.Df = currFunction.Df;
+
+                double startingX, eps;
+
+                try
+                {
+                    startingX = double.Parse(startingPoint.Text);
+                    eps = double.Parse(startingEps.Text);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show("Неверно введены начальные данные для метода, выбраны стандартные\nОшибка: " + exception.Message);
+                    startingX = 1;
+                    eps = 1e-2;
+                    startingPoint.Text = "1";
+                    startingEps.Text = "1e-2";
+                }
+
+                //Корректируем начальный шаг по формуле
+                var startingH = (startingX == 0) ? 0.01 : 0.01 * startingX;
+
+                //Точность
+                method.Eps = eps;
+
+                //Делаем свена
+                method.setSvenInterval(startingX, startingH);
+
+                //Делаем сам метод
+                method.execute();
+
+                report += string.Format("Ответ: {0}\t{1}\n",DoubleConverter.ToExactString(method.Answer), method.MethodName);
+            }
+            MessageBox.Show(report);
+
         }
     }
 }
