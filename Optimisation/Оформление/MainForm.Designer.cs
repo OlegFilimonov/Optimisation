@@ -32,8 +32,8 @@
             this.functionList = new System.Windows.Forms.ComboBox();
             this.functionLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.startingPoint = new System.Windows.Forms.NumericUpDown();
             this.startingEps = new System.Windows.Forms.TextBox();
-            this.startingPoint = new System.Windows.Forms.TextBox();
             this.playListRadioButton = new System.Windows.Forms.RadioButton();
             this.methodRadioButton = new System.Windows.Forms.RadioButton();
             this.chainList = new System.Windows.Forms.ComboBox();
@@ -41,14 +41,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.methodList = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.diffBox = new System.Windows.Forms.TextBox();
             this.iterationBox = new System.Windows.Forms.TextBox();
             this.ansBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.startingPoint)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -106,8 +107,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.startingEps);
             this.groupBox1.Controls.Add(this.startingPoint);
+            this.groupBox1.Controls.Add(this.startingEps);
             this.groupBox1.Controls.Add(this.playListRadioButton);
             this.groupBox1.Controls.Add(this.methodRadioButton);
             this.groupBox1.Controls.Add(this.chainList);
@@ -125,6 +126,19 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Панель ввода";
             // 
+            // startingPoint
+            // 
+            this.startingPoint.Location = new System.Drawing.Point(142, 151);
+            this.startingPoint.Name = "startingPoint";
+            this.startingPoint.Size = new System.Drawing.Size(120, 22);
+            this.startingPoint.TabIndex = 6;
+            this.startingPoint.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            65536});
+            this.startingPoint.ValueChanged += new System.EventHandler(this.startingPoint_ValueChanged);
+            // 
             // startingEps
             // 
             this.startingEps.Location = new System.Drawing.Point(363, 149);
@@ -134,16 +148,6 @@
             this.startingEps.TabIndex = 0;
             this.startingEps.Text = "1e-2";
             this.startingEps.TextChanged += new System.EventHandler(this.startingEps_TextChanged);
-            // 
-            // startingPoint
-            // 
-            this.startingPoint.Location = new System.Drawing.Point(143, 149);
-            this.startingPoint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.startingPoint.Name = "startingPoint";
-            this.startingPoint.Size = new System.Drawing.Size(84, 22);
-            this.startingPoint.TabIndex = 0;
-            this.startingPoint.Text = "1.0";
-            this.startingPoint.TextChanged += new System.EventHandler(this.startingPoint_TextChanged);
             // 
             // playListRadioButton
             // 
@@ -214,6 +218,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.diffBox);
             this.groupBox2.Controls.Add(this.iterationBox);
@@ -229,6 +235,17 @@
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Панель вывода";
+            // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(28, 147);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(445, 30);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Генерировать ответы всех методов и цепочек";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // diffBox
             // 
@@ -288,17 +305,6 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Минимум";
             // 
-            // button1
-            // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(28, 147);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(445, 30);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Генерировать ответы всех методов и цепочек";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -314,6 +320,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.startingPoint)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -336,11 +343,11 @@
         private System.Windows.Forms.TextBox iterationBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox startingEps;
-        private System.Windows.Forms.TextBox startingPoint;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox diffBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.NumericUpDown startingPoint;
     }
 }

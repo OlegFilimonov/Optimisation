@@ -3,6 +3,7 @@ using Optimisation.Одномерные;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Optimisation.Testing;
@@ -13,7 +14,7 @@ namespace Optimisation.Одномерные.Tests
     public class OneDimentional
     {
         private OneDimMethod test;
-        private Function f = new Function(TestingFunctions.f1,TestingFunctions.df1,"test",0.46915021069498823332105D);
+        private Function f = new Function(OneDimTestingFunctions.f1,OneDimTestingFunctions.df1,"test",0.46915021069498823332105D);
 
         [TestMethod()]
         public void svenOneTest()

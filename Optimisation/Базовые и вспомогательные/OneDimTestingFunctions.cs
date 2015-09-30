@@ -12,7 +12,7 @@ namespace Optimisation.Testing
     /// <summary>
     /// Класс типичных функций для тестирования
     /// </summary>
-    public class TestingFunctions
+    public class OneDimTestingFunctions
     {
         public static double f1(double x) => 2*Math.Pow(x, 2) + 3*Math.Exp(-x);
         public static double df1(double x) => 4*x - 3* Math.Pow(Math.E, -x);
@@ -29,6 +29,14 @@ namespace Optimisation.Testing
         public static double f4(double x) => Math.Pow(x,4) - 14*Math.Pow(x,3) + 60*Math.Pow(x,2) - 70*x;
         public static double df4(double x) => 4*Math.Pow(x, 3) - 42*Math.Pow(x, 2) + 120*x - 70;
         public static double d2f4(double x) => 12*Math.Pow(x,2) - 84*x + 120;
+    }
+
+    /// <summary>
+    /// Класс типичных двумерных функций для тестирования
+    /// </summary>
+    public class TwoDimTestingFunctions
+    {
+        public static double f1(double x1,double x2) => Math.Pow(x1,2)+3*Math.Pow(x2,2)+2*x1*x2;
     }
 
     /// <summary>

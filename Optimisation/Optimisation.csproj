@@ -72,7 +72,7 @@
     <Compile Include="Оформление\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Базовые и вспомогательные\TestingFunctions.cs" />
+    <Compile Include="Базовые и вспомогательные\OneDimTestingFunctions.cs" />
     <Compile Include="Одномерные\BolzanoMethod.cs" />
     <Compile Include="Одномерные\DavidonMethod.cs" />
     <Compile Include="Одномерные\DihotomyMethod.cs" />
