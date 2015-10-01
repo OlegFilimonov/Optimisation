@@ -58,6 +58,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Базовые и вспомогательные\Function.cs" />
+    <Compile Include="Базовые и вспомогательные\FunctionOneDim.cs" />
+    <Compile Include="Базовые и вспомогательные\FunctionTwoDim.cs" />
+    <Compile Include="Базовые и вспомогательные\TwoDimTestingFunction.cs" />
     <Compile Include="Одномерные цепочки\bolz-paul.cs" />
     <Compile Include="Одномерные цепочки\dih-dav.cs" />
     <Compile Include="Одномерные цепочки\dih-paul.cs" />

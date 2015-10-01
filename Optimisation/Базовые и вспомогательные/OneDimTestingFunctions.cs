@@ -31,64 +31,7 @@ namespace Optimisation.Testing
         public static double d2f4(double x) => 12*Math.Pow(x,2) - 84*x + 120;
     }
 
-    /// <summary>
-    /// Класс типичных двумерных функций для тестирования
-    /// </summary>
-    public class TwoDimTestingFunctions
-    {
-        public static double f1(double x1,double x2) => Math.Pow(x1,2)+3*Math.Pow(x2,2)+2*x1*x2;
-    }
 
-    /// <summary>
-    /// Класс, хранящий функции для тестирования
-    /// </summary>
-    public class Function
-    {
-        private function f;
-        private function df;
-        private function d2f;
-        private string name;
-        private double min;
 
-        public Function(function f, function df, string name,double min,function d2f = null)
-        {
-            this.f = f;
-            this.df = df;
-            this.name = name;
-            this.min = min;
-            this.d2f = d2f;
-        }
-
-        public function F1
-        {
-            get { return f; }
-        }
-
-        public double Min
-        {
-            get { return min; }
-        }
-
-        public function F
-        {
-            get { return f; }
-        }
-
-        public function Df
-        {
-            get { return df; }
-        }
-
-        public string Name
-        {
-            get { return name; }
-        }
-
-        public function D2F
-        {
-            get { return d2f; }
-            set { d2f = value; }
-        }
-    }
 
 }

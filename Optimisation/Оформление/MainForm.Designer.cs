@@ -67,7 +67,7 @@
             this.graph.Location = new System.Drawing.Point(13, 210);
             this.graph.Margin = new System.Windows.Forms.Padding(4);
             this.graph.Name = "graph";
-            this.graph.Size = new System.Drawing.Size(981, 422);
+            this.graph.Size = new System.Drawing.Size(962, 422);
             this.graph.TabIndex = 1;
             this.graph.Text = "graph";
             this.graph.x0 = -20D;
@@ -231,7 +231,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(497, 191);
+            this.groupBox2.Size = new System.Drawing.Size(478, 191);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Панель вывода";
@@ -241,7 +241,7 @@
             this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(28, 147);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(445, 30);
+            this.button1.Size = new System.Drawing.Size(436, 30);
             this.button1.TabIndex = 5;
             this.button1.Text = "Генерировать ответы всех методов и цепочек";
             this.button1.UseVisualStyleBackColor = true;
@@ -254,7 +254,7 @@
             this.diffBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.diffBox.Name = "diffBox";
             this.diffBox.ReadOnly = true;
-            this.diffBox.Size = new System.Drawing.Size(351, 22);
+            this.diffBox.Size = new System.Drawing.Size(342, 22);
             this.diffBox.TabIndex = 0;
             this.diffBox.Text = " ";
             // 
@@ -265,17 +265,17 @@
             this.iterationBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iterationBox.Name = "iterationBox";
             this.iterationBox.ReadOnly = true;
-            this.iterationBox.Size = new System.Drawing.Size(351, 22);
+            this.iterationBox.Size = new System.Drawing.Size(342, 22);
             this.iterationBox.TabIndex = 0;
             // 
             // ansBox
             // 
             this.ansBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ansBox.Location = new System.Drawing.Point(122, 33);
+            this.ansBox.Location = new System.Drawing.Point(122, 32);
             this.ansBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ansBox.Name = "ansBox";
             this.ansBox.ReadOnly = true;
-            this.ansBox.Size = new System.Drawing.Size(351, 22);
+            this.ansBox.Size = new System.Drawing.Size(342, 22);
             this.ansBox.TabIndex = 0;
             // 
             // label2
@@ -299,7 +299,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(48, 36);
+            this.label1.Location = new System.Drawing.Point(48, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 17);
             this.label1.TabIndex = 4;
@@ -310,7 +310,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1007, 646);
+            this.ClientSize = new System.Drawing.Size(1005, 646);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.graph);

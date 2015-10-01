@@ -13,6 +13,7 @@ namespace Optimisation.Одномерные
     //Делегат функции
     public delegate double function(double x);
 
+    public delegate double function2D(double x1, double x2);
 
     /// <summary>
     /// Базовый класс

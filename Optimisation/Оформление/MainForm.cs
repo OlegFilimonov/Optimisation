@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FPlotLibrary;
 using Optimisation.Testing;
+using Optimisation.Базовые_и_вспомогательные;
 using Optimisation.Одномерные;
 using Optimisation.Одномерные.Цепочки;
 using Optimisation.Одномерные_цепочки;
@@ -24,11 +25,11 @@ namespace Optimisation
         private List<OneDimMethod> oneDimentionalChains = new List<OneDimMethod>();
         private List<OneDimMethod> oneDimentionalMethods = new List<OneDimMethod>();
         private List<Function> testingFunctions = new List<Function>();
-        private List<Function1D> graphFunctions = new List<Function1D>();
+        private List<FunctionItem> graphFunctions = new List<FunctionItem>();
         private Function currFunction;
         private OneDimMethod currMethod;
 
-        void addFunction(string source, function f, function df, double min, string name, function d2f = null)
+        void addOneDimFunction(string source, function f, function df, double min, string name, function d2f = null)
         {
             var graphFunction = new Function1D();
             graphFunction.source = source;
@@ -36,16 +37,33 @@ namespace Optimisation
             graphFunction.Color = Color.Blue;
             graphFunction.lineWidth = 3;
             graphFunctions.Add(graphFunction);
-            testingFunctions.Add(new Function(f, df, name, min,d2f));
+            testingFunctions.Add(new FunctionOneDim(f, df, name, min,d2f));
         }
+        void addTwoDimFunction(string source, function2D f, function2D dfx1,function2D dfx2,PointF start, PointF dir, PointF min, string name)
+        {
+            var graphFunction = new Function2D();
+            graphFunction.source = source;
+            graphFunction.Compile(true);
+            graphFunction.Color = Color.Red;
+            graphFunctions.Add(graphFunction);
+            testingFunctions.Add(new FunctionTwoDim(start,min,dir,f, dfx1,dfx2,name));
+        }
+        
 
         private void populateFunctions()
         {
-           
-            addFunction("return 2*pow(x,2) + 3*exp(-x);", OneDimTestingFunctions.f1, OneDimTestingFunctions.df1, 0.469150D, "Функция #1: y = 2x^2 + 3e^-x",OneDimTestingFunctions.d2f1);
-            addFunction("return -exp(-x)*log(x);", OneDimTestingFunctions.f2, OneDimTestingFunctions.df2, 1.763223D, "Функция #2: -e^-x*ln(x)", OneDimTestingFunctions.d2f2);
-            addFunction("return 2*pow(x,2)-pow(e,x);", OneDimTestingFunctions.f3, OneDimTestingFunctions.df3, 0.357403D, "Функция #3: 2x^2-e^x", OneDimTestingFunctions.d2f3);
-            addFunction("return pow(x,4)-14*pow(x,3)+60*pow(x,2)-70*x;", OneDimTestingFunctions.f4, OneDimTestingFunctions.df4, 0.780884D, "Функция #4: x^4-14x^3+60x^2-70x", OneDimTestingFunctions.d2f4);
+            addOneDimFunction("return 2*pow(x,2) + 3*exp(-x);", OneDimTestingFunctions.f1, OneDimTestingFunctions.df1,
+                0.469150D, "Функция #1: y = 2x^2 + 3e^-x", OneDimTestingFunctions.d2f1);
+            addOneDimFunction("return -exp(-x)*log(x);", OneDimTestingFunctions.f2, OneDimTestingFunctions.df2,
+                1.763223D, "Функция #2: -e^-x*ln(x)", OneDimTestingFunctions.d2f2);
+            addOneDimFunction("return 2*pow(x,2)-pow(e,x);", OneDimTestingFunctions.f3, OneDimTestingFunctions.df3,
+                0.357403D, "Функция #3: 2x^2-e^x", OneDimTestingFunctions.d2f3);
+            addOneDimFunction("return pow(x,4)-14*pow(x,3)+60*pow(x,2)-70*x;", OneDimTestingFunctions.f4,
+                OneDimTestingFunctions.df4, 0.780884D, "Функция #4: x^4-14x^3+60x^2-70x", OneDimTestingFunctions.d2f4);
+            addTwoDimFunction("return ((pow(x,2)+3*pow(y,2)+2*x*y)%1 < 0.1)?0:1;", TwoDimTestingFunctions.f1,
+                TwoDimTestingFunctions.df1x1, TwoDimTestingFunctions.df1x2, new PointF(1, 1), new PointF(2, 3),
+                new PointF(0.2558f, -0.1163f), "Функция №10: x1^2+3x2^2+2x1x2");
+            addTwoDimFunction("return 100*pow(y-pow(x,2),2)+pow(1-x,2);",TwoDimTestingFunctions.f2,TwoDimTestingFunctions.df2x1,TwoDimTestingFunctions.df2x2,new PointF(-1,0),new PointF(5,1),new PointF(-0.3413f,0.13172f),"Функция 11: 100(x2-x1^2)^2+(1-x1)^2");
         }
 
         private void populateMethods()
@@ -68,7 +86,6 @@ namespace Optimisation
             oneDimentionalChains.Add(new svenn_dih_newt());
             oneDimentionalChains.Add(new svenn_bolz_gr1());
             oneDimentionalChains.Add(new svenn_bolz_fib2());
-            
             oneDimentionalChains.Add(new fib1_dsk());
             oneDimentionalChains.Add(new fib2_dsk());
             oneDimentionalChains.Add(new dih_paul());
@@ -115,26 +132,56 @@ namespace Optimisation
             methodList.SelectedIndex = -1;
             
             var index = functionList.SelectedIndex;
-            var min = testingFunctions[index].Min;
-            var f = testingFunctions[index].F;
-
+            Function testingFunction = testingFunctions[index];
+            double minX, minY;
             currFunction = testingFunctions[index];
+            if (testingFunction is FunctionOneDim)
+            {
+                //Одномерная функция
+                minX = ((FunctionOneDim) testingFunction).Min;
+                var f = testingFunctions[index].F;
 
-            if(currMethod!=null) makeMethod(currMethod);
 
-            const double length = 1;
+                if (currMethod != null) makeMethod(currMethod);
 
-            var x0 = min - length / 2;
-            var x1 = min + length / 2;
+                const double length = 1;
 
-            var y0 = f(min) - length / 2;
-            var y1 = f(min) + length / 2;
+                var x0 = minX - length / 2;
+                var x1 = minX + length / 2;
 
-            graph.x0 = x0;
-            graph.x1 = x1;
+                var y0 = f(minX) - length / 2;
+                var y1 = f(minX) + length / 2;
 
-            graph.y0 = y0;
-            graph.y1 = y1;
+                graph.x0 = x0;
+                graph.x1 = x1;
+
+                graph.y0 = y0;
+                graph.y1 = y1;
+            }
+            else
+            {
+                //Функция двумерная
+                minX = ((FunctionTwoDim)testingFunction).Min.X;
+                minY = ((FunctionTwoDim)testingFunction).Min.Y;
+                var f = testingFunctions[index].F;
+
+                //TODO: подумай о границах
+
+                const double length = 30;
+
+                var x0 = minX - length / 2;
+                var x1 = minX + length / 2;
+
+                var y0 = minY - length / 2;
+                var y1 = minY + length / 2;
+
+                graph.x0 = x0;
+                graph.x1 = x1;
+
+                graph.y0 = y0;
+                graph.y1 = y1;
+            }
+
 
             var func = graphFunctions[index];
 
@@ -165,6 +212,11 @@ namespace Optimisation
 
         private void makeMethod(OneDimMethod method)
         {
+            if ((method is NewtonMethod || method is svenn_dih_newt) && (currFunction is FunctionTwoDim))
+            {
+                MessageBox.Show("Вторая производная для функции отсутствует");
+                return;
+            }
             if (method.MethodName == "Метод НЬЮТОНА")
             {
                 ((NewtonMethod)method).D2F = currFunction.D2F;
@@ -205,45 +257,56 @@ namespace Optimisation
             method.execute();
 
             //Вывод
-            ansBox.Text = DoubleConverter.ToExactString(method.Answer);
-            iterationBox.Text = Convert.ToString(method.IterationCount);
-            diffBox.Text = Convert.ToString(Math.Abs(method.A - method.B));
-
-            var aFunction = new Function2D();
-            aFunction.source = "return (abs(x-p[0])<p[1])?0:1f;";
-            aFunction.Compile(true);
-            aFunction.p[0] = method.A;
-            aFunction.p[1] = 0.001F;
-            aFunction.lineWidth = 0.00001F;
-            aFunction.Color = Color.MediumVioletRed;
-
-            var bFunction  = new Function2D();
-            bFunction.source = "return (abs(x-p[0])<p[1])?0:1f;";
-            bFunction.Compile(true);
-            bFunction.p[0] = method.B;
-            bFunction.p[1] = 0.001F;
-            bFunction.lineWidth = 0.001F;
-            bFunction.Color = Color.MediumVioletRed;
-            
-            var cFunction = new Function2D();
-            cFunction.source = "return (abs(x-p[0])<p[1])?0:1f;";
-            cFunction.Compile(true);
-            cFunction.p[0] = method.Answer;
-            cFunction.p[1] = 0.001F;
-            cFunction.lineWidth = 0.001F;
-            cFunction.Color = Color.MediumSpringGreen;
-
-            if (graph.Model.Items.Count < 2)
+            if (currFunction is FunctionOneDim)
             {
-                graph.Model.Items.Add(aFunction);
-                graph.Model.Items.Add(bFunction);
-                graph.Model.Items.Add(cFunction);
+                ansBox.Text = DoubleConverter.ToExactString(method.Answer);
+                iterationBox.Text = Convert.ToString(method.IterationCount);
+                diffBox.Text = Convert.ToString(Math.Abs(method.A - method.B));
+
+                var aFunction = new Function2D();
+                aFunction.source = "return (abs(x-p[0])<p[1])?0:1f;";
+                aFunction.Compile(true);
+                aFunction.p[0] = method.A;
+                aFunction.p[1] = 0.001F;
+                aFunction.lineWidth = 0.00001F;
+                aFunction.Color = Color.MediumVioletRed;
+
+                var bFunction = new Function2D();
+                bFunction.source = "return (abs(x-p[0])<p[1])?0:1f;";
+                bFunction.Compile(true);
+                bFunction.p[0] = method.B;
+                bFunction.p[1] = 0.001F;
+                bFunction.lineWidth = 0.001F;
+                bFunction.Color = Color.MediumVioletRed;
+
+                var cFunction = new Function2D();
+                cFunction.source = "return (abs(x-p[0])<p[1])?0:1f;";
+                cFunction.Compile(true);
+                cFunction.p[0] = method.Answer;
+                cFunction.p[1] = 0.001F;
+                cFunction.lineWidth = 0.001F;
+                cFunction.Color = Color.MediumSpringGreen;
+
+                if (graph.Model.Items.Count < 2)
+                {
+                    graph.Model.Items.Add(aFunction);
+                    graph.Model.Items.Add(bFunction);
+                    graph.Model.Items.Add(cFunction);
+                }
+                else
+                {
+                    graph.Model.Items[1] = aFunction;
+                    graph.Model.Items[2] = bFunction;
+                    graph.Model.Items[3] = cFunction;
+                }
             }
             else
             {
-                graph.Model.Items[1] = aFunction;
-                graph.Model.Items[2] = bFunction;
-                graph.Model.Items[3] = cFunction;
+                //Двуменрная функция
+                var coord =((FunctionTwoDim)currFunction).getOffset(method.Answer);
+                ansBox.Text = Convert.ToString(coord.X) + "; " + Convert.ToString(coord.Y);
+                iterationBox.Text = Convert.ToString(method.IterationCount);
+                diffBox.Text = "no";
             }
             graph.Invalidate();
             graph.Update();
@@ -283,14 +346,20 @@ namespace Optimisation
             string report = "";
             foreach (var method in metgods)
             {
-                if (method.MethodName == "Метод НЬЮТОНА")
+                if (method is NewtonMethod)
                 {
                     ((NewtonMethod)method).D2F = currFunction.D2F;
                 }
-                if (method.MethodName == "М5 - Свенн - дихтомии - Ньютона")
+                if (method is svenn_dih_newt)
                 {
                     ((svenn_dih_newt)method).D2F = currFunction.D2F;
                 }
+
+                if ((method is NewtonMethod || method is svenn_dih_newt) && (currFunction is FunctionTwoDim))
+                {
+                    continue;
+                }
+
                 method.F = currFunction.F;
                 method.Df = currFunction.Df;
 
@@ -321,7 +390,11 @@ namespace Optimisation
 
                 //Делаем сам метод
                 method.execute();
-
+                if (currFunction is FunctionTwoDim)
+                {
+                    var coord = ((FunctionTwoDim)currFunction).getOffset(method.Answer);
+                    report += string.Format("{0}: {1};{2}\n",method.MethodName,(coord.X),(coord.Y));
+                } else
                 report += string.Format("Ответ: {0}\t{1}\n",DoubleConverter.ToExactString(method.Answer), method.MethodName);
             }
             MessageBox.Show(report);
