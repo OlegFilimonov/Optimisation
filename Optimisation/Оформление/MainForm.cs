@@ -64,6 +64,7 @@ namespace Optimisation
                 TwoDimTestingFunctions.df1x1, TwoDimTestingFunctions.df1x2, new PointF(1, 1), new PointF(2, 3),
                 new PointF(0.2558f, -0.1163f), "Функция №10: x1^2+3x2^2+2x1x2");
             addTwoDimFunction("return 100*pow(y-pow(x,2),2)+pow(1-x,2);",TwoDimTestingFunctions.f2,TwoDimTestingFunctions.df2x1,TwoDimTestingFunctions.df2x2,new PointF(-1,0),new PointF(5,1),new PointF(-0.3413f,0.13172f),"Функция 11: 100(x2-x1^2)^2+(1-x1)^2");
+            addTwoDimFunction("return -12*y+4*pow(x,2)+4*pow(y,2)-4*x*y;",TwoDimTestingFunctions.f3,TwoDimTestingFunctions.df3x1,TwoDimTestingFunctions.df3x2,new PointF(-0.5f,1),new PointF(1,0),new PointF(0.5f,1),"Функция №12: -12x2+4x1^2+4x2^2-4x1x2" );
         }
 
         private void populateMethods()
