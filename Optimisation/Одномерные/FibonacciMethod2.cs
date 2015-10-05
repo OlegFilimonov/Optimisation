@@ -19,14 +19,14 @@ namespace Optimisation.Одномерные
             fibonacciList.Add(1);
 
             //Нахолим f_n и n
-            while (f_n < treshHold)
+            do
             {
                 fibonacciList.Add(f_n);
                 f_n = f_n1 + f_n2;
                 f_n1 = f_n2;
                 f_n2 = f_n;
                 n++;
-            }
+            } while (f_n < treshHold);
             n--;
             return f_n;
         }

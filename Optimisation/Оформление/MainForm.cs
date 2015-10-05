@@ -37,18 +37,18 @@ namespace Optimisation
             graphFunction.Color = Color.Blue;
             graphFunction.lineWidth = 3;
             graphFunctions.Add(graphFunction);
-            testingFunctions.Add(new FunctionOneDim(f, df, name, min,d2f));
+            testingFunctions.Add(new FunctionOneDim(f, df, name, min, d2f));
         }
-        void addTwoDimFunction(string source, function2D f, function2D dfx1,function2D dfx2,PointF start, PointF dir, PointF min, string name)
+        void addTwoDimFunction(string source, function2D f, function2D dfx1, function2D dfx2, PointF start, PointF dir, PointF min, string name)
         {
             var graphFunction = new Function2D();
             graphFunction.source = source;
             graphFunction.Compile(true);
             graphFunction.Color = Color.Red;
             graphFunctions.Add(graphFunction);
-            testingFunctions.Add(new FunctionTwoDim(start,min,dir,f, dfx1,dfx2,name));
+            testingFunctions.Add(new FunctionTwoDim(start, min, dir, f, dfx1, dfx2, name));
         }
-        
+
 
         private void populateFunctions()
         {
@@ -60,11 +60,30 @@ namespace Optimisation
                 0.357403D, "Функция #3: 2x^2-e^x", OneDimTestingFunctions.d2f3);
             addOneDimFunction("return pow(x,4)-14*pow(x,3)+60*pow(x,2)-70*x;", OneDimTestingFunctions.f4,
                 OneDimTestingFunctions.df4, 0.780884D, "Функция #4: x^4-14x^3+60x^2-70x", OneDimTestingFunctions.d2f4);
+
             addTwoDimFunction("return ((pow(x,2)+3*pow(y,2)+2*x*y)%1 < 0.1)?0:1;", TwoDimTestingFunctions.f1,
                 TwoDimTestingFunctions.df1x1, TwoDimTestingFunctions.df1x2, new PointF(1, 1), new PointF(2, 3),
                 new PointF(0.2558f, -0.1163f), "Функция №10: x1^2+3x2^2+2x1x2");
-            addTwoDimFunction("return 100*pow(y-pow(x,2),2)+pow(1-x,2);",TwoDimTestingFunctions.f2,TwoDimTestingFunctions.df2x1,TwoDimTestingFunctions.df2x2,new PointF(-1,0),new PointF(5,1),new PointF(-0.3413f,0.13172f),"Функция 11: 100(x2-x1^2)^2+(1-x1)^2");
-            addTwoDimFunction("return -12*y+4*pow(x,2)+4*pow(y,2)-4*x*y;",TwoDimTestingFunctions.f3,TwoDimTestingFunctions.df3x1,TwoDimTestingFunctions.df3x2,new PointF(-0.5f,1),new PointF(1,0),new PointF(0.5f,1),"Функция №12: -12x2+4x1^2+4x2^2-4x1x2" );
+
+            addTwoDimFunction("return 100*pow(y-pow(x,2),2)+pow(1-x,2);", TwoDimTestingFunctions.f2,
+                TwoDimTestingFunctions.df2x1, TwoDimTestingFunctions.df2x2, new PointF(-1, 0), new PointF(5, 1),
+                new PointF(-0.3413f, 0.13172f), "Функция 11: 100(x2-x1^2)^2+(1-x1)^2");
+
+            addTwoDimFunction("return -12*y+4*pow(x,2)+4*pow(y,2)-4*x*y;", TwoDimTestingFunctions.f3,
+                TwoDimTestingFunctions.df3x1, TwoDimTestingFunctions.df3x2, new PointF(-0.5f, 1), new PointF(1, 0),
+                new PointF(0.5f, 1), "Функция №12: -12x2+4x1^2+4x2^2-4x1x2");
+
+            addTwoDimFunction("return pow(x-2,4)+pow(x-2*y,2);", TwoDimTestingFunctions.f4,
+                TwoDimTestingFunctions.df4x1, TwoDimTestingFunctions.df4x2, new PointF(0, 3), new PointF(1, 0),
+                new PointF(3.13f, 3.00f), "Функция №13: (x1-2)^4+(x1-2x2)^2");
+
+            addTwoDimFunction("return 4*pow(x-5,2)+pow(y-6,2);", TwoDimTestingFunctions.f5,
+                TwoDimTestingFunctions.df5x1, TwoDimTestingFunctions.df5x2, new PointF(8,9), new PointF(1,0),
+                new PointF(5,9), "Функция №14: 4(x1-5)^2+(x2-6)^2");
+
+            addTwoDimFunction("return pow(x-2,4)+pow(x-2*y,2);", TwoDimTestingFunctions.f6,
+                TwoDimTestingFunctions.df6x1, TwoDimTestingFunctions.df6x2, new PointF(0,3), new PointF(44,-24.1f),
+                new PointF(2.7f,1.51f), "Функция №15: (x1-2)^4+(x1-2x2)^2");
         }
 
         private void populateMethods()
@@ -79,7 +98,7 @@ namespace Optimisation
             oneDimentionalMethods.Add(new PaulMethod(null, null));
             oneDimentionalMethods.Add(new DSK_Method(null));
             oneDimentionalMethods.Add(new DavidonMethod(null, null));
-            oneDimentionalMethods.Add(new NewtonMethod(null,null,null));
+            oneDimentionalMethods.Add(new NewtonMethod(null, null, null));
         }
 
         private void populateChains()
@@ -131,7 +150,7 @@ namespace Optimisation
         {
             graph.ResetRange();
             methodList.SelectedIndex = -1;
-            
+
             var index = functionList.SelectedIndex;
             Function testingFunction = testingFunctions[index];
             double minX, minY;
@@ -139,7 +158,7 @@ namespace Optimisation
             if (testingFunction is FunctionOneDim)
             {
                 //Одномерная функция
-                minX = ((FunctionOneDim) testingFunction).Min;
+                minX = ((FunctionOneDim)testingFunction).Min;
                 var f = testingFunctions[index].F;
 
 
@@ -228,7 +247,7 @@ namespace Optimisation
             }
             method.F = currFunction.F;
             method.Df = currFunction.Df;
-            
+
             double startingX, eps;
 
             try
@@ -304,7 +323,7 @@ namespace Optimisation
             else
             {
                 //Двуменрная функция
-                var coord =((FunctionTwoDim)currFunction).getOffset(method.Answer);
+                var coord = ((FunctionTwoDim)currFunction).getOffset(method.Answer);
                 ansBox.Text = Convert.ToString(coord.X) + "; " + Convert.ToString(coord.Y);
                 iterationBox.Text = Convert.ToString(method.IterationCount);
                 diffBox.Text = "no";
@@ -317,7 +336,7 @@ namespace Optimisation
         {
             double tmp;
             bool correct = double.TryParse(startingEps.Text, out tmp);
-            if (correct&&currMethod != null)
+            if (correct && currMethod != null)
             {
                 makeMethod(currMethod);
             }
@@ -394,9 +413,10 @@ namespace Optimisation
                 if (currFunction is FunctionTwoDim)
                 {
                     var coord = ((FunctionTwoDim)currFunction).getOffset(method.Answer);
-                    report += string.Format("{0}: {1};{2}\n",method.MethodName,(coord.X),(coord.Y));
-                } else
-                report += string.Format("Ответ: {0}\t{1}\n",DoubleConverter.ToExactString(method.Answer), method.MethodName);
+                    report += string.Format("{0}: {1};{2}\n", method.MethodName, (coord.X), (coord.Y));
+                }
+                else
+                    report += string.Format("Ответ: {0}\t{1}\n", DoubleConverter.ToExactString(method.Answer), method.MethodName);
             }
             MessageBox.Show(report);
 
