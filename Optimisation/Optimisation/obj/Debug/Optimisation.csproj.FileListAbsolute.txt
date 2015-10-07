@@ -22,3 +22,15 @@ C:\Users\Oleg-PC\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\cscomp
 C:\Users\Oleg-PC\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.csproj.Optimisation.exe.config
 C:\Users\Oleg\VisualStudioProjects\Optimisation\bin\Debug\cscompmgd.dll
 C:\Users\Oleg\VisualStudioProjects\Optimisation\obj\Debug\Optimisation.csproj.Optimisation.exe.config
+C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\Optimisation.exe.config
+C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.exe
+C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.pdb
+C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\Optimisation.exe
+C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\Optimisation.pdb
+C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\cscompmgd.dll
+C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\FPlotLibrary.dll
+C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.csprojResolveAssemblyReference.cache
+C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.csproj.Optimisation.exe.config
+C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.MainForm.resources
+C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.csproj.GenerateResource.Cache

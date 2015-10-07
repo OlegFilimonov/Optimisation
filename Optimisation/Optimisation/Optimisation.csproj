@@ -70,6 +70,15 @@
     <Compile Include="Одномерные цепочки\fib2-dsk.cs" />
     <Compile Include="Одномерные цепочки\gr1-extr.cs" />
     <Compile Include="Одномерные цепочки\gr2-paul.cs" />
+    <Compile Include="Оформление\Lab1GUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Оформление\Lab2GUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Оформление\Lab3GUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Оформление\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
