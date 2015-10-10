@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FPlotLibrary;
 using Optimisation.Testing;
 using Optimisation.Базовые_и_вспомогательные;
@@ -17,6 +14,12 @@ namespace Optimisation
         private List<Function> testingFunctions = new List<Function>();
         private List<FunctionItem> graphFunctions = new List<FunctionItem>();
 
+        private void initilize1() //Констуктор
+        {
+            populateFunctions1();
+            populateMethods1();
+        }
+
         void addOneDimFunction(string source, function f, function df, double min, string name, function d2f = null)
         {
             var graphFunction = new Function1D();
@@ -27,7 +30,14 @@ namespace Optimisation
             graphFunctions.Add(graphFunction);
             testingFunctions.Add(new FunctionOneDim(f, df, name, min, d2f));
         }
-        
+
+        private void functionList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (functionList1.SelectedIndex == -1) return;
+            currFunction = testingFunctions[functionList1.SelectedIndex];
+            makeFunction(currFunction);
+        }
+
         private void populateFunctions1()
         {
             //заполняем наш список
@@ -44,8 +54,8 @@ namespace Optimisation
             foreach (var func in testingFunctions)
             {
                 functionList1.Items.Add(func.Name);
+                functionList2.Items.Add(func.Name);
             }
-
         }
 
         private void populateMethods1()
@@ -70,33 +80,11 @@ namespace Optimisation
             }
         }
 
-        private void startingEps1_TextChanged(object sender, EventArgs e)
-        {
-            double tmp;
-            bool correct = double.TryParse(startingEps1.Text, out tmp);
-            if (correct && currMethod != null)
-            {
-                makeMethod(currMethod);
-            }
-        }
-
         private void methodList1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (methodList1.SelectedIndex == -1)
-            {
-                return;
-            }
+            if (methodList1.SelectedIndex == -1) return;
             currMethod = oneDimentionalMethods[methodList1.SelectedIndex];
             makeMethod(currMethod);
-        }
-
-        private void startingPoint1_ValueChanged(object sender, EventArgs e)
-        {
-
-            if (currMethod != null)
-            {
-                makeMethod(currMethod);
-            }
         }
     }
 }

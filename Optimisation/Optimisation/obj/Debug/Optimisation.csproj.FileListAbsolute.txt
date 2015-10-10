@@ -34,3 +34,4 @@ C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisat
 C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.csproj.Optimisation.exe.config
 C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.MainForm.resources
 C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.csproj.GenerateResource.Cache
+C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.Оформление.TestForm.resources

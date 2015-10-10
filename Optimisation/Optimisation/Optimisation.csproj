@@ -104,9 +104,18 @@
     <Compile Include="Одномерные цепочки\svenn-dih-newt.cs" />
     <Compile Include="Одномерные цепочки\svenn-bolz-gr1.cs" />
     <Compile Include="Одномерные цепочки\svenn-bolz-fib2.cs" />
+    <Compile Include="Оформление\TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Оформление\TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Тестирование\TestOutput.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Properties\DataSources\Optimisation.Тестирование.TestOutput.datasource" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Многомерные\" />
@@ -114,6 +123,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Оформление\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Оформление\TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

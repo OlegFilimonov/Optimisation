@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FPlotLibrary;
-using Optimisation.Базовые_и_вспомогательные;
 using Optimisation.Одномерные;
 using Optimisation.Одномерные.Цепочки;
 using Optimisation.Одномерные_цепочки;
@@ -29,6 +23,33 @@ namespace Optimisation
             oneDimentionalMethods2.Add(new dih_dav());
             oneDimentionalMethods2.Add(new extr_dav());
             oneDimentionalMethods2.Add(new gr2_paul());
+
+            //заполняем выпадающий список
+            foreach (var method in oneDimentionalMethods2)
+            {
+                methodList2.Items.Add(method.MethodName);
+            }
+        }
+
+        private void initilize2()
+        {
+            populateMethods2();
+        }
+
+
+        private void functionList2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (functionList2.SelectedIndex == -1) return;
+            graph.ResetRange();
+            currFunction = testingFunctions[functionList2.SelectedIndex];
+            makeFunction(currFunction);
+        }
+
+        private void methodList2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (methodList2.SelectedIndex == -1) return;
+            currMethod = oneDimentionalMethods2[methodList2.SelectedIndex];
+            makeMethod(currMethod);
         }
     }
 }

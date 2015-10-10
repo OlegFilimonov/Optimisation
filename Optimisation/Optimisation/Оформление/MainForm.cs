@@ -1,21 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Text;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using FPlotLibrary;
-using Optimisation.Testing;
 using Optimisation.Базовые_и_вспомогательные;
 using Optimisation.Одномерные;
 using Optimisation.Одномерные.Цепочки;
-using Optimisation.Одномерные_цепочки;
 using DoubleConverter = Optimisation.Одномерные.DoubleConverter;
 
 namespace Optimisation
@@ -32,8 +23,9 @@ namespace Optimisation
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            populateFunctions1();
-            populateMethods1();
+            initilize1();
+            initilize2();
+            initilize3();
         }
 
         /// <summary>
@@ -42,55 +34,27 @@ namespace Optimisation
         /// <param name="testingFunction">Функция для инициализации</param>
         private void makeFunction(Function testingFunction)
         {
-           
-            double minX, minY;
-            currFunction = testingFunction;
-            if (testingFunction is FunctionOneDim)
-            {
-                //Одномерная функция
-                minX = ((FunctionOneDim)testingFunction).Min;
-                var f = testingFunction.F;
+            double minX;
 
-                if (currMethod != null) makeMethod(currMethod);
+            //Одномерная функция
+            minX = ((FunctionOneDim)testingFunction).Min;
+            var f = testingFunction.F;
 
-                const double length = 1;
+            if (currMethod != null) makeMethod(currMethod);
 
-                var x0 = minX - length / 2;
-                var x1 = minX + length / 2;
+            const double length = 1;
 
-                var y0 = f(minX) - length / 2;
-                var y1 = f(minX) + length / 2;
+            var x0 = minX - length / 2;
+            var x1 = minX + length / 2;
 
-                graph.x0 = x0;
-                graph.x1 = x1;
+            var y0 = f(minX) - length / 2;
+            var y1 = f(minX) + length / 2;
 
-                graph.y0 = y0;
-                graph.y1 = y1;
-            }
-            else
-            {
-                //Функция двумерная
-                minX = ((FunctionTwoDim)testingFunction).Min.X;
-                minY = ((FunctionTwoDim)testingFunction).Min.Y;
-                var f = testingFunction.F;
+            graph.x0 = x0;
+            graph.x1 = x1;
 
-                //TODO: подумай о границах
-
-                const double length = 30;
-
-                var x0 = minX - length / 2;
-                var x1 = minX + length / 2;
-
-                var y0 = minY - length / 2;
-                var y1 = minY + length / 2;
-
-                graph.x0 = x0;
-                graph.x1 = x1;
-
-                graph.y0 = y0;
-                graph.y1 = y1;
-            }
-
+            graph.y0 = y0;
+            graph.y1 = y1;
 
             var func = graphFunctions[testingFunctions.IndexOf(testingFunction)];
 
@@ -127,16 +91,16 @@ namespace Optimisation
             double startingX, eps;
             try
             {
-                startingX = double.Parse(startingPoint1.Text);
-                eps = double.Parse(startingEps1.Text);
+                startingX = double.Parse(startBox1.Text);
+                eps = double.Parse(epsBox1.Text);
             }
             catch (Exception exception)
             {
                 MessageBox.Show("Неверно введены начальные данные для метода, выбраны стандартные\nОшибка: " + exception.Message);
                 startingX = 1;
                 eps = 1e-2;
-                startingPoint1.Text = "1";
-                startingEps1.Text = "1e-2";
+                startBox1.Text = "1";
+                epsBox1.Text = "1e-2";
             }
 
             //Корректируем начальный шаг по формуле
@@ -152,70 +116,57 @@ namespace Optimisation
             method.execute();
 
             //Вывод
-            if (currFunction is FunctionOneDim)
+
+            minBox1.Text = DoubleConverter.ToExactString(method.Answer);
+            iterBox1.Text = Convert.ToString(method.IterationCount);
+            diffBox1.Text = Convert.ToString(Math.Abs(method.Answer - ((FunctionOneDim)currFunction).Min));
+            minBox2.Text = DoubleConverter.ToExactString(method.Answer);
+            iterBox2.Text = Convert.ToString(method.IterationCount);
+            diffBox2.Text = Convert.ToString(Math.Abs(method.Answer - ((FunctionOneDim)currFunction).Min));
+
+
+            var aFunction = new Function2D();
+            aFunction.source = "return (abs(x-p[0])<p[1])?0:1f;";
+            aFunction.Compile(true);
+            aFunction.p[0] = method.A;
+            aFunction.p[1] = 0.001F;
+            aFunction.lineWidth = 0.00001F;
+            aFunction.Color = Color.MediumVioletRed;
+
+            var bFunction = new Function2D();
+            bFunction.source = "return (abs(x-p[0])<p[1])?0:1f;";
+            bFunction.Compile(true);
+            bFunction.p[0] = method.B;
+            bFunction.p[1] = 0.001F;
+            bFunction.lineWidth = 0.001F;
+            bFunction.Color = Color.MediumVioletRed;
+
+            var cFunction = new Function2D();
+            cFunction.source = "return (abs(x-p[0])<p[1])?0:1f;";
+            cFunction.Compile(true);
+            cFunction.p[0] = method.Answer;
+            cFunction.p[1] = 0.001F;
+            cFunction.lineWidth = 0.001F;
+            cFunction.Color = Color.MediumSpringGreen;
+
+            if (graph.Model.Items.Count < 2)
             {
-                minBox1.Text = DoubleConverter.ToExactString(method.Answer);
-                iterBox1.Text = Convert.ToString(method.IterationCount);
-                diffBox1.Text = Convert.ToString(Math.Abs(method.A - method.B));
-
-                var aFunction = new Function2D();
-                aFunction.source = "return (abs(x-p[0])<p[1])?0:1f;";
-                aFunction.Compile(true);
-                aFunction.p[0] = method.A;
-                aFunction.p[1] = 0.001F;
-                aFunction.lineWidth = 0.00001F;
-                aFunction.Color = Color.MediumVioletRed;
-
-                var bFunction = new Function2D();
-                bFunction.source = "return (abs(x-p[0])<p[1])?0:1f;";
-                bFunction.Compile(true);
-                bFunction.p[0] = method.B;
-                bFunction.p[1] = 0.001F;
-                bFunction.lineWidth = 0.001F;
-                bFunction.Color = Color.MediumVioletRed;
-
-                var cFunction = new Function2D();
-                cFunction.source = "return (abs(x-p[0])<p[1])?0:1f;";
-                cFunction.Compile(true);
-                cFunction.p[0] = method.Answer;
-                cFunction.p[1] = 0.001F;
-                cFunction.lineWidth = 0.001F;
-                cFunction.Color = Color.MediumSpringGreen;
-
-                if (graph.Model.Items.Count < 2)
-                {
-                    graph.Model.Items.Add(aFunction);
-                    graph.Model.Items.Add(bFunction);
-                    graph.Model.Items.Add(cFunction);
-                }
-                else
-                {
-                    graph.Model.Items[1] = aFunction;
-                    graph.Model.Items[2] = bFunction;
-                    graph.Model.Items[3] = cFunction;
-                }
+                graph.Model.Items.Add(aFunction);
+                graph.Model.Items.Add(bFunction);
+                graph.Model.Items.Add(cFunction);
             }
             else
             {
-                //Двуменрная функция
-                var coord = ((FunctionTwoDim)currFunction).getOffset(method.Answer);
-                minBox1.Text = Convert.ToString(coord.X) + "; " + Convert.ToString(coord.Y);
-                iterBox1.Text = Convert.ToString(method.IterationCount);
-                diffBox1.Text = "no";
+                graph.Model.Items[1] = aFunction;
+                graph.Model.Items[2] = bFunction;
+                graph.Model.Items[3] = cFunction;
             }
+
             graph.Invalidate();
             graph.Update();
         }
 
-        private void functionList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            graph.ResetRange();
-            methodList1.SelectedIndex = -1;
-            var index = functionList1.SelectedIndex;
-            Function testingFunction = testingFunctions[index];
-            makeFunction(testingFunction);
-        }
-
+        //TODO: Генератор отчета
         private void button1_Click(object sender, EventArgs e)
         {
             List<OneDimMethod> metgods = oneDimentionalMethods.Concat(oneDimentionalMethods2).ToList();
@@ -243,16 +194,16 @@ namespace Optimisation
 
                 try
                 {
-                    startingX = double.Parse(startingPoint1.Text);
-                    eps = double.Parse(startingEps1.Text);
+                    startingX = double.Parse(startBox1.Text);
+                    eps = double.Parse(epsBox1.Text);
                 }
                 catch (Exception exception)
                 {
                     MessageBox.Show("Неверно введены начальные данные для метода, выбраны стандартные\nОшибка: " + exception.Message);
                     startingX = 1;
                     eps = 1e-2;
-                    startingPoint1.Text = "1";
-                    startingEps1.Text = "1e-2";
+                    startBox1.Text = "1";
+                    epsBox1.Text = "1e-2";
                 }
 
                 //Корректируем начальный шаг по формуле
@@ -278,19 +229,34 @@ namespace Optimisation
 
         }
 
-        private void startingPoint1_ValueChanged(object sender, EventArgs e)
+        private void startingPoint1_KeyUp(object sender, KeyEventArgs e)
         {
-
+            if (currMethod != null && e.KeyCode == Keys.Enter)
+            {
+                makeMethod(currMethod);
+            }
         }
 
-        private void startingEps1_TextChanged(object sender, EventArgs e)
+        private void lab1tab_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void methodList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            currMethod = null;
+            currFunction = null;
+            methodList1.SelectedIndex = -1;
+            methodList2.SelectedIndex = -1;
+            methodList3.SelectedIndex = -1;
+            functionList1.SelectedIndex = -1;
+            functionList2.SelectedIndex = -1;
+            functionList3.SelectedIndex = -1;
+            minBox1.Text = "";
+            minBox2.Text = "";
+            startBox3x1.Text = "";
+            startBox3x2.Text = "";
+            iterBox1.Text = "";
+            iterBox2.Text = "";
+            iterBox3.Text = "";
+            diffBox1.Text = "";
+            diffBox2.Text = "";
+            diffBox3.Text = "";
         }
     }
 
