@@ -86,6 +86,9 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.тестированиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -98,6 +101,7 @@
             this.tabPage3.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // graph
@@ -109,10 +113,10 @@
             this.graph.FixYtoX = false;
             this.graph.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.graph.Legend = false;
-            this.graph.Location = new System.Drawing.Point(1, 227);
+            this.graph.Location = new System.Drawing.Point(1, 249);
             this.graph.Margin = new System.Windows.Forms.Padding(4);
             this.graph.Name = "graph";
-            this.graph.Size = new System.Drawing.Size(1022, 497);
+            this.graph.Size = new System.Drawing.Size(1022, 475);
             this.graph.TabIndex = 1;
             this.graph.Text = "graph";
             this.graph.x0 = -20D;
@@ -318,7 +322,7 @@
             this.lab1tab.Controls.Add(this.tabPage5);
             this.lab1tab.Controls.Add(this.tabPage6);
             this.lab1tab.Controls.Add(this.tabPage7);
-            this.lab1tab.Location = new System.Drawing.Point(12, 12);
+            this.lab1tab.Location = new System.Drawing.Point(12, 40);
             this.lab1tab.Name = "lab1tab";
             this.lab1tab.SelectedIndex = 0;
             this.lab1tab.Size = new System.Drawing.Size(997, 206);
@@ -752,6 +756,31 @@
             this.tabPage7.Text = "Лабораторная #7";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.файлToolStripMenuItem,
+            this.тестированиеToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1024, 28);
+            this.menuStrip1.TabIndex = 8;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // файлToolStripMenuItem
+            // 
+            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
+            this.файлToolStripMenuItem.Text = "Файл";
+            // 
+            // тестированиеToolStripMenuItem
+            // 
+            this.тестированиеToolStripMenuItem.Name = "тестированиеToolStripMenuItem";
+            this.тестированиеToolStripMenuItem.Size = new System.Drawing.Size(119, 24);
+            this.тестированиеToolStripMenuItem.Text = "Тестирование";
+            this.тестированиеToolStripMenuItem.Click += new System.EventHandler(this.тестированиеToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -760,6 +789,8 @@
             this.ClientSize = new System.Drawing.Size(1024, 729);
             this.Controls.Add(this.lab1tab);
             this.Controls.Add(this.graph);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "MainForm";
@@ -782,7 +813,10 @@
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -846,5 +880,8 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox startBox3x2;
         private System.Windows.Forms.TextBox startBox3x1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem тестированиеToolStripMenuItem;
     }
 }

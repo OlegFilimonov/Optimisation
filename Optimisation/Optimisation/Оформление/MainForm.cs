@@ -7,6 +7,7 @@ using FPlotLibrary;
 using Optimisation.Базовые_и_вспомогательные;
 using Optimisation.Одномерные;
 using Optimisation.Одномерные.Цепочки;
+using Optimisation.Оформление;
 using DoubleConverter = Optimisation.Одномерные.DoubleConverter;
 
 namespace Optimisation
@@ -166,11 +167,40 @@ namespace Optimisation
             graph.Update();
         }
 
-        //TODO: Генератор отчета
-        private void button1_Click(object sender, EventArgs e)
+        private void startingPoint1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (currMethod != null && e.KeyCode == Keys.Enter)
+            {
+                makeMethod(currMethod);
+            }
+        }
+
+        private void lab1tab_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            currMethod = null;
+            currFunction = null;
+            methodList1.SelectedIndex = -1;
+            methodList2.SelectedIndex = -1;
+            methodList3.SelectedIndex = -1;
+            functionList1.SelectedIndex = -1;
+            functionList2.SelectedIndex = -1;
+            functionList3.SelectedIndex = -1;
+            minBox1.Text = "";
+            minBox2.Text = "";
+            startBox3x1.Text = "";
+            startBox3x2.Text = "";
+            iterBox1.Text = "";
+            iterBox2.Text = "";
+            iterBox3.Text = "";
+            diffBox1.Text = "";
+            diffBox2.Text = "";
+            diffBox3.Text = "";
+        }
+
+        private void тестированиеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             List<OneDimMethod> metgods = oneDimentionalMethods.Concat(oneDimentionalMethods2).ToList();
-            string report = "";
+            List<ExportOneDim> export = new List<ExportOneDim>(metgods.Count);
             foreach (var method in metgods)
             {
                 if (method is NewtonMethod)
@@ -219,44 +249,23 @@ namespace Optimisation
                 method.execute();
                 if (currFunction is FunctionTwoDim)
                 {
-                    var coord = ((FunctionTwoDim)currFunction).getOffset(method.Answer);
-                    report += string.Format("{0}: {1};{2}\n", method.MethodName, (coord.X), (coord.Y));
+                    var coord = ((FunctionTwoDim) currFunction).getOffset(method.Answer);
+                    //TODO: export two dim
+                    //export.Add(new ExportOneDim(method.MethodName,method.IterationCount,));
+                    //report += string.Format("{0}: {1};{2}\n", method.MethodName, (coord.X), (coord.Y));
                 }
                 else
-                    report += string.Format("Ответ: {0}\t{1}\n", DoubleConverter.ToExactString(method.Answer), method.MethodName);
+                {
+                    var cast = (FunctionOneDim) currFunction;
+                    var min = cast.Min;
+                    var realEps = Math.Abs(method.Answer - cast.Min);
+                    export.Add(new ExportOneDim(method.MethodName, (uint) method.IterationCount,method.Answer,min,method.Eps,realEps));
+                }
+                   // report += string.Format("Ответ: {0}\t{1}\n", DoubleConverter.ToExactString(method.Answer), method.MethodName);
             }
-            MessageBox.Show(report);
-
-        }
-
-        private void startingPoint1_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (currMethod != null && e.KeyCode == Keys.Enter)
-            {
-                makeMethod(currMethod);
-            }
-        }
-
-        private void lab1tab_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            currMethod = null;
-            currFunction = null;
-            methodList1.SelectedIndex = -1;
-            methodList2.SelectedIndex = -1;
-            methodList3.SelectedIndex = -1;
-            functionList1.SelectedIndex = -1;
-            functionList2.SelectedIndex = -1;
-            functionList3.SelectedIndex = -1;
-            minBox1.Text = "";
-            minBox2.Text = "";
-            startBox3x1.Text = "";
-            startBox3x2.Text = "";
-            iterBox1.Text = "";
-            iterBox2.Text = "";
-            iterBox3.Text = "";
-            diffBox1.Text = "";
-            diffBox2.Text = "";
-            diffBox3.Text = "";
+            //Запускаем форму
+            var form = new TestForm(export);
+            form.ShowDialog();
         }
     }
 

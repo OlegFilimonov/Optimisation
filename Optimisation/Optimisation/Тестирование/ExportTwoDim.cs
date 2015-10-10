@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace Optimisation.Тестирование
 {
-    class TestOutput
+    class ExportTwoDim
     {
         private string methodName;
+
         private uint iterCount;
-        private double answer;
-        private double realMin;
+
+        private double answerX;
+        private double answerY;
+
+        private double realMinX;
+        private double realMinY;
+
         private double requestedEps;
         private double realEps;
     }

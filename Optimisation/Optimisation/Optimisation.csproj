@@ -104,13 +104,14 @@
     <Compile Include="Одномерные цепочки\svenn-dih-newt.cs" />
     <Compile Include="Одномерные цепочки\svenn-bolz-gr1.cs" />
     <Compile Include="Одномерные цепочки\svenn-bolz-fib2.cs" />
-    <Compile Include="Оформление\TestForm.cs">
+    <Compile Include="Тестирование\ExportTwoDim.cs" />
+    <Compile Include="Тестирование\TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Оформление\TestForm.Designer.cs">
+    <Compile Include="Тестирование\TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Тестирование\TestOutput.cs" />
+    <Compile Include="Тестирование\ExportOneDim.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -124,7 +125,7 @@
     <EmbeddedResource Include="Оформление\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Оформление\TestForm.resx">
+    <EmbeddedResource Include="Тестирование\TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

@@ -22,7 +22,6 @@ namespace Optimisation
             var graphFunction = new Function2D();
             graphFunction.source = source;
             graphFunction.Compile(true);
-           
             graphFunction.Color = Color.CornflowerBlue;
             graphFunctions3.Add(graphFunction);
             testingFunctions3.Add(new FunctionTwoDim(start, min, dir, f, dfx1, dfx2, name));
