@@ -119,9 +119,7 @@
     <None Include="Properties\DataSources\ExportOneDim.datasource" />
     <None Include="Properties\DataSources\Optimisation.Тестирование.TestOutput.datasource" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Многомерные\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Оформление\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -129,9 +127,6 @@
     <EmbeddedResource Include="Тестирование\TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

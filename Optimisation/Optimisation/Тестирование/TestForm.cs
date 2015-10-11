@@ -63,7 +63,8 @@ namespace Optimisation.Оформление
                 {
                     for (int j = 0; j < dataGridView1.Columns.Count; j++)
                     {
-                        XcelApp.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
+
+                        XcelApp.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString().Replace(',','.');
                     }
                 }
                 XcelApp.Columns.AutoFit();
