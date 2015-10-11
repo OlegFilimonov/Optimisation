@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,57 +9,48 @@ namespace Optimisation
 {
     public class ExportOneDim
     {
-        private string methodName;
-        private uint iterCount;
-        private double answer;
-        private double realMin;
-        private double requestedEps;
-        private double realEps;
+        public ExportOneDim(string methodName, uint iterCount, string answer, string realMin, double requestedEps, double realEps)
+        {
+            this.MethodName = methodName;
+            this.IterCount = iterCount;
+            this.Answer = answer;
+            this.RealMin = realMin;
+            this.RequestedEps = requestedEps;
+            this.RealEps = realEps;
+        }
 
         public ExportOneDim(string methodName, uint iterCount, double answer, double realMin, double requestedEps, double realEps)
         {
-            this.methodName = methodName;
-            this.iterCount = iterCount;
-            this.answer = answer;
-            this.realMin = realMin;
-            this.requestedEps = requestedEps;
-            this.realEps = realEps;
+            this.MethodName = methodName;
+            this.IterCount = iterCount;
+            this.Answer = Convert.ToString(answer);
+            this.RealMin = Convert.ToString(realMin);
+            this.RequestedEps = requestedEps;
+            this.RealEps = realEps;
         }
 
-        public string MethodName
+        public ExportOneDim(string methodName, uint iterCount, PointF answer, PointF realMin, double requestedEps, double realEps)
         {
-            get { return methodName; }
-            set { methodName = value; }
+            this.MethodName = methodName;
+            this.IterCount = iterCount;
+            this.Answer = Convert.ToString(answer.X + "; " + answer.Y);
+            this.RealMin = Convert.ToString(realMin.X + "; " + realMin.Y);
+            this.RequestedEps = requestedEps;
+            this.RealEps = realEps;
         }
 
-        public uint IterCount
-        {
-            get { return iterCount; }
-            set { iterCount = value; }
-        }
+        public string MethodName { get; set; }
 
-        public double Answer
-        {
-            get { return answer; }
-            set { answer = value; }
-        }
+        public uint IterCount { get; set; }
 
-        public double RealMin
-        {
-            get { return realMin; }
-            set { realMin = value; }
-        }
+        public string Answer { get; set; }
 
-        public double RequestedEps
-        {
-            get { return requestedEps; }
-            set { requestedEps = value; }
-        }
+        public string RealMin { get; set; }
 
-        public double RealEps
-        {
-            get { return realEps; }
-            set { realEps = value; }
-        }
+        public double RequestedEps { get; set; }
+
+        public double RealEps { get; set; }
+
+        public string FunctionName { get; set; }
     }
 }

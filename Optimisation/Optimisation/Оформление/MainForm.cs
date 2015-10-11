@@ -7,7 +7,9 @@ using FPlotLibrary;
 using Optimisation.Базовые_и_вспомогательные;
 using Optimisation.Одномерные;
 using Optimisation.Одномерные.Цепочки;
+using Optimisation.Одномерные_цепочки;
 using Optimisation.Оформление;
+using Optimisation.Тестирование;
 using DoubleConverter = Optimisation.Одномерные.DoubleConverter;
 
 namespace Optimisation
@@ -197,75 +199,118 @@ namespace Optimisation
             diffBox3.Text = "";
         }
 
-        private void тестированиеToolStripMenuItem_Click(object sender, EventArgs e)
+        void launchTestForm(double eps)
         {
-            List<OneDimMethod> metgods = oneDimentionalMethods.Concat(oneDimentionalMethods2).ToList();
-            List<ExportOneDim> export = new List<ExportOneDim>(metgods.Count);
-            foreach (var method in metgods)
+
+            var metgods = oneDimentionalMethods.Concat(oneDimentionalMethods2).ToList();
+            var export1and2 = new List<List<ExportOneDim>>(testingFunctions.Count);
+            var export3 = new List<List<ExportOneDim>>(testingFunctions3.Count);
+
+            //Заполняем первую лабу
+            foreach (var function in testingFunctions)
             {
-                if (method is NewtonMethod)
+                var exportList = new List<ExportOneDim>(metgods.Count);
+                foreach (var method in metgods)
                 {
-                    ((NewtonMethod)method).D2F = currFunction.D2F;
-                }
-                if (method is svenn_dih_newt)
-                {
-                    ((svenn_dih_newt)method).D2F = currFunction.D2F;
-                }
+                    if (method is NewtonMethod)
+                    {
+                        ((NewtonMethod)method).D2F = function.D2F;
+                    }
+                    if (method is svenn_dih_newt)
+                    {
+                        ((svenn_dih_newt)method).D2F = function.D2F;
+                    }
 
-                if ((method is NewtonMethod || method is svenn_dih_newt) && (currFunction is FunctionTwoDim))
-                {
-                    continue;
-                }
+                    if ((method is NewtonMethod || method is svenn_dih_newt) && (function is FunctionTwoDim))
+                    {
+                        continue;
+                    }
 
-                method.F = currFunction.F;
-                method.Df = currFunction.Df;
+                    method.F = function.F;
+                    method.Df = function.Df;
 
-                double startingX, eps;
+                    double startingX = 1;
 
-                try
-                {
-                    startingX = double.Parse(startBox1.Text);
-                    eps = double.Parse(epsBox1.Text);
-                }
-                catch (Exception exception)
-                {
-                    MessageBox.Show("Неверно введены начальные данные для метода, выбраны стандартные\nОшибка: " + exception.Message);
-                    startingX = 1;
-                    eps = 1e-2;
-                    startBox1.Text = "1";
-                    epsBox1.Text = "1e-2";
-                }
+                    //Корректируем начальный шаг по формуле
+                    var startingH = (startingX == 0) ? 0.01 : 0.01 * startingX;
 
-                //Корректируем начальный шаг по формуле
-                var startingH = (startingX == 0) ? 0.01 : 0.01 * startingX;
+                    //Точность
+                    method.Eps = eps;
 
-                //Точность
-                method.Eps = eps;
+                    //Делаем свена
+                    method.setSvenInterval(startingX, startingH);
 
-                //Делаем свена
-                method.setSvenInterval(startingX, startingH);
+                    //Делаем сам метод
+                    method.execute();
 
-                //Делаем сам метод
-                method.execute();
-                if (currFunction is FunctionTwoDim)
-                {
-                    var coord = ((FunctionTwoDim) currFunction).getOffset(method.Answer);
-                    //TODO: export two dim
-                    //export.Add(new ExportOneDim(method.MethodName,method.IterationCount,));
-                    //report += string.Format("{0}: {1};{2}\n", method.MethodName, (coord.X), (coord.Y));
-                }
-                else
-                {
-                    var cast = (FunctionOneDim) currFunction;
+                    var cast = (FunctionOneDim)function;
                     var min = cast.Min;
                     var realEps = Math.Abs(method.Answer - cast.Min);
-                    export.Add(new ExportOneDim(method.MethodName, (uint) method.IterationCount,method.Answer,min,method.Eps,realEps));
+                    exportList.Add(new ExportOneDim(method.MethodName, (uint)method.IterationCount, method.Answer, min,
+                        method.Eps, realEps));
                 }
-                   // report += string.Format("Ответ: {0}\t{1}\n", DoubleConverter.ToExactString(method.Answer), method.MethodName);
+                export1and2.Add(exportList);
             }
+
+            //Заполняем вторую лабу
+            foreach (var function in testingFunctions3)
+            {
+                var exportList = new List<ExportOneDim>(metgods.Count);
+                foreach (var method in metgods)
+                {
+                    if (method is NewtonMethod)
+                    {
+                        ((NewtonMethod)method).D2F = function.D2F;
+                    }
+                    if (method is svenn_dih_newt)
+                    {
+                        ((svenn_dih_newt)method).D2F = function.D2F;
+                    }
+
+                    if ((method is NewtonMethod || method is svenn_dih_newt || method is extr_dav) && (function is FunctionTwoDim))
+                    {
+                        continue;
+                    }
+
+                    method.F = function.F;
+                    method.Df = function.Df;
+
+                    double startingX = 1;
+
+                    //Корректируем начальный шаг по формуле
+                    var startingH = (startingX == 0) ? 0.01 : 0.01 * startingX;
+
+                    //Точность
+                    method.Eps = eps;
+
+                    //Делаем свена
+                    method.setSvenInterval(startingX, startingH);
+
+                    //Делаем сам метод
+                    method.execute();
+                    var castFunction = (FunctionTwoDim)function;
+                    var coord = castFunction.getOffset(method.Answer);
+                    var realEps = Math.Abs(Math.Pow(castFunction.Min.X - coord.X, 2) + Math.Pow(castFunction.Min.Y - coord.Y, 2));
+                    exportList.Add(new ExportOneDim(method.MethodName, (uint)method.IterationCount, coord,
+                        castFunction.Min, method.Eps, realEps));
+                }
+                export3.Add(exportList);
+
+            }
+
             //Запускаем форму
-            var form = new TestForm(export);
+            var form = new TestForm(export1and2, testingFunctions, export3, testingFunctions3);
             form.ShowDialog();
+        }
+
+        private void низкаяТочностьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            launchTestForm(1e-2);
+        }
+
+        private void высокаяТочностьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            launchTestForm(1e-4);
         }
     }
 

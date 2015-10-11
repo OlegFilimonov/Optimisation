@@ -89,6 +89,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.тестированиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.низкаяТочностьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.высокаяТочностьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -776,10 +778,26 @@
             // 
             // тестированиеToolStripMenuItem
             // 
+            this.тестированиеToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.низкаяТочностьToolStripMenuItem,
+            this.высокаяТочностьToolStripMenuItem});
             this.тестированиеToolStripMenuItem.Name = "тестированиеToolStripMenuItem";
             this.тестированиеToolStripMenuItem.Size = new System.Drawing.Size(119, 24);
             this.тестированиеToolStripMenuItem.Text = "Тестирование";
-            this.тестированиеToolStripMenuItem.Click += new System.EventHandler(this.тестированиеToolStripMenuItem_Click);
+            // 
+            // низкаяТочностьToolStripMenuItem
+            // 
+            this.низкаяТочностьToolStripMenuItem.Name = "низкаяТочностьToolStripMenuItem";
+            this.низкаяТочностьToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.низкаяТочностьToolStripMenuItem.Text = "Низкая точность";
+            this.низкаяТочностьToolStripMenuItem.Click += new System.EventHandler(this.низкаяТочностьToolStripMenuItem_Click);
+            // 
+            // высокаяТочностьToolStripMenuItem
+            // 
+            this.высокаяТочностьToolStripMenuItem.Name = "высокаяТочностьToolStripMenuItem";
+            this.высокаяТочностьToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.высокаяТочностьToolStripMenuItem.Text = "Высокая точность";
+            this.высокаяТочностьToolStripMenuItem.Click += new System.EventHandler(this.высокаяТочностьToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -883,5 +901,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem тестированиеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem низкаяТочностьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem высокаяТочностьToolStripMenuItem;
     }
 }

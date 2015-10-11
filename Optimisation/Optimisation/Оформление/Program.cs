@@ -11,6 +11,7 @@ namespace Optimisation
     //Основной класс программы
     class Program
     {
+        [STAThread]
         // ReSharper disable once ObjectCreationAsStatement
         static void Main(string[] args)
         {
