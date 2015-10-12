@@ -34,5 +34,17 @@ namespace Optimisation.Базовые_и_вспомогательные
         public static double f6(double x1, double x2) => Pow(x1 - 2, 4) + Pow(x1 - 2 * x2, 2);
         public static double df6x1(double x1, double x2) => 2 * (2 * Pow(x1, 3) - 12 * Pow(x1, 2) + 25 * x1 - 2 * x2 - 16);
         public static double df6x2(double x1, double x2) => 8 * x2 - 4 * x1;
+
+        public static double f7(double x1, double x2) => Pow(2 * x1, 3) + 4 * x1 * Pow(x2, 3) - 10 * x1 * x2 + x2 * x2;
+        public static double df7x1(double x1, double x2) => 6 * x1 * x1 + 4 * x2 * x2 * x2 - 10 * x2;
+        public static double df7x2(double x1, double x2) => 2 * (x2 + x1 * (-5 + 6 * x2 * x2));
+
+        public static double f8(double x1, double x2) => 8 * x1 * x1 + 4 * x1 * x2 + 5 * x2 * x2;
+        public static double df8x1(double x1, double x2) => 16 * x1 + 4 * x2;
+        public static double df8x2(double x1, double x2) => 4 * x1 + 10 * x2;
+
+        public static double f9(double x1, double x2) => 4 * Pow(x1 - 5, 2) + Pow(x2 - 6, 2);
+        public static double df9x1(double x1, double x2) => 8 * x1 - 40;
+        public static double df9x2(double x1, double x2) => 2 * x2 - 12;
     }
 }
