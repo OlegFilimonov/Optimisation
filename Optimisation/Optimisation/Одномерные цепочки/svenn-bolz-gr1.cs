@@ -1,41 +1,42 @@
-﻿namespace Optimisation.Одномерные.Цепочки
-{
-    public class svenn_bolz_gr1 : OneDimMethod
-    {
-        public svenn_bolz_gr1(double eps=1e-6, int maxIterations = 50)
-            : base(null,null,eps, "M7 Свенн-Больцано-ЗС1", maxIterations)
-        {
+﻿using Optimisation.Базовые_и_вспомогательные;
+using Optimisation.Одномерные;
 
+namespace Optimisation.Одномерные_цепочки
+{
+    public class SvennBolzGr1 : OneDimMethod
+    {
+        public SvennBolzGr1(double eps = 1e-6, int maxIterations = 50)
+            : base(null, null, eps, "M7 Свенн-Больцано-ЗС1", maxIterations)
+        {
         }
 
-        public override void execute()
+        public override void Execute()
         {
-            OneDimMethod step1, step2;
-            step1 = new BolzanoMethod(f,df, eps, 5);
-            step2 = new GoldenRatioMethod1(f, eps);
+            OneDimMethod step1 = new BolzanoMethod(F, Df, Eps, 5);
+            OneDimMethod step2 = new GoldenRatioMethod1(F, Eps);
 
-            iterationCount = 0;
-            
+            IterationCount = 0;
+
 
             //ШАГ 2
-            step1.A = a;
-            step1.B = b;
-            step1.execute();
+            step1.A = A;
+            step1.B = B;
+            step1.Execute();
 
-            a = step1.A;
-            b = step1.B;
+            A = step1.A;
+            B = step1.B;
 
             //ШАГ 3
-            step2.A = a;
-            step2.B = b;
-            step2.execute();
+            step2.A = A;
+            step2.B = B;
+            step2.Execute();
 
-            a = step2.A;
-            b = step2.B;
-            answer = step2.Answer;
+            A = step2.A;
+            B = step2.B;
+            Answer = step2.Answer;
 
-            iterationCount += step1.IterationCount;
-            iterationCount += step2.IterationCount;
+            IterationCount += step1.IterationCount;
+            IterationCount += step2.IterationCount;
         }
     }
 }

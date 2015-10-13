@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Windows.Forms;
+using Optimisation.Оформление;
 
 namespace Optimisation
 {
     //Основной класс программы
-    class Program
+    internal class Program
     {
         [STAThread]
         // ReSharper disable once ObjectCreationAsStatement
-        static void Main(string[] args)
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

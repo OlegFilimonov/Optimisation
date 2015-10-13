@@ -1,27 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
+// ReSharper disable All
 
-namespace Optimisation.Одномерные
+namespace Optimisation.Базовые_и_вспомогательные
 {
-    using System;
-    using System.Globalization;
-
     /// <summary>
-    /// A class to allow the conversion of doubles to string representations of
-    /// their exact decimal values. The implementation aims for readability over
-    /// efficiency.
+    ///     A class to allow the conversion of doubles to string representations of
+    ///     their exact decimal values. The implementation aims for readability over
+    ///     efficiency.
     /// </summary>
     public class DoubleConverter
     {
         /// <summary>
-        /// Converts the given double to a string representation of its
-        /// exact decimal value.
+        ///     Converts the given double to a string representation of its
+        ///     exact decimal value.
         /// </summary>
         /// <param name="d">The double to convert.</param>
-        /// <returns>A string representation of the double's exact decimal value.</return>
+        /// <return>A string representation of the double's exact decimal value.</return>
         public static string ToExactString(double d)
         {
             if (double.IsPositiveInfinity(d))
@@ -32,11 +27,11 @@ namespace Optimisation.Одномерные
                 return "NaN";
 
             // Translate the double into sign, exponent and mantissa.
-            long bits = BitConverter.DoubleToInt64Bits(d);
+            var bits = BitConverter.DoubleToInt64Bits(d);
             // Note that the shift is sign-extended, hence the test against -1 not 1
-            bool negative = (bits < 0);
-            int exponent = (int)((bits >> 52) & 0x7ffL);
-            long mantissa = bits & 0xfffffffffffffL;
+            var negative = (bits < 0);
+            var exponent = (int) ((bits >> 52) & 0x7ffL);
+            var mantissa = bits & 0xfffffffffffffL;
 
             // Subnormal numbers; exponent is effectively one higher,
             // but there's no extra normalisation bit in the mantissa
@@ -63,27 +58,28 @@ namespace Optimisation.Одномерные
 
             /* Normalize */
             while ((mantissa & 1) == 0)
-            {    /*  i.e., Mantissa is even */
+            {
+                /*  i.e., Mantissa is even */
                 mantissa >>= 1;
                 exponent++;
             }
 
             /// Construct a new decimal expansion with the mantissa
-            ArbitraryDecimal ad = new ArbitraryDecimal(mantissa);
+            var ad = new ArbitraryDecimal(mantissa);
 
             // If the exponent is less than 0, we need to repeatedly
             // divide by 2 - which is the equivalent of multiplying
             // by 5 and dividing by 10.
             if (exponent < 0)
             {
-                for (int i = 0; i < -exponent; i++)
+                for (var i = 0; i < -exponent; i++)
                     ad.MultiplyBy(5);
                 ad.Shift(-exponent);
             }
             // Otherwise, we need to repeatedly multiply by 2
             else
             {
-                for (int i = 0; i < exponent; i++)
+                for (var i = 0; i < exponent; i++)
                     ad.MultiplyBy(2);
             }
 
@@ -91,7 +87,7 @@ namespace Optimisation.Одномерные
 
             // Finally, return the string with an appropriate sign
             if (negative)
-                tmp = "-" + ad.ToString();
+                tmp = "-" + ad;
             else
                 tmp = ad.ToString();
 
@@ -101,40 +97,41 @@ namespace Optimisation.Одномерные
         }
 
         /// <summary>Private class used for manipulating
-        class ArbitraryDecimal
+        private class ArbitraryDecimal
         {
-            /// <summary>Digits in the decimal expansion, one byte per digit
-            byte[] digits;
-            /// <summary> 
-            /// How many digits are *after* the decimal point
+            /// <summary>
+            ///     How many digits are *after* the decimal point
             /// </summary>
-            int decimalPoint = 0;
+            private int decimalPoint;
 
-            /// <summary> 
-            /// Constructs an arbitrary decimal expansion from the given long.
-            /// The long must not be negative.
+            /// <summary>Digits in the decimal expansion, one byte per digit
+            private byte[] digits;
+
+            /// <summary>
+            ///     Constructs an arbitrary decimal expansion from the given long.
+            ///     The long must not be negative.
             /// </summary>
             internal ArbitraryDecimal(long x)
             {
-                string tmp = x.ToString(CultureInfo.InvariantCulture);
+                var tmp = x.ToString(CultureInfo.InvariantCulture);
                 digits = new byte[tmp.Length];
-                for (int i = 0; i < tmp.Length; i++)
-                    digits[i] = (byte)(tmp[i] - '0');
+                for (var i = 0; i < tmp.Length; i++)
+                    digits[i] = (byte) (tmp[i] - '0');
                 Normalize();
             }
 
             /// <summary>
-            /// Multiplies the current expansion by the given amount, which should
-            /// only be 2 or 5.
+            ///     Multiplies the current expansion by the given amount, which should
+            ///     only be 2 or 5.
             /// </summary>
             internal void MultiplyBy(int amount)
             {
-                byte[] result = new byte[digits.Length + 1];
-                for (int i = digits.Length - 1; i >= 0; i--)
+                var result = new byte[digits.Length + 1];
+                for (var i = digits.Length - 1; i >= 0; i--)
                 {
-                    int resultDigit = digits[i] * amount + result[i + 1];
-                    result[i] = (byte)(resultDigit / 10);
-                    result[i + 1] = (byte)(resultDigit % 10);
+                    var resultDigit = digits[i]*amount + result[i + 1];
+                    result[i] = (byte) (resultDigit/10);
+                    result[i + 1] = (byte) (resultDigit%10);
                 }
                 if (result[0] != 0)
                 {
@@ -148,10 +145,10 @@ namespace Optimisation.Одномерные
             }
 
             /// <summary>
-            /// Shifts the decimal point; a negative value makes
-            /// the decimal expansion bigger (as fewer digits come after the
-            /// decimal place) and a positive value makes the decimal
-            /// expansion smaller.
+            ///     Shifts the decimal point; a negative value makes
+            ///     the decimal expansion bigger (as fewer digits come after the
+            ///     decimal place) and a positive value makes the decimal
+            ///     expansion smaller.
             /// </summary>
             internal void Shift(int amount)
             {
@@ -159,7 +156,7 @@ namespace Optimisation.Одномерные
             }
 
             /// <summary>
-            /// Removes leading/trailing zeroes from the expansion.
+            ///     Removes leading/trailing zeroes from the expansion.
             /// </summary>
             internal void Normalize()
             {
@@ -175,8 +172,8 @@ namespace Optimisation.Одномерные
                 if (first == 0 && last == digits.Length - 1)
                     return;
 
-                byte[] tmp = new byte[last - first + 1];
-                for (int i = 0; i < tmp.Length; i++)
+                var tmp = new byte[last - first + 1];
+                for (var i = 0; i < tmp.Length; i++)
                     tmp[i] = digits[i + first];
 
                 decimalPoint -= digits.Length - (last + 1);
@@ -184,13 +181,13 @@ namespace Optimisation.Одномерные
             }
 
             /// <summary>
-            /// Converts the value to a proper decimal string representation.
+            ///     Converts the value to a proper decimal string representation.
             /// </summary>
-            public override String ToString()
+            public override string ToString()
             {
-                char[] digitString = new char[digits.Length];
-                for (int i = 0; i < digits.Length; i++)
-                    digitString[i] = (char)(digits[i] + '0');
+                var digitString = new char[digits.Length];
+                for (var i = 0; i < digits.Length; i++)
+                    digitString[i] = (char) (digits[i] + '0');
 
                 // Simplest case - nothing after the decimal point,
                 // and last real digit is non-zero, eg value=35
@@ -211,19 +208,19 @@ namespace Optimisation.Одномерные
                 if (decimalPoint >= digitString.Length)
                 {
                     return "0." +
-                        new string('0', (decimalPoint - digitString.Length)) +
-                        new string(digitString);
+                           new string('0', (decimalPoint - digitString.Length)) +
+                           new string(digitString);
                 }
 
                 // Most complicated case - part of the string comes
                 // before the decimal point, part comes after it,
                 // eg 3.5
                 return new string(digitString, 0,
-                                   digitString.Length - decimalPoint) +
-                    "." +
-                    new string(digitString,
-                                digitString.Length - decimalPoint,
-                                decimalPoint);
+                    digitString.Length - decimalPoint) +
+                       "." +
+                       new string(digitString,
+                           digitString.Length - decimalPoint,
+                           decimalPoint);
             }
         }
     }

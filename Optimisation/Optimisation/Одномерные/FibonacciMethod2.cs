@@ -1,113 +1,108 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Optimisation.Базовые_и_вспомогательные;
+// ReSharper disable InconsistentNaming
 
 namespace Optimisation.Одномерные
 {
-
     public class FibonacciMethod2 : OneDimMethod
     {
-        private List<double> fibonacciList;
-        private int n = 1;
+        private List<double> _fibonacciList;
+        private int _n = 1;
 
-        public double populateFibonacci(double treshHold)
+        //Конструктор
+        public FibonacciMethod2(Function1D f, double eps = 1e-6, int maxIterations = 50)
+            : base(f, null, eps, "Метод ФИБОНАЧЧИ-2", maxIterations)
+        {
+        }
+
+        private double PopulateFibonacci(double treshHold)
         {
             double f_n = 1;
             double f_n2 = 1, f_n1 = 1;
-            fibonacciList.Add(1);
+            _fibonacciList.Add(1);
 
             //Нахолим f_n и n
             do
             {
-                fibonacciList.Add(f_n);
+                _fibonacciList.Add(f_n);
                 f_n = f_n1 + f_n2;
                 f_n1 = f_n2;
                 f_n2 = f_n;
-                n++;
+                _n++;
             } while (f_n < treshHold);
-            n--;
+            _n--;
             return f_n;
         }
 
 
-
-        public override void execute()
+        public override void Execute()
         {
             //Сбрасываем счетчик
-            iterationCount = 0;
+            IterationCount = 0;
 
-            n = 1;
+            _n = 1;
 
-            if (fibonacciList == null) fibonacciList = new List<double>();
+            if (_fibonacciList == null) _fibonacciList = new List<double>();
             else
             {
-                fibonacciList.Clear();
+                _fibonacciList.Clear();
             }
 
             //Начальный этап
-            var length = Math.Abs(b - a);
+            var length = Math.Abs(B - A);
 
-            var treshHold = length / (eps/10);
-            double f_n;
+            var treshHold = length/(Eps/10);
 
-            f_n = populateFibonacci(treshHold);
+            var f_n = PopulateFibonacci(treshHold);
 
             //Находим эпсилон для последнего шага
-            var eps2 = length / f_n;
+            var eps2 = length/f_n;
 
             //Находим две стартовые точки
-            var x1 = a + fibonacciList[n - 1]/fibonacciList[n]*length + Math.Pow(-1, n)/fibonacciList[n]*eps2;
+            var x1 = A + _fibonacciList[_n - 1]/_fibonacciList[_n]*length + Math.Pow(-1, _n)/_fibonacciList[_n]*eps2;
             var k = 1;
             double x2;
-            iterationCount = n;
+            IterationCount = _n;
 
             //Основной этап
             do
             {
-                x2 = a + b - x1;
+                x2 = A + B - x1;
 
-                if ((f(x2) < f(x1)) && (x2 < x1))
+                if ((F(x2) < F(x1)) && (x2 < x1))
                 {
-                    b = x1;
+                    B = x1;
                     x1 = x2;
                 }
-                else if ((f(x2) >= f(x1)) && (x2 < x1))
+                else if ((F(x2) >= F(x1)) && (x2 < x1))
                 {
-                    a = x2;
+                    A = x2;
                 }
-                else if ((f(x2) < f(x1)) && (x2 >= x1))
+                else if ((F(x2) < F(x1)) && (x2 >= x1))
                 {
-                    a = x1;
+                    A = x1;
                     x1 = x2;
                 }
-                else if ((f(x2) >= f(x1)) && (x2 >= x1))
+                else if ((F(x2) >= F(x1)) && (x2 >= x1))
                 {
-                    b = x2;
+                    B = x2;
                 }
                 k++;
-                if(k>maxIterations) break;
+                if (k > MaxIterations) break;
+            } while (k != _n);
 
-            } while (k!=n);
-            
 
-            if (f(x1) > f(x2))
+            if (F(x1) > F(x2))
             {
-                answer = (x1 + b) / 2;
-                a = x1;
+                Answer = (x1 + B)/2;
+                A = x1;
             }
             else
             {
-                answer = (a + x2) / 2;
-                b = x2;
+                Answer = (A + x2)/2;
+                B = x2;
             }
-        }
-
-        //Конструктор
-        public FibonacciMethod2(function f, double eps = 1e-6, int maxIterations=50)
-            : base(f: f, df: null, eps: eps, methodName: "Метод ФИБОНАЧЧИ-2", maxIterations: maxIterations)
-        {
         }
     }
 }

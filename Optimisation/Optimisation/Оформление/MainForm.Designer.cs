@@ -1,4 +1,4 @@
-﻿namespace Optimisation
+﻿namespace Optimisation.Оформление
 {
     partial class MainForm
     {

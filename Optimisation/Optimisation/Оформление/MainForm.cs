@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using FPlotLibrary;
 using Optimisation.Базовые_и_вспомогательные;
 using Optimisation.Одномерные;
-using Optimisation.Одномерные.Цепочки;
 using Optimisation.Одномерные_цепочки;
-using Optimisation.Оформление;
 using Optimisation.Тестирование;
-using DoubleConverter = Optimisation.Одномерные.DoubleConverter;
+using Function2D = FPlotLibrary.Function2D;
+// ReSharper disable CompareOfFloatsByEqualityOperator
 
-namespace Optimisation
+namespace Optimisation.Оформление
 {
     public partial class MainForm : Form
     {
-        private Function currFunction;
-        private OneDimMethod currMethod;
+        private FunctionHolder _currFunctionHolder;
+        private OneDimMethod _currMethod;
 
         public MainForm()
         {
@@ -26,32 +24,30 @@ namespace Optimisation
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            initilize1();
-            initilize2();
-            initilize3();
+            Initilize1();
+            Initilize2();
+            Initilize3();
         }
 
         /// <summary>
-        /// Рисует функцию и инициализирует ее
+        ///     Рисует функцию и инициализирует ее
         /// </summary>
         /// <param name="testingFunction">Функция для инициализации</param>
-        private void makeFunction(Function testingFunction)
+        private void MakeFunction(FunctionHolder testingFunction)
         {
-            double minX;
-
             //Одномерная функция
-            minX = ((FunctionOneDim)testingFunction).Min;
+            var minX = ((FunctionHolderOneDim) testingFunction).Min;
             var f = testingFunction.F;
 
-            if (currMethod != null) makeMethod(currMethod);
+            if (_currMethod != null) MakeMethod(_currMethod);
 
             const double length = 1;
 
-            var x0 = minX - length / 2;
-            var x1 = minX + length / 2;
+            var x0 = minX - length/2;
+            var x1 = minX + length/2;
 
-            var y0 = f(minX) - length / 2;
-            var y1 = f(minX) + length / 2;
+            var y0 = f(minX) - length/2;
+            var y1 = f(minX) + length/2;
 
             graph.x0 = x0;
             graph.x1 = x1;
@@ -59,7 +55,7 @@ namespace Optimisation
             graph.y0 = y0;
             graph.y1 = y1;
 
-            var func = graphFunctions[testingFunctions.IndexOf(testingFunction)];
+            var func = _graphFunctions[_testingFunctions.IndexOf(testingFunction)];
 
             if (graph.Model.Items.Count < 1) graph.Model.Items.Add(func);
             else
@@ -70,26 +66,26 @@ namespace Optimisation
         }
 
         /// <summary>
-        /// Запускает одномерный метод на выбранной функции
+        ///     Запускает одномерный метод на выбранной функции
         /// </summary>
         /// <param name="method">Метод для запуска</param>
-        private void makeMethod(OneDimMethod method)
+        private void MakeMethod(OneDimMethod method)
         {
-            if ((method is NewtonMethod || method is svenn_dih_newt) && (currFunction is FunctionTwoDim))
+            if ((method is NewtonMethod || method is SvennDihNewt) && (_currFunctionHolder is FunctionHolderTwoDim))
             {
                 MessageBox.Show("Вторая производная для функции отсутствует");
                 return;
             }
             if (method.MethodName == "Метод НЬЮТОНА")
             {
-                ((NewtonMethod)method).D2F = currFunction.D2F;
+                ((NewtonMethod) method).D2F = _currFunctionHolder.D2F;
             }
             if (method.MethodName == "М5 - Свенн - дихтомии - Ньютона")
             {
-                ((svenn_dih_newt)method).D2F = currFunction.D2F;
+                ((SvennDihNewt) method).D2F = _currFunctionHolder.D2F;
             }
-            method.F = currFunction.F;
-            method.Df = currFunction.Df;
+            method.F = _currFunctionHolder.F;
+            method.Df = _currFunctionHolder.Df;
 
             double startingX, eps;
             try
@@ -99,7 +95,8 @@ namespace Optimisation
             }
             catch (Exception exception)
             {
-                MessageBox.Show("Неверно введены начальные данные для метода, выбраны стандартные\nОшибка: " + exception.Message);
+                MessageBox.Show("Неверно введены начальные данные для метода, выбраны стандартные\nОшибка: " +
+                                exception.Message);
                 startingX = 1;
                 eps = 1e-2;
                 startBox1.Text = "1";
@@ -107,45 +104,42 @@ namespace Optimisation
             }
 
             //Корректируем начальный шаг по формуле
-            var startingH = (startingX == 0) ? 0.01 : 0.01 * startingX;
+            var startingH = (startingX == 0f) ? 0.01 : 0.01*startingX;
 
             //Точность
             method.Eps = eps;
 
             //Делаем свена
-            method.setSvenInterval(startingX, startingH);
+            method.SetSvenInterval(startingX, startingH);
 
             //Делаем сам метод
-            method.execute();
+            method.Execute();
 
             //Вывод
 
             minBox1.Text = DoubleConverter.ToExactString(method.Answer);
             iterBox1.Text = Convert.ToString(method.IterationCount);
-            diffBox1.Text = Convert.ToString(Math.Abs(method.Answer - ((FunctionOneDim)currFunction).Min));
+            diffBox1.Text = Convert.ToString(Math.Abs(method.Answer - ((FunctionHolderOneDim) _currFunctionHolder).Min));
             minBox2.Text = DoubleConverter.ToExactString(method.Answer);
             iterBox2.Text = Convert.ToString(method.IterationCount);
-            diffBox2.Text = Convert.ToString(Math.Abs(method.Answer - ((FunctionOneDim)currFunction).Min));
+            diffBox2.Text = Convert.ToString(Math.Abs(method.Answer - ((FunctionHolderOneDim) _currFunctionHolder).Min));
 
 
-            var aFunction = new Function2D();
-            aFunction.source = "return (abs(x-p[0])<p[1])?0:1f;";
+            var aFunction = new Function2D {source = "return (abs(x-p[0])<p[1])?0:1f;"};
             aFunction.Compile(true);
             aFunction.p[0] = method.A;
             aFunction.p[1] = 0.001F;
             aFunction.lineWidth = 0.00001F;
             aFunction.Color = Color.MediumVioletRed;
 
-            var bFunction = new Function2D();
-            bFunction.source = "return (abs(x-p[0])<p[1])?0:1f;";
+            var bFunction = new Function2D {source = "return (abs(x-p[0])<p[1])?0:1f;"};
             bFunction.Compile(true);
             bFunction.p[0] = method.B;
             bFunction.p[1] = 0.001F;
             bFunction.lineWidth = 0.001F;
             bFunction.Color = Color.MediumVioletRed;
 
-            var cFunction = new Function2D();
-            cFunction.source = "return (abs(x-p[0])<p[1])?0:1f;";
+            var cFunction = new Function2D {source = "return (abs(x-p[0])<p[1])?0:1f;"};
             cFunction.Compile(true);
             cFunction.p[0] = method.Answer;
             cFunction.p[1] = 0.001F;
@@ -171,16 +165,16 @@ namespace Optimisation
 
         private void startingPoint1_KeyUp(object sender, KeyEventArgs e)
         {
-            if (currMethod != null && e.KeyCode == Keys.Enter)
+            if (_currMethod != null && e.KeyCode == Keys.Enter)
             {
-                makeMethod(currMethod);
+                MakeMethod(_currMethod);
             }
         }
 
         private void lab1tab_SelectedIndexChanged(object sender, EventArgs e)
         {
-            currMethod = null;
-            currFunction = null;
+            _currMethod = null;
+            _currFunctionHolder = null;
             methodList1.SelectedIndex = -1;
             methodList2.SelectedIndex = -1;
             methodList3.SelectedIndex = -1;
@@ -199,29 +193,28 @@ namespace Optimisation
             diffBox3.Text = "";
         }
 
-        void launchTestForm(double eps)
+        private void LaunchTestForm(double eps)
         {
-
-            var metgods = oneDimentionalMethods.Concat(oneDimentionalMethods2).ToList();
-            var export1and2 = new List<List<ExportOneDim>>(testingFunctions.Count);
-            var export3 = new List<List<ExportOneDim>>(testingFunctions3.Count);
+            var metgods = _oneDimentionalMethods.Concat(_oneDimentionalMethods2).ToList();
+            var export1And2 = new List<List<ExportOneDim>>(_testingFunctions.Count);
+            var export3 = new List<List<ExportOneDim>>(_testingFunctions3.Count);
 
             //Заполняем первую лабу
-            foreach (var function in testingFunctions)
+            foreach (var function in _testingFunctions)
             {
                 var exportList = new List<ExportOneDim>(metgods.Count);
                 foreach (var method in metgods)
                 {
                     if (method is NewtonMethod)
                     {
-                        ((NewtonMethod)method).D2F = function.D2F;
+                        ((NewtonMethod) method).D2F = function.D2F;
                     }
-                    if (method is svenn_dih_newt)
+                    if (method is SvennDihNewt)
                     {
-                        ((svenn_dih_newt)method).D2F = function.D2F;
+                        ((SvennDihNewt) method).D2F = function.D2F;
                     }
 
-                    if ((method is NewtonMethod || method is svenn_dih_newt) && (function is FunctionTwoDim))
+                    if ((method is NewtonMethod || method is SvennDihNewt) && (function is FunctionHolderTwoDim))
                     {
                         continue;
                     }
@@ -232,42 +225,43 @@ namespace Optimisation
                     double startingX = 1;
 
                     //Корректируем начальный шаг по формуле
-                    var startingH = (startingX == 0) ? 0.01 : 0.01 * startingX;
+                    var startingH = (startingX == 0) ? 0.01 : 0.01*startingX;
 
                     //Точность
                     method.Eps = eps;
 
                     //Делаем свена
-                    method.setSvenInterval(startingX, startingH);
+                    method.SetSvenInterval(startingX, startingH);
 
                     //Делаем сам метод
-                    method.execute();
+                    method.Execute();
 
-                    var cast = (FunctionOneDim)function;
+                    var cast = (FunctionHolderOneDim) function;
                     var min = cast.Min;
                     var realEps = Math.Abs(method.Answer - cast.Min);
-                    exportList.Add(new ExportOneDim(method.MethodName, (uint)method.IterationCount, method.Answer, min,
+                    exportList.Add(new ExportOneDim(method.MethodName, (uint) method.IterationCount, method.Answer, min,
                         method.Eps, realEps));
                 }
-                export1and2.Add(exportList);
+                export1And2.Add(exportList);
             }
 
             //Заполняем вторую лабу
-            foreach (var function in testingFunctions3)
+            foreach (var function in _testingFunctions3)
             {
                 var exportList = new List<ExportOneDim>(metgods.Count);
                 foreach (var method in metgods)
                 {
                     if (method is NewtonMethod)
                     {
-                        ((NewtonMethod)method).D2F = function.D2F;
+                        ((NewtonMethod) method).D2F = function.D2F;
                     }
-                    if (method is svenn_dih_newt)
+                    if (method is SvennDihNewt)
                     {
-                        ((svenn_dih_newt)method).D2F = function.D2F;
+                        ((SvennDihNewt) method).D2F = function.D2F;
                     }
 
-                    if ((method is NewtonMethod || method is svenn_dih_newt || method is extr_dav) && (function is FunctionTwoDim))
+                    if ((method is NewtonMethod || method is SvennDihNewt || method is ExtrDav) &&
+                        (function is FunctionHolderTwoDim))
                     {
                         continue;
                     }
@@ -278,40 +272,39 @@ namespace Optimisation
                     double startingX = 1;
 
                     //Корректируем начальный шаг по формуле
-                    var startingH = (startingX == 0) ? 0.01 : 0.01 * startingX;
+                    var startingH = (startingX == 0) ? 0.01 : 0.01*startingX;
 
                     //Точность
                     method.Eps = eps;
 
                     //Делаем свена
-                    method.setSvenInterval(startingX, startingH);
+                    method.SetSvenInterval(startingX, startingH);
 
                     //Делаем сам метод
-                    method.execute();
-                    var castFunction = (FunctionTwoDim)function;
-                    var coord = castFunction.getOffset(method.Answer);
-                    var realEps = Math.Abs(Math.Pow(castFunction.Min.X - coord.X, 2) + Math.Pow(castFunction.Min.Y - coord.Y, 2));
-                    exportList.Add(new ExportOneDim(method.MethodName, (uint)method.IterationCount, coord,
+                    method.Execute();
+                    var castFunction = (FunctionHolderTwoDim) function;
+                    var coord = castFunction.GetOffset(method.Answer);
+                    var realEps =
+                        Math.Abs(Math.Pow(castFunction.Min.X - coord.X, 2) + Math.Pow(castFunction.Min.Y - coord.Y, 2));
+                    exportList.Add(new ExportOneDim(method.MethodName, (uint) method.IterationCount, coord,
                         castFunction.Min, method.Eps, realEps));
                 }
                 export3.Add(exportList);
-
             }
 
             //Запускаем форму
-            var form = new TestForm(export1and2, testingFunctions, export3, testingFunctions3);
+            var form = new TestForm(export1And2, _testingFunctions, export3, _testingFunctions3);
             form.ShowDialog();
         }
 
         private void низкаяТочностьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            launchTestForm(1e-2);
+            LaunchTestForm(1e-2);
         }
 
         private void высокаяТочностьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            launchTestForm(1e-4);
+            LaunchTestForm(1e-4);
         }
     }
-
 }

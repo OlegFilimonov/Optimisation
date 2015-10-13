@@ -1,70 +1,65 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Optimisation.Базовые_и_вспомогательные;
 
 namespace Optimisation.Одномерные
 {
-    class DavidonMethod : OneDimMethod
+    internal class DavidonMethod : OneDimMethod
     {
-        public DavidonMethod(function f, function df, double eps=1e-6, int maxIterations=50) : 
-            base(f: f, df: df, eps: eps, methodName: "Метод ДАВИДОНА", maxIterations: maxIterations)
+        public DavidonMethod(Function1D f, Function1D df, double eps = 1e-6, int maxIterations = 50) :
+            base(f, df, eps, "Метод ДАВИДОНА", maxIterations)
         {
         }
 
-        public override void execute()
+        public override void Execute()
         {
             //Сбрасываем счетчик
-            iterationCount = 0;
-            
+            IterationCount = 0;
+
             //Вспомогательная переменная
             double x1 = 0;
 
             //Основной шаг
             do
             {
-                iterationCount ++;
-                if(iterationCount >= maxIterations) break;
+                IterationCount ++;
+                if (IterationCount >= MaxIterations) break;
 
-                double z = df(a) + df(b) + 3*(f(a) - f(b))/(b - a);
-                double w = Math.Sqrt(Math.Pow(z, 2) - df(a)*df(b));
-                double y = (z + w - df(a))/(df(b) - df(a) + 2*w);
-
+                var z = Df(A) + Df(B) + 3*(F(A) - F(B))/(B - A);
+                var w = Math.Sqrt(Math.Pow(z, 2) - Df(A)*Df(B));
+                var y = (z + w - Df(A))/(Df(B) - Df(A) + 2*w);
 
 
                 if (y < 0)
                 {
-                    x1 = a;
+                    x1 = A;
                 }
                 else if (y > 1)
                 {
-                    x1 = b;
+                    x1 = B;
                 }
                 else
                 {
-                    x1 = a + y*(b - a);
+                    x1 = A + y*(B - A);
                 }
 
-                double temp = Math.Abs(df(x1));
+                var temp = Math.Abs(Df(x1));
 
 
-                if (temp < eps || x1 == a || x1 == b)
+                if (temp < Eps || x1 == A || x1 == B)
                     break;
 
 
-                if (df(x1) > 0)
+                if (Df(x1) > 0)
                 {
-                    b = x1;
+                    B = x1;
                 }
                 else
                 {
-                    a = x1;
+                    A = x1;
                 }
             } while (true);
 
-            answer = x1;
-
+            Answer = x1;
         }
     }
 }

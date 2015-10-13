@@ -1,25 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Optimisation.Базовые_и_вспомогательные;
 
 namespace Optimisation.Одномерные
 {
     public class BolzanoMethod : OneDimMethod
     {
-        public BolzanoMethod(function f,function df, double eps=1e-6, int maxIterations = 50) : 
-            base(f,df, eps, "Метод БОЛЬЦАНО",maxIterations)
+        public BolzanoMethod(Function1D f, Function1D df, double eps = 1e-6, int maxIterations = 50) :
+            base(f, df, eps, "Метод БОЛЬЦАНО", maxIterations)
         {
         }
 
-        public override void execute()
+        public override void Execute()
         {
             //Производная должна существовать для Больцано
-            if (df == null) throw new ArgumentNullException(nameof(df));
+            if (Df == null) throw new ArgumentNullException(nameof(Df));
 
             //Сбрасываем счетчик
-            iterationCount = 0;
+            IterationCount = 0;
 
             //Начальный этап
             var k = 1;
@@ -27,23 +24,21 @@ namespace Optimisation.Одномерные
             double x, length;
             do
             {
-
-                x = (a + b)/2;
-                length = Math.Abs(b - a);
-                if (df(x) > 0)
+                x = (A + B)/2;
+                length = Math.Abs(B - A);
+                if (Df(x) > 0)
                 {
-                    b = x;
+                    B = x;
                 }
                 else
                 {
-                    a = x;
+                    A = x;
                 }
                 k++;
-
-            } while (((Math.Abs(df(x)) > eps) || (length > eps)) && (k<maxIterations));
-            x = (a + b) / 2;
-            iterationCount += k;
-            answer = x;
+            } while (((Math.Abs(Df(x)) > Eps) || (length > Eps)) && (k < MaxIterations));
+            x = (A + B)/2;
+            IterationCount += k;
+            Answer = x;
         }
     }
 }

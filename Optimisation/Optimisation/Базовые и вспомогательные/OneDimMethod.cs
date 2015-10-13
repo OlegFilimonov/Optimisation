@@ -1,76 +1,74 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-using System.Runtime.Remoting.Messaging;
-using DoubleConverter = Optimisation.Одномерные.DoubleConverter;
+// ReSharper disable CompareOfFloatsByEqualityOperator
 
-namespace Optimisation.Одномерные
+namespace Optimisation.Базовые_и_вспомогательные
 {
     //Делегат функции
-    public delegate double function(double x);
+    public delegate double Function1D(double x);
 
-    public delegate double function2D(double x1, double x2);
+    public delegate double Function2D(double x1, double x2);
 
     /// <summary>
-    /// Базовый класс
+    ///     Базовый класс
     /// </summary>
     public abstract class OneDimMethod
     {
-        //Макс. количество итераций
-        protected int maxIterations = 50;
+        
+        protected readonly int MaxIterations;
 
-        //Точность вычислений метода
-        protected double eps;
+        //Конструктор
+        protected OneDimMethod(Function1D f, Function1D df, double eps, string methodName, int maxIterations = 50)
+        {
+            MethodName = methodName;
+            F = f;
+            Df = df;
+            Eps = eps;
+            MaxIterations = maxIterations;
+        }
 
-        //Имя метода для логов
-        protected readonly string methodName;
+        public string MethodName { get; }
 
-        //Количество итераций для логов
-        protected int iterationCount;
+        public double Answer { get; protected set; }
 
-        //Ответ
-        protected double answer;
+        public double A { get; set; }
 
-        //Начальный интервал
-        protected double a;
-        protected double b;
-        protected double c;
+        public double B { get; set; }
 
-        //Функция
-        protected function f;
-        protected function df;
+        public double C { get; private set; }
+
+        public double Eps { get; set; }
+
+        public int IterationCount { get; protected set; }
+
+        public Function1D F { protected get; set; }
+
+        public Function1D Df { protected get; set; }
 
         //Реализация метода
-        public abstract void execute();
+        public abstract void Execute();
 
         //Стандартный интервал
-        public void setStandartInterval()
+        public void SetStandartInterval()
         {
-            a = 0;
-            b = 1;
+            A = 0;
+            B = 1;
         }
 
         //Метод Свена
-        public void setSvenInterval(double startingX = 0, double h = 0.01)
+        public void SetSvenInterval(double startingX = 0, double h = 0.01)
         {
-            a = startingX;
-            double x1 = a, x2 = a, x3 = a + h;
-            var k = 0;
+            A = startingX;
+            double x1 = A, x2 = A, x3 = A + h;
 
             //Начальный этап
-            if (f(x2) < f(x3))
+            if (F(x2) < F(x3))
             {
-                x3 = a + (h = -h);
+                x3 = A + (h = -h);
             }
 
             //Основной этап
-            while (f(x2) >= f(x3))
+            while (F(x2) >= F(x3))
             {
-                k++;
                 h *= 2;
                 x1 = x2;
                 x2 = x3;
@@ -80,141 +78,76 @@ namespace Optimisation.Одномерные
             //Окончание
             if (x1 < x3)
             {
-                a = x1;
-                b = x3;
+                A = x1;
+                B = x3;
             }
             else
             {
-                a = x3;
-                b = x1;
+                A = x3;
+                B = x1;
             }
         }
 
-        public void setSven2Interval(double startingX = 0, double h = 0.01)
+        public void SetSven2Interval(double startingX = 0, double h = 0.01)
         {
             if (startingX != 0) h *= Math.Abs(startingX);
-            if (df(startingX) > 0) h = -h;
-            double sign = df(startingX);
-            while (sign * df(startingX + h) > 0)
+            if (Df(startingX) > 0) h = -h;
+            var sign = Df(startingX);
+            while (sign*Df(startingX + h) > 0)
             {
                 startingX += h;
                 h *= 2;
             }
             if (h < 0)
             {
-                a = startingX + h;
-                b = startingX;
+                A = startingX + h;
+                B = startingX;
             }
             else
             {
-                a = startingX;
-                b = startingX + h;
+                A = startingX;
+                B = startingX + h;
             }
         }
 
         //Свен - 3
-        public void setSven3Interval(double startingX = 0, double h = 0.01)
+        public void SetSven3Interval(double startingX = 0, double h = 0.01)
         {
             if (startingX != 0) h *= Math.Abs(startingX);
-            if (f(startingX) < f(startingX + h)) h = -h;
+            if (F(startingX) < F(startingX + h)) h = -h;
 
             var x = startingX;
 
-            while (f(x) > f(x + h))
+            while (F(x) > F(x + h))
             {
-                x += h; h *= 2;
+                x += h;
+                h *= 2;
             }
 
-            if (f(x) > f(x + h / 2) && (h < 0)) //Первый случай
+            if (F(x) > F(x + h/2) && (h < 0)) //Первый случай
             {
-
-                a = x + h;
-                b = x + h / 2;
-                c = x;
+                A = x + h;
+                B = x + h/2;
+                C = x;
             }
-            else if (f(x) > f(x + h / 2) && (h >= 0)) //Второй случай
+            else if (F(x) > F(x + h/2) && (h >= 0)) //Второй случай
             {
-                a = x;
-                b = x + h / 2;
-                c = x + h;
+                A = x;
+                B = x + h/2;
+                C = x + h;
             }
-            else if (f(x) <= f(x + h / 2) && (h < 0)) //Третий случай
+            else if (F(x) <= F(x + h/2) && (h < 0)) //Третий случай
             {
-                a = x + h / 2;
-                b = x;
-                c = x - h / 2;
+                A = x + h/2;
+                B = x;
+                C = x - h/2;
             }
             else //Четвертный случай
             {
-                a = x - h / 2;
-                b = x;
-                c = x + h / 2;
+                A = x - h/2;
+                B = x;
+                C = x + h/2;
             }
-        }
-
-
-
-        //Конструктор
-        protected OneDimMethod(function f, function df, double eps, string methodName, int maxIterations = 50)
-        {
-            this.methodName = methodName;
-            this.f = f;
-            this.df = df;
-            this.eps = eps;
-            this.maxIterations = maxIterations;
-
-        }
-
-        public string MethodName
-        {
-            get { return methodName; }
-        }
-
-        public double Answer
-        {
-            get { return answer; }
-            set { answer = value; }
-        }
-
-        public double A
-        {
-            get { return a; }
-            set { a = value; }
-        }
-
-        public double B
-        {
-            get { return b; }
-            set { b = value; }
-        }
-
-        public double C
-        {
-            get { return c; }
-            set { c = value; }
-        }
-
-        public double Eps
-        {
-            get { return eps; }
-            set { eps = value; }
-        }
-
-        public int IterationCount
-        {
-            get { return iterationCount; }
-        }
-
-        public function F
-        {
-            get { return f; }
-            set { f = value; }
-        }
-
-        public function Df
-        {
-            get { return df; }
-            set { df = value; }
         }
     }
 }

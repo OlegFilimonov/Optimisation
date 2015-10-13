@@ -1,102 +1,101 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
+using Optimisation.Базовые_и_вспомогательные;
 
 namespace Optimisation.Одномерные
 {
     public class FibonacciMethod1 : OneDimMethod
     {
-        private List<double> fibonacciList = null;
-        private int n = 1;
+        private List<double> _fibonacciList;
+        private int _n = 1;
 
-        public double populateFibonacci(double treshHold)
+        //Конструктор
+        public FibonacciMethod1(Function1D f, double eps = 1e-6, int maxIteratons = 50)
+            : base(f, null, eps, "Метод ФИБОНАЧЧИ-1", maxIteratons)
+        {
+        }
+
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        private double PopulateFibonacci(double treshHold)
         {
             double f_n = 1;
             double f_n2 = 1, f_n1 = 1;
-            fibonacciList.Add(1);
+            _fibonacciList.Add(1);
 
             //Нахолим f_n и n
             while (f_n < treshHold)
             {
-                fibonacciList.Add(f_n);
+                _fibonacciList.Add(f_n);
                 f_n = f_n1 + f_n2;
                 f_n1 = f_n2;
                 f_n2 = f_n;
-                n++;
+                _n++;
             }
-            n--;
+            _n--;
             return f_n;
         }
-        
-        public override void execute()
+
+        public override void Execute()
         {
             //Сбрасываем счетчик
-            iterationCount = 0;
-            
-            n = 1;
-            if(fibonacciList == null) fibonacciList = new List<double>();
+            IterationCount = 0;
+
+            _n = 1;
+            if (_fibonacciList == null) _fibonacciList = new List<double>();
             else
             {
-                fibonacciList.Clear();
+                _fibonacciList.Clear();
             }
 
             //Начальный этап
-            var length = Math.Abs(b - a);
+            var length = Math.Abs(B - A);
 
-            var treshHold = length / (eps/10);
-            double f_n;
+            var treshHold = length/(Eps/10);
 
-            f_n = populateFibonacci(treshHold);
+            var f_n = PopulateFibonacci(treshHold);
 
             //Находим эпсилон для последнего шага
-            var eps2 = length / f_n;
+            var eps2 = length/f_n;
 
             //Находим две стартовые точки
-            var lambda = a + fibonacciList[n - 2] / fibonacciList[n] * length;
-            var mu = a + fibonacciList[n - 1] / fibonacciList[n] * length;
+            var lambda = A + _fibonacciList[_n - 2]/_fibonacciList[_n]*length;
+            var mu = A + _fibonacciList[_n - 1]/_fibonacciList[_n]*length;
             var k = 1;
 
-            iterationCount = n - 1;
+            IterationCount = _n - 1;
 
             //Основной этап
-            while (k != n - 1)
+            while (k != _n - 1)
             {
-                if (f(lambda) < f(mu))
+                if (F(lambda) < F(mu))
                 {
-                    b = mu;
-                    length = Math.Abs(b - a);
+                    B = mu;
+                    length = Math.Abs(B - A);
                     mu = lambda;
-                    lambda = a + fibonacciList[n - k - 2] / fibonacciList[n - k] * length;
+                    lambda = A + _fibonacciList[_n - k - 2]/_fibonacciList[_n - k]*length;
                 }
                 else
                 {
-                    a = lambda;
+                    A = lambda;
                     lambda = mu;
-                    length = Math.Abs(b - a);
-                    mu = a + fibonacciList[n - k - 1] / fibonacciList[n - k] * length;
+                    length = Math.Abs(B - A);
+                    mu = A + _fibonacciList[_n - k - 1]/_fibonacciList[_n - k]*length;
                 }
                 k++;
-                if(k>maxIterations) break;
+                if (k > MaxIterations) break;
             }
             mu = lambda + eps2;
-            if (f(lambda) > f(mu))
+            if (F(lambda) > F(mu))
             {
-                answer = (lambda + b) / 2;
-                a = lambda;
+                Answer = (lambda + B)/2;
+                A = lambda;
             }
             else
             {
-                answer = (a + mu) / 2;
-                b = mu;
+                Answer = (A + mu)/2;
+                B = mu;
             }
-        }
-
-        //Конструктор
-        public FibonacciMethod1(function f, double eps = 1e-6, int maxIteratons=50)
-            : base(f: f, df: null, eps: eps, methodName: "Метод ФИБОНАЧЧИ-1",maxIterations: maxIteratons)
-        {
         }
     }
 }

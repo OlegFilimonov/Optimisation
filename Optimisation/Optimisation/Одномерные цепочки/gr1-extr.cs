@@ -1,45 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Optimisation.Базовые_и_вспомогательные;
 using Optimisation.Одномерные;
 
 namespace Optimisation.Одномерные_цепочки
 {
-    class gr1_extr:OneDimMethod
+    internal class Gr1Extr : OneDimMethod
     {
-        public gr1_extr(double eps = 1e-6, int maxIterations = 50)
-            : base(null, null, eps, "М5 МЗС1 - экстраполяции", maxIterations){
+        public Gr1Extr(double eps = 1e-6, int maxIterations = 50)
+            : base(null, null, eps, "М5 МЗС1 - экстраполяции", maxIterations)
+        {
         }
 
-        public override void execute()
+        public override void Execute()
         {
-            OneDimMethod step1, step2;
-            step1 = new GoldenRatioMethod1(f, eps, 5);
-            step2 = new ExtrapolationMethod(f, eps);
-            iterationCount = 0;
+            OneDimMethod step1 = new GoldenRatioMethod1(F, Eps, 5);
+            OneDimMethod step2 = new ExtrapolationMethod(F, Eps);
+            IterationCount = 0;
 
             //ШАГ 2
-            step1.A = a;
-            step1.B = b;
-            step1.execute();
+            step1.A = A;
+            step1.B = B;
+            step1.Execute();
 
 
-            a = step1.A;
-            b = step1.B;
+            A = step1.A;
+            B = step1.B;
 
             //ШАГ 3
-            step2.A = a;
-            step2.B = b;
-            step2.execute();
+            step2.A = A;
+            step2.B = B;
+            step2.Execute();
 
-            a = step2.A;
-            b = step2.B;
-            answer = step2.Answer;
+            A = step2.A;
+            B = step2.B;
+            Answer = step2.Answer;
 
-            iterationCount += step1.IterationCount;
-            iterationCount += step2.IterationCount;
+            IterationCount += step1.IterationCount;
+            IterationCount += step2.IterationCount;
         }
     }
 }

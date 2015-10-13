@@ -1,80 +1,75 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Optimisation.Базовые_и_вспомогательные;
 
 namespace Optimisation.Одномерные
 {
     public class PaulMethod : OneDimMethod
     {
-        public PaulMethod(function f, function df, double eps = 1e-6, int maxIterations = 50)
-            : base(f: f, df: df, eps: eps, methodName: "Метод ПАУЛА",maxIterations: maxIterations)
+        public PaulMethod(Function1D f, Function1D df, double eps = 1e-6, int maxIterations = 50)
+            : base(f, df, eps, "Метод ПАУЛА", maxIterations)
         {
         }
 
-        public override void execute()
+        public override void Execute()
         {
             //Сбрасываем счетчик
-            iterationCount = 0;
+            IterationCount = 0;
 
             //Начальный этап
-            double eps1 = eps, eps2 = eps;
+            double eps1 = Eps, eps2 = Eps;
             var h = 0.01;
             var k = 0;
-            double d = b + h;
+            var d = B + h;
             double kr1, kr2; //критерии окончания поиска
-            double chosen;
 
             //Основной этап
             do
             {
                 k++;
-                if ((f(b) < f(d)) && (b < d))
+                double chosen;
+                if ((F(B) < F(d)) && (B < d))
                 {
-                    chosen = b;
+                    chosen = B;
                 }
-                else if ((f(b) >= f(d)) && (b < d))
+                else if ((F(B) >= F(d)) && (B < d))
                 {
                     chosen = d;
                 }
-                else if ((f(b) < f(d)) && (b >= d))
+                else if ((F(B) < F(d)) && (B >= d))
                 {
                     chosen = d;
                 }
                 else
                 {
-                    chosen = b;
+                    chosen = B;
                 }
 
                 h /= 2;
-                setSven3Interval(chosen, h);
+                SetSven3Interval(chosen, h);
 
                 if (k == 1)
                 {
-                    d = ((f(a) * (Math.Pow(b, 2) - Math.Pow(c, 2))
-                          + f(b) * (Math.Pow(c, 2) - Math.Pow(a, 2))
-                          + f(c) * (Math.Pow(a, 2) - Math.Pow(b, 2)))
-                         / (f(a) * (b - c) + f(b) * (c - a) + f(c) * (a - b))) / 2;
+                    d = ((F(A)*(Math.Pow(B, 2) - Math.Pow(C, 2))
+                          + F(B)*(Math.Pow(C, 2) - Math.Pow(A, 2))
+                          + F(C)*(Math.Pow(A, 2) - Math.Pow(B, 2)))
+                         /(F(A)*(B - C) + F(B)*(C - A) + F(C)*(A - B)))/2;
                 }
                 else
                 {
-                    d = (a + b) / 2 + (f(a) - f(b)) * (b - c) * (c - a) / (f(a) * (b - c) + f(b) * (c - a) + f(c) * (a - b)) / 2;
+                    d = (A + B)/2 + (F(A) - F(B))*(B - C)*(C - A)/(F(A)*(B - C) + F(B)*(C - A) + F(C)*(A - B))/2;
                 }
 
                 //Критерий близости центральных точек
-                kr1 = Math.Abs(d - b) / Math.Abs(b);
-                kr2 = Math.Abs(f(d) - f(b)) / Math.Abs(f(b));
-                
-            } while (((kr1 >= eps1) || (kr2 >= eps2)) && (k < maxIterations));
+                kr1 = Math.Abs(d - B)/Math.Abs(B);
+                kr2 = Math.Abs(F(d) - F(B))/Math.Abs(F(B));
+            } while (((kr1 >= eps1) || (kr2 >= eps2)) && (k < MaxIterations));
 
-            iterationCount += k;
+            IterationCount += k;
 
-            answer = (b + d) / 2;
+            Answer = (B + d)/2;
 
-            a = b;
-            b = d;
-
+            A = B;
+            B = d;
         }
     }
 }

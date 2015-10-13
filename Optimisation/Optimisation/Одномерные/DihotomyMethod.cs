@@ -1,59 +1,53 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Optimisation.Базовые_и_вспомогательные;
 
 namespace Optimisation.Одномерные
 {
     public class DichotomyMethod : OneDimMethod
     {
-        
-
-        public DichotomyMethod(function f, double eps = 1e-6, int maxIterations = 50) :
-            base(f: f, df: null, eps: eps, methodName: "Метод ДИХТОМИИ",maxIterations: maxIterations)
+        public DichotomyMethod(Function1D f, double eps = 1e-6, int maxIterations = 50) :
+            base(f, null, eps, "Метод ДИХТОМИИ", maxIterations)
         {
         }
 
-        public override void execute()
+        public override void Execute()
         {
             //Сбрасываем счетчик
-            iterationCount = 0;
+            IterationCount = 0;
 
             //Начальный этап
-            var length = Math.Abs(b - a);
-            var middle = (a + b) / 2;
-            var lambda = middle + eps;
-            var mu = middle - eps;
+            double length;
+            var middle = (A + B)/2;
+            var lambda = middle + Eps;
+            var mu = middle - Eps;
             var k = 0;
 
 
             //Основной этап
             do
             {
-                if (f(lambda) >= f(mu))
+                if (F(lambda) >= F(mu))
                 {
-                    b = mu;
-                    length = Math.Abs(b - a);
-                    middle = (a + b) / 2;
-                    lambda = middle + eps;
-                    mu = middle - eps;
+                    B = mu;
+                    length = Math.Abs(B - A);
+                    middle = (A + B)/2;
+                    lambda = middle + Eps;
+                    mu = middle - Eps;
                 }
                 else
                 {
-                    a = lambda;
-                    length = Math.Abs(b - a);
-                    middle = (a + b) / 2;
-                    lambda = middle + eps;
-                    mu = middle - eps;
+                    A = lambda;
+                    length = Math.Abs(B - A);
+                    middle = (A + B)/2;
+                    lambda = middle + Eps;
+                    mu = middle - Eps;
                 }
                 k++;
-
-            } while (length > eps && k < maxIterations);
-            iterationCount += k;
+            } while (length > Eps && k < MaxIterations);
+            IterationCount += k;
 
             //Окончание
-            answer = (a + b) / 2;
+            Answer = (A + B)/2;
         }
     }
 }

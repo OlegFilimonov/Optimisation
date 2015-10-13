@@ -1,47 +1,42 @@
 ﻿using System;
+using Optimisation.Базовые_и_вспомогательные;
 
 namespace Optimisation.Одномерные
 {
-    public class NewtonMethod:OneDimMethod
+    public class NewtonMethod : OneDimMethod
     {
-        private function d2f;
-
         /// <summary>
-        /// Обязательно нужен df2!!!
+        ///     Обязательно нужен df2!!!
         /// </summary>
         /// <param name="f">функция</param>
         /// <param name="df">первая производная</param>
-        /// <param name="df2">вторая производная</param>
+        /// <param name="d2f">вторая производная</param>
         /// <param name="eps">точность</param>
         /// <param name="maxIterations">кол-во итераций</param>
-        public NewtonMethod(function f, function df,function d2f, double eps = 1e-6,int maxIterations = 50) : 
-            base(f: f, df: df, eps: eps, methodName: "Метод НЬЮТОНА", maxIterations: maxIterations)
+        // ReSharper disable once InconsistentNaming
+        public NewtonMethod(Function1D f, Function1D df, Function1D d2f, double eps = 1e-6, int maxIterations = 50) :
+            base(f, df, eps, "Метод НЬЮТОНА", maxIterations)
         {
-            this.d2f = d2f;
+            D2F = d2f;
         }
 
-        public override void execute()
-        {
-            if(d2f == null || df == null) throw new ArgumentNullException();
+        public Function1D D2F { private get; set; }
 
-            a = (a + b) / 2;
-            b = a - df(a) / d2f(a);
-            iterationCount = 1;
-            while ((Math.Abs(a - b) > eps) && (iterationCount < maxIterations))
+        public override void Execute()
+        {
+            if (D2F == null || Df == null) throw new ArgumentNullException();
+
+            A = (A + B)/2;
+            B = A - Df(A)/D2F(A);
+            IterationCount = 1;
+            while ((Math.Abs(A - B) > Eps) && (IterationCount < MaxIterations))
             {
-                a = b;
-                b = a - df(a) / d2f(a);
-                iterationCount++;
+                A = B;
+                B = A - Df(A)/D2F(A);
+                IterationCount++;
             }
 
-            answer = (a + b)/2;
-
-        }
-
-        public function D2F
-        {
-            get { return d2f; }
-            set { d2f = value; }
+            Answer = (A + B)/2;
         }
     }
 }

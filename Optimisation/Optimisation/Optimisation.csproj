@@ -38,13 +38,10 @@
   <ItemGroup>
     <Reference Include="cscompmgd, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Windows\Microsoft.NET\Framework\v2.0.50727\cscompmgd.dll</HintPath>
+      <HintPath>..\..\..\..\..\Windows\WinSxS\msil_cscompmgd_b03f5f7f11d50a3a_10.0.10240.16384_none_e69f1e061f1c4282\cscompmgd.dll</HintPath>
     </Reference>
     <Reference Include="FPlotLibrary">
       <HintPath>lib\FPlotLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>lib\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,9 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Базовые и вспомогательные\Function.cs" />
-    <Compile Include="Базовые и вспомогательные\FunctionOneDim.cs" />
-    <Compile Include="Базовые и вспомогательные\FunctionTwoDim.cs" />
+    <Compile Include="Базовые и вспомогательные\FunctionHolder.cs" />
+    <Compile Include="Базовые и вспомогательные\FunctionHolderOneDim.cs" />
+    <Compile Include="Базовые и вспомогательные\FunctionHolderTwoDim.cs" />
     <Compile Include="Базовые и вспомогательные\TwoDimTestingFunction.cs" />
     <Compile Include="Одномерные цепочки\bolz-paul.cs" />
     <Compile Include="Одномерные цепочки\dih-dav.cs" />
@@ -90,21 +87,20 @@
     <Compile Include="Одномерные\DavidonMethod.cs" />
     <Compile Include="Одномерные\DihotomyMethod.cs" />
     <Compile Include="Базовые и вспомогательные\DoubleConverter.cs" />
-    <Compile Include="Одномерные\DSK_Method.cs" />
+    <Compile Include="Одномерные\DSKMethod.cs" />
     <Compile Include="Одномерные\ExtrapolationMethod.cs" />
     <Compile Include="Одномерные\FibonacciMethod2.cs" />
     <Compile Include="Одномерные\FibonacciMethod1.cs" />
     <Compile Include="Одномерные\GoldenRatioMethod1.cs" />
     <Compile Include="Одномерные\GoldenRatioMethod2.cs" />
     <Compile Include="Базовые и вспомогательные\OneDimMethod.cs" />
-    <Compile Include="Оформление\Program.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Одномерные\NewtonMethod.cs" />
     <Compile Include="Одномерные\PaulMethod.cs" />
     <Compile Include="Одномерные цепочки\svenn-dih-newt.cs" />
     <Compile Include="Одномерные цепочки\svenn-bolz-gr1.cs" />
     <Compile Include="Одномерные цепочки\svenn-bolz-fib2.cs" />
-    <Compile Include="Тестирование\ExportTwoDim.cs" />
     <Compile Include="Тестирование\TestForm.cs">
       <SubType>Form</SubType>
     </Compile>

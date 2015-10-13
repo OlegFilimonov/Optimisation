@@ -1,58 +1,58 @@
 ﻿using System;
+using Optimisation.Базовые_и_вспомогательные;
 
 namespace Optimisation.Одномерные
 {
     //Метод золотого сечения 2 - МЗС2
     public class GoldenRatioMethod2 : OneDimMethod
     {
-        private readonly double goldenRight = (-1 + Math.Sqrt(5)) / 2;
+        private readonly double _goldenRight = (-1 + Math.Sqrt(5))/2;
 
-        public override void execute()
+        public GoldenRatioMethod2(Function1D f, double eps = 1e-6, int maxIterations = 50)
+            : base(f, null, eps, "Метод ЗОЛОТОГО СЕЧЕНИЯ-2", maxIterations)
+        {
+        }
+
+        public override void Execute()
         {
             //Сбрасываем счетчик
-            iterationCount = 0;
+            IterationCount = 0;
 
             //Начальный этап
-            var length = Math.Abs(b - a);
-            var x1 = a + goldenRight * length;
+            var length = Math.Abs(B - A);
+            var x1 = A + _goldenRight*length;
             var k = 0;
-            double x2;
 
             //Основной этап
             do
             {
-                x2 = a + b - x1;
+                var x2 = A + B - x1;
 
-                if ((f(x2) < f(x1)) && (x2 < x1))
+                if ((F(x2) < F(x1)) && (x2 < x1))
                 {
-                    b = x1;
+                    B = x1;
                     x1 = x2;
                 }
-                else if ((f(x2) >= f(x1)) && (x2 < x1))
+                else if ((F(x2) >= F(x1)) && (x2 < x1))
                 {
-                    a = x2;
+                    A = x2;
                 }
-                else if ((f(x2) < f(x1)) && (x2 >= x1))
+                else if ((F(x2) < F(x1)) && (x2 >= x1))
                 {
-                     a = x1;
+                    A = x1;
                     x1 = x2;
                 }
-                else if ((f(x2) >= f(x1)) && (x2 >= x1))
+                else if ((F(x2) >= F(x1)) && (x2 >= x1))
                 {
-                    b = x2;
+                    B = x2;
                 }
                 k++;
-                length = Math.Abs(b - a);
-            } while (length > eps && k < maxIterations);
-            iterationCount = k;
+                length = Math.Abs(B - A);
+            } while (length > Eps && k < MaxIterations);
+            IterationCount = k;
 
             //Окончание
-            answer = (a + b) / 2;
+            Answer = (A + B)/2;
         }
-
-        public GoldenRatioMethod2(function f, double eps = 1e-6, int maxIterations=50)
-            : base(f,null, eps, "Метод ЗОЛОТОГО СЕЧЕНИЯ-2",maxIterations)
-        { }
     }
 }
-
