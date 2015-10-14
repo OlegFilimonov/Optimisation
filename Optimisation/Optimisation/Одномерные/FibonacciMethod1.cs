@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Optimisation.Базовые_и_вспомогательные;
+// ReSharper disable InconsistentNaming
 
 namespace Optimisation.Одномерные
 {

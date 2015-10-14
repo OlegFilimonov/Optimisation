@@ -58,6 +58,7 @@
     <Compile Include="Базовые и вспомогательные\FunctionHolder.cs" />
     <Compile Include="Базовые и вспомогательные\FunctionHolderOneDim.cs" />
     <Compile Include="Базовые и вспомогательные\FunctionHolderTwoDim.cs" />
+    <Compile Include="Базовые и вспомогательные\TwoDimMethod.cs" />
     <Compile Include="Базовые и вспомогательные\TwoDimTestingFunction.cs" />
     <Compile Include="Одномерные цепочки\bolz-paul.cs" />
     <Compile Include="Одномерные цепочки\dih-dav.cs" />

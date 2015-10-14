@@ -26,7 +26,7 @@ namespace Optimisation.Оформление
             //заполняем выпадающий список
             foreach (var method in _oneDimentionalMethods2)
             {
-                methodList2.Items.Add(method.MethodName);
+                methodList2.Items.Add(method.Name);
             }
         }
 

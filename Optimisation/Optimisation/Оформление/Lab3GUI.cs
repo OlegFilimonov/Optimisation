@@ -60,7 +60,7 @@ namespace Optimisation.Оформление
             //заполняем выпадающий список
             foreach (var method in _oneDimentionalMethods3)
             {
-                methodList3.Items.Add(method.MethodName);
+                methodList3.Items.Add(method.Name);
             }
         }
 
@@ -68,7 +68,7 @@ namespace Optimisation.Оформление
         {
             //((pow(x,2)+3*pow(y,2)+2*x*y)%1==0)?0:1; double(double x, double y)
 
-            AddTwoDimFunction("return (pow(x,2)+3*pow(y,2)+2*x*y)/10;", TwoDimTestingFunctions.f1,
+            AddTwoDimFunction("return pow(x,2)+3*pow(y,2)+2*x*y;", TwoDimTestingFunctions.f1,
                 TwoDimTestingFunctions.df1x1, TwoDimTestingFunctions.df1x2, new PointF(1, 1), new PointF(2, 3),
                 new PointF(0.2558f, -0.1163f), "Функция №10: x1^2+3x2^2+2x1x2");
 
@@ -136,7 +136,7 @@ namespace Optimisation.Оформление
             double minX = ((FunctionHolderTwoDim) testingFunction).Min.X;
             double minY = ((FunctionHolderTwoDim) testingFunction).Min.Y;
             
-            const double length = 2;
+            const double length = 10;
 
             var x0 = minX - length/2;
             var x1 = minX + length/2;
@@ -149,6 +149,7 @@ namespace Optimisation.Оформление
 
             graph.y0 = y0;
             graph.y1 = y1;
+            
 
             var func = _graphFunctions3[_testingFunctions3.IndexOf(testingFunction)];
 

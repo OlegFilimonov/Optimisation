@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+
 // ReSharper disable CompareOfFloatsByEqualityOperator
 
 namespace Optimisation.Базовые_и_вспомогательные
@@ -7,7 +9,7 @@ namespace Optimisation.Базовые_и_вспомогательные
     public delegate double Function1D(double x);
 
     public delegate double Function2D(double x1, double x2);
-
+ 
     /// <summary>
     ///     Базовый класс
     /// </summary>
@@ -17,16 +19,16 @@ namespace Optimisation.Базовые_и_вспомогательные
         protected readonly int MaxIterations;
 
         //Конструктор
-        protected OneDimMethod(Function1D f, Function1D df, double eps, string methodName, int maxIterations = 50)
+        protected OneDimMethod(Function1D f, Function1D df, double eps, string name, int maxIterations = 50)
         {
-            MethodName = methodName;
+            Name = name;
             F = f;
             Df = df;
             Eps = eps;
             MaxIterations = maxIterations;
         }
 
-        public string MethodName { get; }
+        public string Name { get; }
 
         public double Answer { get; protected set; }
 

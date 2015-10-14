@@ -91,6 +91,7 @@
             this.тестированиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.низкаяТочностьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.высокаяТочностьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -104,6 +105,7 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // graph
@@ -115,10 +117,10 @@
             this.graph.FixYtoX = false;
             this.graph.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.graph.Legend = false;
-            this.graph.Location = new System.Drawing.Point(1, 249);
+            this.graph.Location = new System.Drawing.Point(1, 266);
             this.graph.Margin = new System.Windows.Forms.Padding(4);
             this.graph.Name = "graph";
-            this.graph.Size = new System.Drawing.Size(1022, 475);
+            this.graph.Size = new System.Drawing.Size(1023, 475);
             this.graph.TabIndex = 1;
             this.graph.Text = "graph";
             this.graph.x0 = -20D;
@@ -135,7 +137,8 @@
             this.graph.yScale = true;
             this.graph.z0 = 0D;
             this.graph.z1 = 1D;
-            this.graph.zScale = false;
+            this.graph.zScale = true;
+            this.graph.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graph_MouseClick);
             // 
             // functionList1
             // 
@@ -799,12 +802,24 @@
             this.высокаяТочностьToolStripMenuItem.Text = "Высокая точность";
             this.высокаяТочностьToolStripMenuItem.Click += new System.EventHandler(this.высокаяТочностьToolStripMenuItem_Click);
             // 
+            // trackBar1
+            // 
+            this.trackBar1.LargeChange = 15;
+            this.trackBar1.Location = new System.Drawing.Point(16, 735);
+            this.trackBar1.Maximum = 300;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(993, 56);
+            this.trackBar1.SmallChange = 10;
+            this.trackBar1.TabIndex = 9;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1024, 729);
+            this.ClientSize = new System.Drawing.Size(1024, 811);
+            this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.lab1tab);
             this.Controls.Add(this.graph);
             this.Controls.Add(this.menuStrip1);
@@ -833,6 +848,7 @@
             this.groupBox6.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -903,5 +919,6 @@
         private System.Windows.Forms.ToolStripMenuItem тестированиеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem низкаяТочностьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem высокаяТочностьToolStripMenuItem;
+        private System.Windows.Forms.TrackBar trackBar1;
     }
 }
