@@ -43,5 +43,10 @@ namespace Optimisation.Базовые_и_вспомогательные
         public static double f9(double x1, double x2) => 4*Pow(x1 - 5, 2) + Pow(x2 - 6, 2);
         public static double df9x1(double x1, double x2) => 8*x1 - 40;
         public static double df9x2(double x1, double x2) => 2*x2 - 12;
+
+        public static double f19(double x1, double x2) => 100*Pow(x2 - Pow(x1, 2), 2) + Pow(1 - x1, 2);
+        public static double df19x1(double x1, double x2) => x1*(400*Pow(x1, 2) + 2) - 400*x1*x2 - 2;
+        public static double df19x2(double x1, double x2) => 200*(x2 - Pow(x1, 2));
+
     }
 }

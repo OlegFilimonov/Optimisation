@@ -60,6 +60,7 @@
     <Compile Include="Базовые и вспомогательные\FunctionHolderTwoDim.cs" />
     <Compile Include="Базовые и вспомогательные\TwoDimMethod.cs" />
     <Compile Include="Базовые и вспомогательные\TwoDimTestingFunction.cs" />
+    <Compile Include="Двумерные\CauchyMethod.cs" />
     <Compile Include="Одномерные цепочки\bolz-paul.cs" />
     <Compile Include="Одномерные цепочки\dih-dav.cs" />
     <Compile Include="Одномерные цепочки\dih-paul.cs" />
@@ -75,6 +76,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Оформление\Lab3GUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Оформление\Lab4GUI.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Оформление\MainForm.cs">

@@ -14,7 +14,6 @@ namespace Optimisation.Оформление
     {
         private readonly List<FunctionItem> _graphFunctions3 = new List<FunctionItem>();
         private readonly List<OneDimMethod> _oneDimentionalMethods3 = new List<OneDimMethod>();
-
         private readonly List<FunctionHolder> _testingFunctions3 = new List<FunctionHolder>();
 
         private void AddTwoDimFunction(string source, Function2D f, Function2D dfx1, Function2D dfx2, PointF start,
@@ -25,6 +24,17 @@ namespace Optimisation.Оформление
             graphFunction.Color = Color.CornflowerBlue;
             _graphFunctions3.Add(graphFunction);
             _testingFunctions3.Add(new FunctionHolderTwoDim(start, min, dir, f, dfx1, dfx2, name));
+        }
+
+        private void AddTwoDimFunction(string source, Function2D f, Function2D dfx1, Function2D dfx2, PointF start,
+            PointF min, string name)
+        {
+            var graphFunction = new FPlotLibrary.Function2D { source = source };
+            graphFunction.Compile(true);
+            graphFunction.Color = Color.CornflowerBlue;
+            _graphFunctions3.Add(graphFunction);
+            var func = new FunctionHolderTwoDim(start, min, f, dfx1, dfx2, name);
+            _testingFunctions3.Add(func);
         }
 
         private void Initilize3()

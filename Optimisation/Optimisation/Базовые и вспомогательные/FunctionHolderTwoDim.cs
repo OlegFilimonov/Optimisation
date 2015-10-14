@@ -29,6 +29,20 @@ namespace Optimisation.Базовые_и_вспомогательные
             Name = name;
         }
 
+        public FunctionHolderTwoDim(PointF start, PointF min, Function2D f2D, Function2D dfx1, Function2D dfx2,
+   string name)
+        {
+            Start = start;
+            Min = min;
+            F2D = f2D;
+            _dfx1 = dfx1;
+            _dfx2 = dfx2;
+            F = Af;
+            Df = Adf;
+            Name = name;
+            Dir = AntiGrad();
+        }
+
         public void invDir()
         {
             var dir = Dir;
@@ -60,8 +74,9 @@ namespace Optimisation.Базовые_и_вспомогательные
         }
 
         //Анти-градиент
-        public PointF AntiGrad(PointF x)
+        public PointF AntiGrad()
         {
+            PointF x = Start;
             return new PointF((float)_dfx1(x.X,x.Y),(float)_dfx2(x.X,x.Y));
         }
     }

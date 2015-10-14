@@ -31,8 +31,8 @@ C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\FPlotLibr
 C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.csprojResolveAssemblyReference.cache
 C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.csproj.GenerateResource.Cache
 C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.csproj.ResolveComReference.cache
-C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.Оформление.MainForm.resources
 C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.Тестирование.TestForm.resources
 C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\cscompmgd.dll
 C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\ICSharpCode.SharpZipLib.dll
 C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.csproj.Optimisation.exe.config
+C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.Оформление.MainForm.resources

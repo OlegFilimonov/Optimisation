@@ -27,6 +27,7 @@ namespace Optimisation.Оформление
             Initilize1();
             Initilize2();
             Initilize3();
+            Initilize4();
         }
 
         /// <summary>
@@ -313,12 +314,12 @@ namespace Optimisation.Оформление
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            if (_currFunctionHolder is FunctionHolderTwoDim)
-            {
-                var cast = (FunctionHolderTwoDim) _currFunctionHolder;
-                graph.z0 = cast.F2D(cast.Min.X,cast.Min.Y);
-                graph.z1 = trackBar1.Value;
-            }
+            if (!(_currFunctionHolder is FunctionHolderTwoDim || _currFunctionHolder4!=null)) return;
+            var cast = (FunctionHolderTwoDim) _currFunctionHolder;
+            graph.z0 = cast.F2D(cast.Min.X,cast.Min.Y);
+            graph.z1 = trackBar1.Value;
         }
+
+
     }
 }

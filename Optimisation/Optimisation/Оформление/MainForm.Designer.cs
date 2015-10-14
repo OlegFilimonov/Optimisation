@@ -83,6 +83,23 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.startingBox4x2 = new System.Windows.Forms.TextBox();
+            this.startingBox4x1 = new System.Windows.Forms.TextBox();
+            this.startingEps4 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.methodList4 = new System.Windows.Forms.ComboBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.functionList4 = new System.Windows.Forms.ComboBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.diffBox4 = new System.Windows.Forms.TextBox();
+            this.iterBox4 = new System.Windows.Forms.TextBox();
+            this.answerBox4 = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage7 = new System.Windows.Forms.TabPage();
@@ -104,6 +121,9 @@
             this.tabPage3.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
@@ -727,12 +747,188 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.groupBox7);
+            this.tabPage4.Controls.Add(this.groupBox8);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(989, 177);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Лабораторная #4";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.startingBox4x2);
+            this.groupBox7.Controls.Add(this.startingBox4x1);
+            this.groupBox7.Controls.Add(this.startingEps4);
+            this.groupBox7.Controls.Add(this.label16);
+            this.groupBox7.Controls.Add(this.label22);
+            this.groupBox7.Controls.Add(this.methodList4);
+            this.groupBox7.Controls.Add(this.label23);
+            this.groupBox7.Controls.Add(this.label24);
+            this.groupBox7.Controls.Add(this.functionList4);
+            this.groupBox7.Location = new System.Drawing.Point(14, 14);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox7.Size = new System.Drawing.Size(477, 148);
+            this.groupBox7.TabIndex = 11;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Панель ввода";
+            // 
+            // startingBox4x2
+            // 
+            this.startingBox4x2.Location = new System.Drawing.Point(208, 110);
+            this.startingBox4x2.Name = "startingBox4x2";
+            this.startingBox4x2.Size = new System.Drawing.Size(61, 22);
+            this.startingBox4x2.TabIndex = 5;
+            // 
+            // startingBox4x1
+            // 
+            this.startingBox4x1.Location = new System.Drawing.Point(141, 110);
+            this.startingBox4x1.Name = "startingBox4x1";
+            this.startingBox4x1.Size = new System.Drawing.Size(61, 22);
+            this.startingBox4x1.TabIndex = 5;
+            // 
+            // startingEps4
+            // 
+            this.startingEps4.Location = new System.Drawing.Point(368, 110);
+            this.startingEps4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.startingEps4.Name = "startingEps4";
+            this.startingEps4.Size = new System.Drawing.Size(84, 22);
+            this.startingEps4.TabIndex = 0;
+            this.startingEps4.Text = "1e-2";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(292, 113);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(70, 17);
+            this.label16.TabIndex = 4;
+            this.label16.Text = "Точность";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(6, 110);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(129, 17);
+            this.label22.TabIndex = 4;
+            this.label22.Text = "Стартовый вектор";
+            // 
+            // methodList4
+            // 
+            this.methodList4.FormattingEnabled = true;
+            this.methodList4.Location = new System.Drawing.Point(125, 71);
+            this.methodList4.Margin = new System.Windows.Forms.Padding(4);
+            this.methodList4.Name = "methodList4";
+            this.methodList4.Size = new System.Drawing.Size(327, 24);
+            this.methodList4.TabIndex = 3;
+            this.methodList4.SelectedIndexChanged += new System.EventHandler(this.methodList4_SelectedIndexChanged);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(68, 74);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(50, 17);
+            this.label23.TabIndex = 4;
+            this.label23.Text = "Метод";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(51, 35);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(67, 17);
+            this.label24.TabIndex = 4;
+            this.label24.Text = "Функция";
+            // 
+            // functionList4
+            // 
+            this.functionList4.FormattingEnabled = true;
+            this.functionList4.Location = new System.Drawing.Point(125, 32);
+            this.functionList4.Margin = new System.Windows.Forms.Padding(4);
+            this.functionList4.Name = "functionList4";
+            this.functionList4.Size = new System.Drawing.Size(327, 24);
+            this.functionList4.TabIndex = 3;
+            this.functionList4.SelectedIndexChanged += new System.EventHandler(this.functionList4_SelectedIndexChanged);
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.diffBox4);
+            this.groupBox8.Controls.Add(this.iterBox4);
+            this.groupBox8.Controls.Add(this.answerBox4);
+            this.groupBox8.Controls.Add(this.label25);
+            this.groupBox8.Controls.Add(this.label26);
+            this.groupBox8.Controls.Add(this.label27);
+            this.groupBox8.Location = new System.Drawing.Point(497, 14);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox8.Size = new System.Drawing.Size(478, 148);
+            this.groupBox8.TabIndex = 12;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Панель вывода";
+            // 
+            // diffBox4
+            // 
+            this.diffBox4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.diffBox4.Location = new System.Drawing.Point(122, 110);
+            this.diffBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.diffBox4.Name = "diffBox4";
+            this.diffBox4.ReadOnly = true;
+            this.diffBox4.Size = new System.Drawing.Size(342, 22);
+            this.diffBox4.TabIndex = 0;
+            this.diffBox4.Text = " ";
+            // 
+            // iterBox4
+            // 
+            this.iterBox4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.iterBox4.Location = new System.Drawing.Point(122, 71);
+            this.iterBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.iterBox4.Name = "iterBox4";
+            this.iterBox4.ReadOnly = true;
+            this.iterBox4.Size = new System.Drawing.Size(342, 22);
+            this.iterBox4.TabIndex = 0;
+            // 
+            // answerBox4
+            // 
+            this.answerBox4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.answerBox4.Location = new System.Drawing.Point(122, 32);
+            this.answerBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.answerBox4.Name = "answerBox4";
+            this.answerBox4.ReadOnly = true;
+            this.answerBox4.Size = new System.Drawing.Size(342, 22);
+            this.answerBox4.TabIndex = 0;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(21, 113);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(95, 17);
+            this.label25.TabIndex = 4;
+            this.label25.Text = "Погрешность";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(43, 74);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(73, 17);
+            this.label26.TabIndex = 4;
+            this.label26.Text = "Итерации";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(48, 35);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(68, 17);
+            this.label27.TabIndex = 4;
+            this.label27.Text = "Минимум";
             // 
             // tabPage5
             // 
@@ -846,6 +1042,11 @@
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
@@ -920,5 +1121,22 @@
         private System.Windows.Forms.ToolStripMenuItem низкаяТочностьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem высокаяТочностьToolStripMenuItem;
         private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.TextBox startingBox4x2;
+        private System.Windows.Forms.TextBox startingBox4x1;
+        private System.Windows.Forms.TextBox startingEps4;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.ComboBox methodList4;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.ComboBox functionList4;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.TextBox diffBox4;
+        private System.Windows.Forms.TextBox iterBox4;
+        private System.Windows.Forms.TextBox answerBox4;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
     }
 }
