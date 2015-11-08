@@ -41,15 +41,14 @@ namespace Optimisation.Базовые_и_вспомогательные
         //Свенн-4
         public void SetSven4Interval()
         {
-           // Normilize(ref F.Dir);
-            if(F.Df(0) < 0) F.invDir();
+            Normilize(ref F.Dir);
+            if(F.Df(0) > 0) F.invDir();
             var alpha = 0.01f;
-            while (F.Df(0) > 0)
+            while (F.Df(alpha) <= 0)
             {
-                F.Start.X += alpha;
-                F.Start.Y += alpha;
                 alpha *= 2;
             }
+            F.Start = F.GetOffset(alpha);
             F.Dir = F.AntiGrad();
         }
 

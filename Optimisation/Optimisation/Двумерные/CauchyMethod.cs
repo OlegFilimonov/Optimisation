@@ -23,6 +23,7 @@ namespace Optimisation.Двумерные
             PointF d;
             do
             {
+                Normilize(ref F.Dir);
                 AlphaMethod.SetSvenInterval(0);
                 AlphaMethod.Execute();
                 double alpha = AlphaMethod.Answer;

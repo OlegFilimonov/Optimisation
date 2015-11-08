@@ -10,18 +10,16 @@ namespace Optimisation.Тестирование
 {
     public partial class TestForm : Form
     {
-        private List<FunctionHolder> _lab1And2Functions;
         private readonly List<List<ExportOneDim>> _lab1And2List;
-        private List<FunctionHolder> _lab3Functions;
         private readonly List<List<ExportOneDim>> _lab3List;
+        private readonly List<List<ExportOneDim>> _lab4List;
 
-        public TestForm(List<List<ExportOneDim>> lab1And2List, List<FunctionHolder> lab1And2Functions,
-            List<List<ExportOneDim>> lab3List, List<FunctionHolder> lab3Functions)
+        public TestForm(List<List<ExportOneDim>> lab1And2List,
+            List<List<ExportOneDim>> lab3List, List<List<ExportOneDim>> lab4List)
         {
             _lab1And2List = lab1And2List;
-            _lab1And2Functions = lab1And2Functions;
             _lab3List = lab3List;
-            _lab3Functions = lab3Functions;
+            _lab4List = lab4List;
             InitializeComponent();
         }
 
@@ -36,7 +34,13 @@ namespace Optimisation.Тестирование
             {
                 lab3.Add(export);
             }
+
+            foreach (var export in _lab4List.SelectMany(exportList => exportList))
+            {
+                lab4.Add(export);
+            }
         }
+
 
         private void lab1and2RadioButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -73,6 +77,11 @@ namespace Optimisation.Тестирование
         private void button1_Click(object sender, EventArgs e)
         {
             ToCsV();
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = lab4;
         }
     }
 }

@@ -43,9 +43,18 @@
     <Reference Include="FPlotLibrary">
       <HintPath>lib\FPlotLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="Jace, Version=0.8.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Jace.0.8.7\lib\net40\Jace.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.3.8.0\lib\net40\MathNet.Numerics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -56,11 +65,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Базовые и вспомогательные\FunctionHolder.cs" />
+    <Compile Include="Базовые и вспомогательные\FunctionHolderMultiDim.cs" />
     <Compile Include="Базовые и вспомогательные\FunctionHolderOneDim.cs" />
     <Compile Include="Базовые и вспомогательные\FunctionHolderTwoDim.cs" />
+    <Compile Include="Базовые и вспомогательные\MultiDimMethod.cs" />
     <Compile Include="Базовые и вспомогательные\TwoDimMethod.cs" />
     <Compile Include="Базовые и вспомогательные\TwoDimTestingFunction.cs" />
     <Compile Include="Двумерные\CauchyMethod.cs" />
+    <Compile Include="Двумерные\Partan1Method.cs" />
     <Compile Include="Одномерные цепочки\bolz-paul.cs" />
     <Compile Include="Одномерные цепочки\dih-dav.cs" />
     <Compile Include="Одномерные цепочки\dih-paul.cs" />
@@ -79,6 +91,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Оформление\Lab4GUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Оформление\Lab5GUI.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Оформление\MainForm.cs">
@@ -117,10 +132,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="packages.config" />
     <None Include="Properties\DataSources\ExportOneDim.datasource" />
     <None Include="Properties\DataSources\Optimisation.Тестирование.TestOutput.datasource" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Многомерные\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Оформление\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

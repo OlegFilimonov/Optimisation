@@ -45,9 +45,8 @@ namespace Optimisation.Базовые_и_вспомогательные
 
         public void invDir()
         {
-            var dir = Dir;
-            dir.X = - Dir.X;
-            dir.Y = -Dir.Y;
+            Dir.X = - Dir.X;
+            Dir.Y = -Dir.Y;
         }
 
         //Альфа функиця
@@ -77,7 +76,7 @@ namespace Optimisation.Базовые_и_вспомогательные
         public PointF AntiGrad()
         {
             PointF x = Start;
-            return new PointF((float)_dfx1(x.X,x.Y),(float)_dfx2(x.X,x.Y));
+            return new PointF((float)-_dfx1(x.X,x.Y),(float)-_dfx2(x.X,x.Y));
         }
     }
 }

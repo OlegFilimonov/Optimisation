@@ -34,5 +34,7 @@ C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisat
 C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.Тестирование.TestForm.resources
 C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\cscompmgd.dll
 C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\ICSharpCode.SharpZipLib.dll
-C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.csproj.Optimisation.exe.config
 C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisation.Оформление.MainForm.resources
+C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\MathNet.Numerics.dll
+C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\MathNet.Numerics.xml
+C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\Jace.dll

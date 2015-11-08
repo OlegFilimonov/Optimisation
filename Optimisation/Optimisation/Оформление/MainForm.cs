@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Jace;
 using Optimisation.Базовые_и_вспомогательные;
 using Optimisation.Одномерные;
 using Optimisation.Одномерные_цепочки;
@@ -117,7 +118,6 @@ namespace Optimisation.Оформление
             method.Execute();
 
             //Вывод
-
             minBox1.Text = DoubleConverter.ToExactString(method.Answer);
             iterBox1.Text = Convert.ToString(method.IterationCount);
             diffBox1.Text = Convert.ToString(Math.Abs(method.Answer - ((FunctionHolderOneDim)_currFunctionHolder).Min));
@@ -199,6 +199,7 @@ namespace Optimisation.Оформление
             var metgods = _oneDimentionalMethods.Concat(_oneDimentionalMethods2).ToList();
             var export1And2 = new List<List<ExportOneDim>>(_testingFunctions.Count);
             var export3 = new List<List<ExportOneDim>>(_testingFunctions3.Count);
+            var export4 = new List<List<ExportOneDim>>(_testingFunctions4.Count);
 
             //Заполняем первую лабу
             foreach (var function in _testingFunctions)
@@ -246,7 +247,7 @@ namespace Optimisation.Оформление
                 export1And2.Add(exportList);
             }
 
-            //Заполняем вторую лабу
+            //Заполняем третью лабу
             foreach (var function in _testingFunctions3)
             {
                 var exportList = new List<ExportOneDim>(metgods.Count);
@@ -293,8 +294,36 @@ namespace Optimisation.Оформление
                 export3.Add(exportList);
             }
 
+            //Заполняем четвертую лабу
+            foreach (var function in _testingFunctions4)
+            {
+                var exportList = new List<ExportOneDim>(_twoDimentionalMethods4.Count);
+                foreach (var method in _twoDimentionalMethods4)
+                {
+                   
+                    method.F = function;
+
+                    //Точность
+                    method.Eps = eps;
+
+                    //Делаем свена
+                    method.SetSven4Interval();
+
+                    //Делаем сам метод
+                    method.Execute();
+
+                    var castFunction = (FunctionHolderTwoDim)function;
+                    var coord = method.Answer;
+                    var realEps =
+                        Math.Abs(Math.Pow(castFunction.Min.X - coord.X, 2) + Math.Pow(castFunction.Min.Y - coord.Y, 2));
+                    exportList.Add(new ExportOneDim(method.Name, (uint)method.IterationCount, coord,
+                        castFunction.Min, method.Eps, realEps));
+                }
+                export4.Add(exportList);
+            }
+
             //Запускаем форму
-            var form = new TestForm(export1And2, _testingFunctions, export3, _testingFunctions3);
+            var form = new TestForm(export1And2, export3,export4);
             form.ShowDialog();
         }
 
@@ -314,10 +343,18 @@ namespace Optimisation.Оформление
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            if (!(_currFunctionHolder is FunctionHolderTwoDim || _currFunctionHolder4!=null)) return;
-            var cast = (FunctionHolderTwoDim) _currFunctionHolder;
-            graph.z0 = cast.F2D(cast.Min.X,cast.Min.Y);
-            graph.z1 = trackBar1.Value;
+            if (_currFunctionHolder is FunctionHolderTwoDim)
+            {
+                var cast = (FunctionHolderTwoDim)_currFunctionHolder;
+                graph.z0 = cast.F2D(cast.Min.X, cast.Min.Y);
+                graph.z1 = trackBar1.Value;
+
+            }
+            else if (_currFunctionHolder4 != null)
+            {
+                graph.z0 = _currFunctionHolder4.F2D(_currFunctionHolder4.Min.X, _currFunctionHolder4.Min.Y);
+                graph.z1 = trackBar1.Value;
+            }
         }
 
 

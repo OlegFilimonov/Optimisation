@@ -101,6 +101,10 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.formulaBox = new System.Windows.Forms.TextBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -124,6 +128,7 @@
             this.tabPage4.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
@@ -137,10 +142,10 @@
             this.graph.FixYtoX = false;
             this.graph.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.graph.Legend = false;
-            this.graph.Location = new System.Drawing.Point(1, 266);
+            this.graph.Location = new System.Drawing.Point(12, 233);
             this.graph.Margin = new System.Windows.Forms.Padding(4);
             this.graph.Name = "graph";
-            this.graph.Size = new System.Drawing.Size(1023, 475);
+            this.graph.Size = new System.Drawing.Size(979, 451);
             this.graph.TabIndex = 1;
             this.graph.Text = "graph";
             this.graph.x0 = -20D;
@@ -350,7 +355,7 @@
             this.lab1tab.Location = new System.Drawing.Point(12, 40);
             this.lab1tab.Name = "lab1tab";
             this.lab1tab.SelectedIndex = 0;
-            this.lab1tab.Size = new System.Drawing.Size(997, 206);
+            this.lab1tab.Size = new System.Drawing.Size(979, 186);
             this.lab1tab.TabIndex = 7;
             this.lab1tab.SelectedIndexChanged += new System.EventHandler(this.lab1tab_SelectedIndexChanged);
             // 
@@ -361,7 +366,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(989, 177);
+            this.tabPage1.Size = new System.Drawing.Size(971, 157);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Лабораторная #1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -373,7 +378,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(989, 177);
+            this.tabPage2.Size = new System.Drawing.Size(971, 157);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Лабораторная #2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -563,7 +568,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(989, 177);
+            this.tabPage3.Size = new System.Drawing.Size(971, 157);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Лабораторная #3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -751,7 +756,7 @@
             this.tabPage4.Controls.Add(this.groupBox8);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(989, 177);
+            this.tabPage4.Size = new System.Drawing.Size(971, 157);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Лабораторная #4";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -767,7 +772,7 @@
             this.groupBox7.Controls.Add(this.label23);
             this.groupBox7.Controls.Add(this.label24);
             this.groupBox7.Controls.Add(this.functionList4);
-            this.groupBox7.Location = new System.Drawing.Point(14, 14);
+            this.groupBox7.Location = new System.Drawing.Point(3, 2);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -863,11 +868,11 @@
             this.groupBox8.Controls.Add(this.label25);
             this.groupBox8.Controls.Add(this.label26);
             this.groupBox8.Controls.Add(this.label27);
-            this.groupBox8.Location = new System.Drawing.Point(497, 14);
+            this.groupBox8.Location = new System.Drawing.Point(486, 2);
             this.groupBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox8.Size = new System.Drawing.Size(478, 148);
+            this.groupBox8.Size = new System.Drawing.Size(476, 148);
             this.groupBox8.TabIndex = 12;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Панель вывода";
@@ -932,18 +937,58 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.label29);
+            this.tabPage5.Controls.Add(this.label28);
+            this.tabPage5.Controls.Add(this.button1);
+            this.tabPage5.Controls.Add(this.formulaBox);
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(989, 177);
+            this.tabPage5.Size = new System.Drawing.Size(971, 157);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Лабораторная #5";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(178, 55);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(192, 17);
+            this.label29.TabIndex = 3;
+            this.label29.Text = "Обнаружено переменных: 0";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(16, 10);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(71, 17);
+            this.label28.TabIndex = 2;
+            this.label28.Text = "Функция:";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(19, 58);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(107, 33);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "PARSE";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // formulaBox
+            // 
+            this.formulaBox.Location = new System.Drawing.Point(19, 30);
+            this.formulaBox.Name = "formulaBox";
+            this.formulaBox.Size = new System.Drawing.Size(351, 22);
+            this.formulaBox.TabIndex = 0;
+            this.formulaBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // tabPage6
             // 
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(989, 177);
+            this.tabPage6.Size = new System.Drawing.Size(971, 157);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Лабораторная #6";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -952,7 +997,7 @@
             // 
             this.tabPage7.Location = new System.Drawing.Point(4, 25);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(989, 177);
+            this.tabPage7.Size = new System.Drawing.Size(971, 157);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Лабораторная #7";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -965,7 +1010,7 @@
             this.тестированиеToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1024, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(993, 28);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1001,10 +1046,10 @@
             // trackBar1
             // 
             this.trackBar1.LargeChange = 15;
-            this.trackBar1.Location = new System.Drawing.Point(16, 735);
+            this.trackBar1.Location = new System.Drawing.Point(12, 694);
             this.trackBar1.Maximum = 300;
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(993, 56);
+            this.trackBar1.Size = new System.Drawing.Size(975, 56);
             this.trackBar1.SmallChange = 10;
             this.trackBar1.TabIndex = 9;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
@@ -1014,7 +1059,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1024, 811);
+            this.ClientSize = new System.Drawing.Size(993, 762);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.lab1tab);
             this.Controls.Add(this.graph);
@@ -1047,6 +1092,8 @@
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
@@ -1138,5 +1185,9 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox formulaBox;
+        private System.Windows.Forms.Label label29;
     }
 }
