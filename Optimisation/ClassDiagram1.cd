@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Optimisation.Одномерные.DoubleConverter" Collapsed="true">
+    <Position X="14.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Базовые и вспомогательные\DoubleConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные.OneDimMethod" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAQACAAEAAAAEAAAAAAAEAAKwAQIGsgECAQI=</HashCode>
+      <FileName>Базовые и вспомогательные\OneDimMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные.BolzanoMethod" Collapsed="true">
+    <Position X="8.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные\BolzanoMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные.DavidonMethod" Collapsed="true">
+    <Position X="10.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные\DavidonMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные.DichotomyMethod" Collapsed="true">
+    <Position X="6.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные\DihotomyMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные.DSK_Method" Collapsed="true">
+    <Position X="5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные\DSK_Method.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные.ExtrapolationMethod" Collapsed="true">
+    <Position X="6.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные\ExtrapolationMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные.FibonacciMethod1" Collapsed="true">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAEAAAAAAAAAAAgEAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные\FibonacciMethod1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные.FibonacciMethod2" Collapsed="true">
+    <Position X="8.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAEAAAAAAAAAAAgEAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные\FibonacciMethod2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные.GoldenRatioMethod1" Collapsed="true">
+    <Position X="10.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAQAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Одномерные\GoldenRatioMethod1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные.GoldenRatioMethod2" Collapsed="true">
+    <Position X="8.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Одномерные\GoldenRatioMethod2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные.NewtonMethod" Collapsed="true">
+    <Position X="5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAQAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные\NewtonMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные.PaulMethod" Collapsed="true">
+    <Position X="6.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные\PaulMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Базовые_и_вспомогательные.Function">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAEAAAAAAAQQAAAEEAAQAAAAEAAAAAA=</HashCode>
+      <FileName>Базовые и вспомогательные\Function.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Базовые_и_вспомогательные.FunctionOneDim">
+    <Position X="0.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Базовые и вспомогательные\FunctionOneDim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Базовые_и_вспомогательные.FunctionTwoDim">
+    <Position X="2.75" Y="3" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACGASIAAgEAAAAAAEAAAABAAAAAAAAAACAAA=</HashCode>
+      <FileName>Базовые и вспомогательные\FunctionTwoDim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Базовые_и_вспомогательные.TwoDimTestingFunctions">
+    <Position X="12.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAACAAABAwABAAAAgAAAgA=</HashCode>
+      <FileName>Базовые и вспомогательные\TwoDimTestingFunction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Testing.OneDimTestingFunctions">
+    <Position X="14.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAEAAAAAAAAAAC0ABAAAAAAAAgAAAgA=</HashCode>
+      <FileName>Базовые и вспомогательные\OneDimTestingFunctions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные_цепочки.bolz_paul" Collapsed="true">
+    <Position X="6.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\bolz-paul.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные_цепочки.dih_dav" Collapsed="true">
+    <Position X="8.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\dih-dav.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные_цепочки.dih_paul" Collapsed="true">
+    <Position X="10.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\dih-paul.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные_цепочки.extr_dav" Collapsed="true">
+    <Position X="10.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\extr-dav.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные_цепочки.fib1_dsk" Collapsed="true">
+    <Position X="5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\fib1-dsk.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные_цепочки.fib2_dsk" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\fib2-dsk.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные_цепочки.gr1_extr" Collapsed="true">
+    <Position X="6.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\gr1-extr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные_цепочки.gr2_paul" Collapsed="true">
+    <Position X="8.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\gr2-paul.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные.Цепочки.svenn_bolz_fib2" Collapsed="true">
+    <Position X="10.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\svenn-bolz-fib2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные.Цепочки.svenn_bolz_gr1" Collapsed="true">
+    <Position X="6.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\svenn-bolz-gr1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Одномерные.Цепочки.svenn_dih_newt" Collapsed="true">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAQAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\svenn-dih-newt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.MainForm">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>+wK9UAEAQDdkQBYAgOqAIBDKCAgAHCASAGwABGYRATA=</HashCode>
+      <FileName>Оформление\Lab1GUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Optimisation.Program" Collapsed="true">
+    <Position X="12.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Оформление\Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Delegate Name="Optimisation.Одномерные.function" Collapsed="true">
+    <Position X="12.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Базовые и вспомогательные\OneDimMethod.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="Optimisation.Одномерные.function2D" Collapsed="true">
+    <Position X="14.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAQAAAA=</HashCode>
+      <FileName>Базовые и вспомогательные\OneDimMethod.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

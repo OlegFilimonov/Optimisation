@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EF7C2A34-B8D3-48DD-8238-17810C1B7A2B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Optimisation</RootNamespace>
+    <AssemblyName>Optimisation</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Optimisation.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="cscompmgd, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Windows\WinSxS\msil_cscompmgd_b03f5f7f11d50a3a_10.0.10240.16384_none_e69f1e061f1c4282\cscompmgd.dll</HintPath>
+    </Reference>
+    <Reference Include="FPlotLibrary">
+      <HintPath>lib\FPlotLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Jace, Version=0.8.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Jace.0.8.7\lib\net40\Jace.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.3.8.0\lib\net40\MathNet.Numerics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Базовые и вспомогательные\FunctionHolder.cs" />
+    <Compile Include="Базовые и вспомогательные\FunctionHolderMultiDim.cs" />
+    <Compile Include="Базовые и вспомогательные\FunctionHolderOneDim.cs" />
+    <Compile Include="Базовые и вспомогательные\FunctionHolderTwoDim.cs" />
+    <Compile Include="Базовые и вспомогательные\MultiDimMethod.cs" />
+    <Compile Include="Базовые и вспомогательные\TwoDimMethod.cs" />
+    <Compile Include="Базовые и вспомогательные\TwoDimTestingFunction.cs" />
+    <Compile Include="Двумерные\CauchyMethod.cs" />
+    <Compile Include="Многомерные\Partan1Method.cs" />
+    <Compile Include="Одномерные цепочки\bolz-paul.cs" />
+    <Compile Include="Одномерные цепочки\dih-dav.cs" />
+    <Compile Include="Одномерные цепочки\dih-paul.cs" />
+    <Compile Include="Одномерные цепочки\extr-dav.cs" />
+    <Compile Include="Одномерные цепочки\fib1-dsk.cs" />
+    <Compile Include="Одномерные цепочки\fib2-dsk.cs" />
+    <Compile Include="Одномерные цепочки\gr1-extr.cs" />
+    <Compile Include="Одномерные цепочки\gr2-paul.cs" />
+    <Compile Include="Оформление\Lab1GUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Оформление\Lab2GUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Оформление\Lab3GUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Оформление\Lab4GUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Оформление\Lab5GUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Оформление\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Оформление\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Базовые и вспомогательные\OneDimTestingFunctions.cs" />
+    <Compile Include="Одномерные\BolzanoMethod.cs" />
+    <Compile Include="Одномерные\DavidonMethod.cs" />
+    <Compile Include="Одномерные\DihotomyMethod.cs" />
+    <Compile Include="Базовые и вспомогательные\DoubleConverter.cs" />
+    <Compile Include="Одномерные\DSKMethod.cs" />
+    <Compile Include="Одномерные\ExtrapolationMethod.cs" />
+    <Compile Include="Одномерные\FibonacciMethod2.cs" />
+    <Compile Include="Одномерные\FibonacciMethod1.cs" />
+    <Compile Include="Одномерные\GoldenRatioMethod1.cs" />
+    <Compile Include="Одномерные\GoldenRatioMethod2.cs" />
+    <Compile Include="Базовые и вспомогательные\OneDimMethod.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Одномерные\NewtonMethod.cs" />
+    <Compile Include="Одномерные\PaulMethod.cs" />
+    <Compile Include="Одномерные цепочки\svenn-dih-newt.cs" />
+    <Compile Include="Одномерные цепочки\svenn-bolz-gr1.cs" />
+    <Compile Include="Одномерные цепочки\svenn-bolz-fib2.cs" />
+    <Compile Include="Тестирование\TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Тестирование\TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Тестирование\ExportOneDim.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\ExportOneDim.datasource" />
+    <None Include="Properties\DataSources\Optimisation.Тестирование.TestOutput.datasource" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Оформление\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Тестирование\TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
