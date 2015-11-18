@@ -19,13 +19,14 @@ namespace Optimisation.Многомерные
             : base("Партран-1", eps, f, startVector,maxIterations)
         {
         }
-
+        
         public override void Execute()
         {
             //Подготовка
             Vector<double> d;
             var x1 = FH.Point;
 
+            //TODO: давидон сам собой не работает, починить!
             if (AlphaMethod == null) AlphaMethod = new DavidonMethod(FH.AlphaFunction,FH.AlphaDiffFunction, Eps);
             IterationCount = 0;
             
@@ -34,7 +35,7 @@ namespace Optimisation.Многомерные
             {
                 //Находим x2
                 FH.Normilize();
-                AlphaMethod.SetSvenInterval();
+                AlphaMethod.SetSvenInterval(0,1e-6);
                 AlphaMethod.Execute();
                 var alpha1 = AlphaMethod.Answer;
                 var x2 = x1 + FH.Dir.Multiply(alpha1);
@@ -43,7 +44,7 @@ namespace Optimisation.Многомерные
                 FH.Point = x2;
                 FH.Dir = -FH.Grad(x2);
                 FH.Normilize();
-                AlphaMethod.SetSvenInterval();
+                AlphaMethod.SetSvenInterval(0, 1e-6);
                 AlphaMethod.Execute();
                 var alpha2 = AlphaMethod.Answer;
                 var x3 = x2 + FH.Dir.Multiply(alpha2);
@@ -56,7 +57,7 @@ namespace Optimisation.Многомерные
                 FH.Point = x3;
                 FH.Dir = d;
                 FH.Normilize();
-                AlphaMethod.SetSvenInterval();
+                AlphaMethod.SetSvenInterval(0, 1e-6);
                 AlphaMethod.Execute();
                 var alpha3 = AlphaMethod.Answer;
                 if (double.IsNaN(alpha3)) alpha3 = 0;
@@ -65,7 +66,7 @@ namespace Optimisation.Многомерные
 
                 IterationCount++;
 
-            } while (KOP1(d)&&KOP1(FH.Point));
+            } while (KOP1(d)&&KOP1(FH.Grad(FH.Point)));
 
             Answer = FH.Point;
         }

@@ -15,6 +15,8 @@ namespace Optimisation.Одномерные
             //Сбрасываем счетчик
             IterationCount = 0;
 
+            //Разгонный метод
+
             //Вспомогательная переменная
             double x1 = 0;
 

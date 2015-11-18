@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Optimisation.Базовые_и_вспомогательные;
 using Application = Microsoft.Office.Interop.Excel.Application;
 // ReSharper disable NotAccessedField.Local
 
@@ -52,27 +51,27 @@ namespace Optimisation.Тестирование
             dataGridView1.DataSource = lab3;
         }
 
-        private void ToCsV()
-        {
-            if (dataGridView1.Rows.Count <= 0) return;
-            var xcelApp = new Application();
-            xcelApp.Application.Workbooks.Add(Type.Missing);
-
-            for (var i = 1; i < dataGridView1.Columns.Count + 1; i++)
+            private void ToCsV()
             {
-                xcelApp.Cells[1, i] = dataGridView1.Columns[i - 1].HeaderText;
-            }
+                if (dataGridView1.Rows.Count <= 0) return;
+                var xcelApp = new Application();
+                xcelApp.Application.Workbooks.Add(Type.Missing);
 
-            for (var i = 0; i < dataGridView1.Rows.Count; i++)
-            {
-                for (var j = 0; j < dataGridView1.Columns.Count; j++)
+                for (var i = 1; i < dataGridView1.Columns.Count + 1; i++)
                 {
-                    xcelApp.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString().Replace(',', '.');
+                    xcelApp.Cells[1, i] = dataGridView1.Columns[i - 1].HeaderText;
                 }
+
+                for (var i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    for (var j = 0; j < dataGridView1.Columns.Count; j++)
+                    {
+                        xcelApp.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString().Replace(',', '.');
+                    }
+                }
+                xcelApp.Columns.AutoFit();
+                xcelApp.Visible = true;
             }
-            xcelApp.Columns.AutoFit();
-            xcelApp.Visible = true;
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
