@@ -29,6 +29,7 @@ namespace Optimisation.Оформление
             Initilize2();
             Initilize3();
             Initilize4();
+            PopulateFunctions5();
         }
 
         /// <summary>
@@ -200,7 +201,6 @@ namespace Optimisation.Оформление
             var export1And2 = new List<List<ExportOneDim>>(_testingFunctions.Count);
             var export3 = new List<List<ExportOneDim>>(_testingFunctions3.Count);
             var export4 = new List<List<ExportOneDim>>(_testingFunctions4.Count);
-
             //Заполняем первую лабу
             foreach (var function in _testingFunctions)
             {
@@ -357,22 +357,6 @@ namespace Optimisation.Оформление
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            formulaBox.Text = "4*(x1-5)^2+(x2-6)^2";
-            startingBox5.Text = "8,9";
-        }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            formulaBox.Text = "(x1-1)^2+(x2-3)^2+4*(x3+5)^2";
-            startingBox5.Text = "4,-1,2";
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            formulaBox.Text = "8*x1^2+4*x1*x2+5*x2^2";
-            startingBox5.Text = "10,10";
-        }
     }
 }

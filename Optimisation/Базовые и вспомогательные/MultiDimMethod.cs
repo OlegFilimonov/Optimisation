@@ -67,10 +67,7 @@ namespace Optimisation.Базовые_и_вспомогательные
         {
             return IterationCount <= MaxIterations && !(d.Norm(1) < Eps);
         }
-
-        
-        
-
+       
         protected MultiDimMethod(string name, double eps, Delegate f,Vector<double> startVector, int maxIterations=50)
         {
             MaxIterations = maxIterations;

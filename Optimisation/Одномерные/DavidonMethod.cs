@@ -16,6 +16,11 @@ namespace Optimisation.Одномерные
             IterationCount = 0;
 
             //Разгонный метод
+            OneDimMethod step1 = new GoldenRatioMethod2(F, Eps);
+            step1.SetSvenInterval();
+            step1.Execute();
+            A = step1.A;
+            B = step1.B;
 
             //Вспомогательная переменная
             double x1 = 0;

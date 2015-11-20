@@ -46,6 +46,7 @@ namespace Optimisation.Базовые_и_вспомогательные
                 default:
                     throw new Exception("переменных может быть от 1 до 4");
             }
+            
         }
 
         /// <summary>
@@ -72,6 +73,7 @@ namespace Optimisation.Базовые_и_вспомогательные
         /// Альфа-функция
         /// </summary>
         /// <param name="alpha"></param>
+        /// <param name="dir"></param>
         /// <returns></returns>
         public double AlphaFunction(double alpha,Vector<double> dir )
         {
@@ -82,6 +84,7 @@ namespace Optimisation.Базовые_и_вспомогательные
         /// Альфа-функция дифференцирования
         /// </summary>
         /// <param name="alpha"></param>
+        /// <param name="dir"></param>
         /// <returns></returns>
         public double AlphaDiffFunction(double alpha,Vector<double> dir )
         {
@@ -95,7 +98,7 @@ namespace Optimisation.Базовые_и_вспомогательные
         /// <param name="pos"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        private Vector<double> makeOneVector(int varCount, int pos, double value)
+        private Vector<double> MakeOneVector(int varCount, int pos, double value)
         {
             var res = Vector<double>.Build.Dense(varCount);
             res[pos] = value;
@@ -136,8 +139,44 @@ namespace Optimisation.Базовые_и_вспомогательные
             var g = Vector<double>.Build.Dense(varCount); // Создали вектор частных производных
             for (var i = 0; i < varCount; i++)
             {
-                var hVector = makeOneVector(varCount, i, h);
-                g[i] = (Y(point[i] + hVector) - Y(point[i] - hVector)) / (2 * h);
+                var hVector = MakeOneVector(varCount, i, h);
+                g[i] = (Y(point + hVector) - Y(point - hVector)) / (2 * h);
+            }
+            return g;
+        }
+
+        /// <summary>
+        /// Численное дифференцирование градиента
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public Vector<double> Grad4(Vector<double> point)
+        {
+            const double h = 1e-5;
+            var varCount = point.Count;
+            var g = Vector<double>.Build.Dense(varCount); // Создали вектор частных производных
+            for (var i = 0; i < varCount; i++)
+            {
+                var hVector = MakeOneVector(varCount, i, h);
+                g[i] = (Y(point - hVector) + 4*Y(point) + 3*Y(point+hVector) ) / (2 * h);
+            }
+            return g;
+        }
+
+        /// <summary>
+        /// Численное дифференцирование градиента
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public Vector<double> Grad5(Vector<double> point)
+        {
+            const double h = 1e-5;
+            var varCount = point.Count;
+            var g = Vector<double>.Build.Dense(varCount); // Создали вектор частных производных
+            for (var i = 0; i < varCount; i++)
+            {
+                var hVector = MakeOneVector(varCount, i, h);
+                g[i] = (-Y(point + 2*hVector) + 8*Y(point + hVector) - 8*Y(point-hVector)+Y(point-2*hVector)) / (12 * h);
             }
             return g;
         }
@@ -153,7 +192,7 @@ namespace Optimisation.Базовые_и_вспомогательные
             var g = Vector<double>.Build.Dense(varCount); // Создали вектор частных производных
             for (var i = 0; i < varCount; i++)
             {
-                var hVector = makeOneVector(varCount, i, h);
+                var hVector = MakeOneVector(varCount, i, h);
                 g[i] = (Y(Point[i] + hVector) - Y(Point[i] - hVector)) / (2 * h);
             }
             return g;

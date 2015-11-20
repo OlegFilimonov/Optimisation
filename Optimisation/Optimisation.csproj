@@ -71,7 +71,9 @@
     <Compile Include="Базовые и вспомогательные\MultiDimMethod.cs" />
     <Compile Include="Базовые и вспомогательные\TwoDimMethod.cs" />
     <Compile Include="Базовые и вспомогательные\TwoDimTestingFunction.cs" />
-    <Compile Include="Двумерные\CauchyMethod.cs" />
+    <Compile Include="Двумерные - DEPRECATED\CauchyMethod.cs" />
+    <Compile Include="Многомерные\BFGH.cs" />
+    <Compile Include="Многомерные\GenericNewton.cs" />
     <Compile Include="Многомерные\Partan1Method.cs" />
     <Compile Include="Одномерные цепочки\bolz-paul.cs" />
     <Compile Include="Одномерные цепочки\dih-dav.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="Одномерные цепочки\fib2-dsk.cs" />
     <Compile Include="Одномерные цепочки\gr1-extr.cs" />
     <Compile Include="Одномерные цепочки\gr2-paul.cs" />
+    <Compile Include="Одномерные\Function5.cs" />
     <Compile Include="Оформление\Lab1GUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +97,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Оформление\Lab5GUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Оформление\Lab6GUI.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Оформление\MainForm.cs">

@@ -6,6 +6,7 @@ using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
 using Optimisation.Базовые_и_вспомогательные;
 using Optimisation.Многомерные;
+using Optimisation.Одномерные;
 
 namespace Optimisation.Оформление
 {
@@ -16,13 +17,32 @@ namespace Optimisation.Оформление
         private int _varCount;
         private Delegate _currFunction5;
         private MultiDimMethod _currMethod5;
+        private List<Function5> _functionList5 = new List<Function5>();
 
         private void Initilize5()
         {
             PopulateMethods5();
+            PopulateFunctions5();
             epsBox5.Enabled = true;
             startingBox5.Enabled = true;
             methodList5.Enabled = true;
+        }
+
+        private void PopulateFunctions5()
+        {
+            if (_functionList5.Count == 0)
+            {
+                _functionList5.Add(new Function5("(x1-1)^2+(x2-3)^2+4*(x3+5)^2", "4,-1,2", 20));
+                _functionList5.Add(new Function5("8*x1^2+4*x1*x2+5*x2^2", "10,10", 21));
+                _functionList5.Add(new Function5("4*(x1-5)^2+(x2-6)^2", "8,9", 22));
+                _functionList5.Add(new Function5("-12*x2+4*x1^2+4*x2^2-4*x1*x2", "1,0", 27));
+                _functionList5.Add(new Function5("100*(x2-x1^3)^2+(1-x1)^2", "-1.2,1", 32));
+
+                foreach (var function5 in _functionList5)
+                {
+                    formulaBox.Items.Add($"{function5.Function}");
+                }
+            }
         }
 
         private void PopulateMethods5()
@@ -57,7 +77,8 @@ namespace Optimisation.Оформление
                 startVector.Clear();
             }
 
-            _multiDimMethods5.Add(new Partan1Method(eps,_currFunction5,startVector));
+            _multiDimMethods5.Add(new Partan1Method(eps, _currFunction5, startVector));
+            _multiDimMethods5.Add(new BFGH(_currFunction5, startVector, eps));
 
             foreach (var method in _multiDimMethods5)
             {
@@ -111,7 +132,7 @@ namespace Optimisation.Оформление
             method.Eps = eps;
 
             //Делаем свена
-            method.SetSven4Interval();
+            //method.SetSven4Interval();
 
             //Делаем сам метод
             method.Execute();
@@ -120,7 +141,7 @@ namespace Optimisation.Оформление
             var coord = method.Answer;
             answerBox5.Text = coord.ToString();
             iterBox5.Text = Convert.ToString(method.IterationCount);
-           
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -133,20 +154,21 @@ namespace Optimisation.Оформление
                 switch (_varCount)
                 {
                     case 1:
-                        _currFunction5 = (Func<double, double>)engine.Formula(formulaString)
+                        _currFunction5 = engine.Formula(formulaString)
                     .Parameter("x1", DataType.FloatingPoint)
                     .Result(DataType.FloatingPoint)
                     .Build();
                         break;
                     case 2:
-                        _currFunction5 = (Func<double, double, double>)engine.Formula(formulaString)
+                        _currFunction5 =
+                            engine.Formula(formulaString)
                     .Parameter("x1", DataType.FloatingPoint)
                     .Parameter("x2", DataType.FloatingPoint)
                     .Result(DataType.FloatingPoint)
                     .Build();
                         break;
                     case 3:
-                        _currFunction5 = (Func<double, double,double, double>)engine.Formula(formulaString)
+                        _currFunction5 = engine.Formula(formulaString)
                     .Parameter("x1", DataType.FloatingPoint)
                     .Parameter("x2", DataType.FloatingPoint)
                     .Parameter("x3", DataType.FloatingPoint)
@@ -154,7 +176,7 @@ namespace Optimisation.Оформление
                     .Build();
                         break;
                     case 4:
-                        _currFunction5 = (Func<double, double,double,double, double>)engine.Formula(formulaString)
+                        _currFunction5 = engine.Formula(formulaString)
                     .Parameter("x1", DataType.FloatingPoint)
                     .Parameter("x2", DataType.FloatingPoint)
                     .Parameter("x3", DataType.FloatingPoint)
@@ -168,20 +190,21 @@ namespace Optimisation.Оформление
                 var vars = "f(";
                 for (var k = _varCount; k > 0; k--)
                 {
-                    vars += (k==1)?$"x{k})":$"x{k},";
+                    vars += (k == 1) ? $"x{k})" : $"x{k},";
                 }
                 report = $"Введенная функция успешно парсирована:\n{vars}={formulaString}";
-                if(_multiDimMethods5.Count == 0)
-                Initilize5();
+                if (_multiDimMethods5.Count == 0)
+                    Initilize5();
             }
             catch (Exception exp)
             {
                 report = $"Ошибка парсинга. Проверьте введенное выражение.\nТекст ошибки: {exp.Message}";
+                MessageBox.Show(report);
             }
-            MessageBox.Show(report);
+            
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void formulaBox_TextChanged(object sender, EventArgs e)
         {
             var index = 0;
             var str = formulaBox.Text;
@@ -206,17 +229,12 @@ namespace Optimisation.Оформление
                 }
             }
             label29.Text = $"Обнаруженно переменных: {_varCount}";
+        }
 
-            var startingPointText = "";
-
-            for (var i = 0; i < _varCount; i++)
-            {
-                startingPointText += "0,";
-            }
-            if(_varCount>0)
-            startingPointText = startingPointText.Remove(startingPointText.Length - 1);
-
-            startingBox5.Text = startingPointText;
+        private void formulaBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            startingBox5.Text = _functionList5[formulaBox.SelectedIndex].Start;
+            button1_Click(null,null);
         }
     }
 }

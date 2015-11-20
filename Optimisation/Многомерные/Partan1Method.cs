@@ -25,8 +25,7 @@ namespace Optimisation.Многомерные
             //Подготовка
             Vector<double> d;
             var x1 = FH.Point;
-
-            //TODO: давидон сам собой не работает, починить!
+            
             if (AlphaMethod == null) AlphaMethod = new DavidonMethod(FH.AlphaFunction,FH.AlphaDiffFunction, Eps);
             IterationCount = 0;
             
