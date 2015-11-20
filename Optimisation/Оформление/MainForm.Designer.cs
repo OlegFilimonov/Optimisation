@@ -57,7 +57,6 @@
             this.label32 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.startingBox4x2 = new System.Windows.Forms.TextBox();
@@ -243,9 +242,9 @@
             this.tabPage6.Controls.Add(this.iterBox6);
             this.tabPage6.Controls.Add(this.answerBox6);
             this.tabPage6.Controls.Add(this.executeButton);
-            this.tabPage6.Location = new System.Drawing.Point(4, 25);
+            this.tabPage6.Location = new System.Drawing.Point(4, 28);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(967, 157);
+            this.tabPage6.Size = new System.Drawing.Size(967, 154);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Лабораторная #6";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -334,12 +333,11 @@
             this.tabPage5.Controls.Add(this.label32);
             this.tabPage5.Controls.Add(this.label31);
             this.tabPage5.Controls.Add(this.label28);
-            this.tabPage5.Controls.Add(this.button1);
-            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Location = new System.Drawing.Point(4, 28);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(967, 157);
+            this.tabPage5.Size = new System.Drawing.Size(967, 154);
             this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Лабораторная #5 и #7";
+            this.tabPage5.Text = "Лабораторная #5 и #7 и #8";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // formulaBox
@@ -347,7 +345,7 @@
             this.formulaBox.FormattingEnabled = true;
             this.formulaBox.Location = new System.Drawing.Point(19, 30);
             this.formulaBox.Name = "formulaBox";
-            this.formulaBox.Size = new System.Drawing.Size(244, 24);
+            this.formulaBox.Size = new System.Drawing.Size(335, 24);
             this.formulaBox.TabIndex = 5;
             this.formulaBox.SelectedIndexChanged += new System.EventHandler(this.formulaBox_SelectedIndexChanged);
             this.formulaBox.TextChanged += new System.EventHandler(this.formulaBox_TextChanged);
@@ -422,7 +420,7 @@
             this.startingBox5.Enabled = false;
             this.startingBox5.Location = new System.Drawing.Point(371, 104);
             this.startingBox5.Name = "startingBox5";
-            this.startingBox5.Size = new System.Drawing.Size(129, 22);
+            this.startingBox5.Size = new System.Drawing.Size(151, 22);
             this.startingBox5.TabIndex = 0;
             // 
             // epsBox5
@@ -430,7 +428,7 @@
             this.epsBox5.Enabled = false;
             this.epsBox5.Location = new System.Drawing.Point(371, 30);
             this.epsBox5.Name = "epsBox5";
-            this.epsBox5.Size = new System.Drawing.Size(129, 22);
+            this.epsBox5.Size = new System.Drawing.Size(151, 22);
             this.epsBox5.TabIndex = 0;
             this.epsBox5.Text = "1e-5";
             // 
@@ -461,23 +459,13 @@
             this.label28.TabIndex = 2;
             this.label28.Text = "Функция:";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(269, 30);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 42);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "PARSE";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.groupBox7);
             this.tabPage4.Controls.Add(this.groupBox8);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Location = new System.Drawing.Point(4, 28);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(967, 157);
+            this.tabPage4.Size = new System.Drawing.Size(967, 154);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Лабораторная #4";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -660,10 +648,10 @@
             // 
             this.tabPage3.Controls.Add(this.groupBox5);
             this.tabPage3.Controls.Add(this.groupBox6);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(967, 157);
+            this.tabPage3.Size = new System.Drawing.Size(967, 154);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Лабораторная #3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -849,10 +837,10 @@
             // 
             this.tabPage2.Controls.Add(this.groupBox3);
             this.tabPage2.Controls.Add(this.groupBox4);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(967, 157);
+            this.tabPage2.Size = new System.Drawing.Size(967, 154);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Лабораторная #2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1039,10 +1027,10 @@
             // 
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(967, 157);
+            this.tabPage1.Size = new System.Drawing.Size(967, 154);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Лабораторная #1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1227,6 +1215,7 @@
             // 
             // lab1tab
             // 
+            this.lab1tab.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.lab1tab.Controls.Add(this.tabPage1);
             this.lab1tab.Controls.Add(this.tabPage2);
             this.lab1tab.Controls.Add(this.tabPage3);
@@ -1320,7 +1309,6 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.TextBox startingBox4x2;

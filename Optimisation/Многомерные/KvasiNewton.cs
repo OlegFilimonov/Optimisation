@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
 using Optimisation.Базовые_и_вспомогательные;
@@ -11,12 +6,12 @@ using Optimisation.Одномерные;
 
 namespace Optimisation.Многомерные
 {
-    class BFGH : MultiDimMethod
+    class KvasiNewton : MultiDimMethod
     {
         private int _varCount;
         private Matrix<double> _a; 
 
-        public BFGH(Delegate f, Vector<double> startVector, double eps=1e-5, int maxIterations = 50) : base("Метод БФГШ", eps, f, startVector, maxIterations)
+        public KvasiNewton(double eps, Delegate f, Vector<double> startVector,  int maxIterations = 50) : base("Метод БФГШ", eps, f, startVector, maxIterations)
         {
         }
 

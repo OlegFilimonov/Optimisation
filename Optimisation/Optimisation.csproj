@@ -72,8 +72,9 @@
     <Compile Include="Базовые и вспомогательные\TwoDimMethod.cs" />
     <Compile Include="Базовые и вспомогательные\TwoDimTestingFunction.cs" />
     <Compile Include="Двумерные - DEPRECATED\CauchyMethod.cs" />
-    <Compile Include="Многомерные\BFGH.cs" />
+    <Compile Include="Многомерные\KvasiNewton.cs" />
     <Compile Include="Многомерные\GenericNewton.cs" />
+    <Compile Include="Многомерные\GradMethod.cs" />
     <Compile Include="Многомерные\Partan1Method.cs" />
     <Compile Include="Одномерные цепочки\bolz-paul.cs" />
     <Compile Include="Одномерные цепочки\dih-dav.cs" />

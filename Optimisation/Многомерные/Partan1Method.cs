@@ -33,6 +33,7 @@ namespace Optimisation.Многомерные
             do
             {
                 //Находим x2
+                FH.Dir = -FH.Grad();
                 FH.Normilize();
                 AlphaMethod.SetSvenInterval(0,1e-6);
                 AlphaMethod.Execute();

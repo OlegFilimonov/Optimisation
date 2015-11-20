@@ -78,7 +78,8 @@ namespace Optimisation.Оформление
             }
 
             _multiDimMethods5.Add(new Partan1Method(eps, _currFunction5, startVector));
-            _multiDimMethods5.Add(new BFGH(_currFunction5, startVector, eps));
+            _multiDimMethods5.Add(new KvasiNewton(eps, _currFunction5, startVector));
+            _multiDimMethods5.Add(new GradMethod(eps, _currFunction5, startVector));
 
             foreach (var method in _multiDimMethods5)
             {
@@ -201,7 +202,7 @@ namespace Optimisation.Оформление
                 report = $"Ошибка парсинга. Проверьте введенное выражение.\nТекст ошибки: {exp.Message}";
                 MessageBox.Show(report);
             }
-            
+
         }
 
         private void formulaBox_TextChanged(object sender, EventArgs e)
@@ -234,7 +235,7 @@ namespace Optimisation.Оформление
         private void formulaBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             startingBox5.Text = _functionList5[formulaBox.SelectedIndex].Start;
-            button1_Click(null,null);
+            button1_Click(null, null);
         }
     }
 }
