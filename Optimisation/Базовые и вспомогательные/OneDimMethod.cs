@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 
 // ReSharper disable CompareOfFloatsByEqualityOperator
 
@@ -9,13 +8,12 @@ namespace Optimisation.Базовые_и_вспомогательные
     public delegate double Function1D(double x);
 
     public delegate double Function2D(double x1, double x2);
- 
+
     /// <summary>
     ///     Базовый класс
     /// </summary>
     public abstract class OneDimMethod
     {
-        
         protected readonly int MaxIterations;
 
         //Конструктор

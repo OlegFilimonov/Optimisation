@@ -3,7 +3,7 @@ using Optimisation.Одномерные;
 
 namespace Optimisation.Одномерные_цепочки
 {
-    internal class Gr1Extr : OneDimMethod
+    public class Gr1Extr : OneDimMethod
     {
         public Gr1Extr(double eps = 1e-6, int maxIterations = 50)
             : base(null, null, eps, "М5 МЗС1 - экстраполяции", maxIterations)

@@ -3,7 +3,7 @@ using Optimisation.Одномерные;
 
 namespace Optimisation.Одномерные_цепочки
 {
-    internal class DihPaul : OneDimMethod
+    public class DihPaul : OneDimMethod
     {
         public DihPaul(double eps = 1e-6, int maxIterations = 50)
             : base(null, null, eps, "М3 Дихтомия - Пауэлла", maxIterations)

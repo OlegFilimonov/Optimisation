@@ -1,4 +1,5 @@
 ﻿using static System.Math;
+
 // ReSharper disable InconsistentNaming
 
 namespace Optimisation.Базовые_и_вспомогательные
@@ -47,6 +48,5 @@ namespace Optimisation.Базовые_и_вспомогательные
         public static double f19(double x1, double x2) => 100*Pow(x2 - Pow(x1, 2), 2) + Pow(1 - x1, 2);
         public static double df19x1(double x1, double x2) => x1*(400*Pow(x1, 2) + 2) - 400*x1*x2 - 2;
         public static double df19x2(double x1, double x2) => 200*(x2 - Pow(x1, 2));
-
     }
 }

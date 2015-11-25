@@ -3,7 +3,7 @@ using Optimisation.Одномерные;
 
 namespace Optimisation.Одномерные_цепочки
 {
-    internal class BolzPaul : OneDimMethod
+    public class BolzPaul : OneDimMethod
     {
         public BolzPaul(double eps = 1e-6, int maxIterations = 50)
             : base(null, null, eps, "М4 Больцано - Пауэлла", maxIterations)

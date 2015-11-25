@@ -3,7 +3,7 @@ using Optimisation.Одномерные;
 
 namespace Optimisation.Одномерные_цепочки
 {
-    internal class DihDav : OneDimMethod
+    public class DihDav : OneDimMethod
     {
         public DihDav(double eps = 1e-6, int maxIterations = 50)
             : base(null, null, eps, "М6 Метод дихтомии - куб. интерполяции", maxIterations)

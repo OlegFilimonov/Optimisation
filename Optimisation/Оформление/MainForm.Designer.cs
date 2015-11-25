@@ -20,7 +20,7 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Windows Form1 Designer generated code
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -35,14 +35,6 @@
             this.низкаяТочностьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.высокаяТочностьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.func20RadioButton = new System.Windows.Forms.RadioButton();
-            this.func19RadioButton = new System.Windows.Forms.RadioButton();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.iterBox6 = new System.Windows.Forms.TextBox();
-            this.answerBox6 = new System.Windows.Forms.TextBox();
-            this.executeButton = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.formulaBox = new System.Windows.Forms.ComboBox();
             this.methodList5 = new System.Windows.Forms.ComboBox();
@@ -130,7 +122,6 @@
             this.lab1tab = new System.Windows.Forms.TabControl();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            this.tabPage6.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -233,91 +224,6 @@
             this.trackBar1.TabIndex = 9;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.func20RadioButton);
-            this.tabPage6.Controls.Add(this.func19RadioButton);
-            this.tabPage6.Controls.Add(this.label35);
-            this.tabPage6.Controls.Add(this.label36);
-            this.tabPage6.Controls.Add(this.iterBox6);
-            this.tabPage6.Controls.Add(this.answerBox6);
-            this.tabPage6.Controls.Add(this.executeButton);
-            this.tabPage6.Location = new System.Drawing.Point(4, 28);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(967, 154);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "Лабораторная #6";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // func20RadioButton
-            // 
-            this.func20RadioButton.AutoSize = true;
-            this.func20RadioButton.Location = new System.Drawing.Point(147, 78);
-            this.func20RadioButton.Name = "func20RadioButton";
-            this.func20RadioButton.Size = new System.Drawing.Size(108, 21);
-            this.func20RadioButton.TabIndex = 7;
-            this.func20RadioButton.TabStop = true;
-            this.func20RadioButton.Text = "Функция 20";
-            this.func20RadioButton.UseVisualStyleBackColor = true;
-            // 
-            // func19RadioButton
-            // 
-            this.func19RadioButton.AutoSize = true;
-            this.func19RadioButton.Location = new System.Drawing.Point(147, 51);
-            this.func19RadioButton.Name = "func19RadioButton";
-            this.func19RadioButton.Size = new System.Drawing.Size(108, 21);
-            this.func19RadioButton.TabIndex = 7;
-            this.func19RadioButton.TabStop = true;
-            this.func19RadioButton.Text = "Функция 19";
-            this.func19RadioButton.UseVisualStyleBackColor = true;
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(881, 11);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(77, 17);
-            this.label35.TabIndex = 5;
-            this.label35.Text = "Итераций:";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(735, 11);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(52, 17);
-            this.label36.TabIndex = 6;
-            this.label36.Text = "Ответ:";
-            // 
-            // iterBox6
-            // 
-            this.iterBox6.BackColor = System.Drawing.SystemColors.Window;
-            this.iterBox6.Location = new System.Drawing.Point(884, 31);
-            this.iterBox6.Name = "iterBox6";
-            this.iterBox6.ReadOnly = true;
-            this.iterBox6.Size = new System.Drawing.Size(76, 22);
-            this.iterBox6.TabIndex = 3;
-            // 
-            // answerBox6
-            // 
-            this.answerBox6.BackColor = System.Drawing.SystemColors.Window;
-            this.answerBox6.Location = new System.Drawing.Point(643, 31);
-            this.answerBox6.Multiline = true;
-            this.answerBox6.Name = "answerBox6";
-            this.answerBox6.ReadOnly = true;
-            this.answerBox6.Size = new System.Drawing.Size(232, 96);
-            this.answerBox6.TabIndex = 4;
-            // 
-            // executeButton
-            // 
-            this.executeButton.Location = new System.Drawing.Point(261, 51);
-            this.executeButton.Name = "executeButton";
-            this.executeButton.Size = new System.Drawing.Size(319, 51);
-            this.executeButton.TabIndex = 0;
-            this.executeButton.Text = "Применить обобщенный метод Ньютона";
-            this.executeButton.UseVisualStyleBackColor = true;
-            this.executeButton.Click += new System.EventHandler(this.executeButton_Click);
-            // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.formulaBox);
@@ -349,6 +255,7 @@
             this.formulaBox.TabIndex = 5;
             this.formulaBox.SelectedIndexChanged += new System.EventHandler(this.formulaBox_SelectedIndexChanged);
             this.formulaBox.TextChanged += new System.EventHandler(this.formulaBox_TextChanged);
+            this.formulaBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.formulaBox_KeyPress);
             // 
             // methodList5
             // 
@@ -1221,7 +1128,6 @@
             this.lab1tab.Controls.Add(this.tabPage3);
             this.lab1tab.Controls.Add(this.tabPage4);
             this.lab1tab.Controls.Add(this.tabPage5);
-            this.lab1tab.Controls.Add(this.tabPage6);
             this.lab1tab.Location = new System.Drawing.Point(12, 40);
             this.lab1tab.Name = "lab1tab";
             this.lab1tab.SelectedIndex = 0;
@@ -1247,8 +1153,6 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage6.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.tabPage4.ResumeLayout(false);
@@ -1288,14 +1192,6 @@
         private System.Windows.Forms.ToolStripMenuItem низкаяТочностьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem высокаяТочностьToolStripMenuItem;
         private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.RadioButton func20RadioButton;
-        private System.Windows.Forms.RadioButton func19RadioButton;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.TextBox iterBox6;
-        private System.Windows.Forms.TextBox answerBox6;
-        private System.Windows.Forms.Button executeButton;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.ComboBox methodList5;
         private System.Windows.Forms.Label label29;

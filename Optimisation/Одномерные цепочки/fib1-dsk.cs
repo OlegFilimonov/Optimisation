@@ -3,7 +3,7 @@ using Optimisation.Одномерные;
 
 namespace Optimisation.Одномерные_цепочки
 {
-    internal class Fib1Dsk : OneDimMethod
+    public class Fib1Dsk : OneDimMethod
     {
         public Fib1Dsk(double eps = 1e-6, int maxIterations = 50)
             : base(null, null, eps, "М1 Фибоначчи-1 - ДСК", maxIterations)

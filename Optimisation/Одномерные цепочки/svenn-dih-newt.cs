@@ -3,7 +3,7 @@ using Optimisation.Одномерные;
 
 namespace Optimisation.Одномерные_цепочки
 {
-    internal class SvennDihNewt : OneDimMethod
+    public class SvennDihNewt : OneDimMethod
     {
         public SvennDihNewt(double eps = 1e-6, int maxIterations = 50) :
             base(null, null, eps, "М5 - Свенн - дихтомии - Ньютона", maxIterations)

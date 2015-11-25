@@ -3,7 +3,7 @@ using Optimisation.Одномерные;
 
 namespace Optimisation.Одномерные_цепочки
 {
-    internal class SvennBolzFib2 : OneDimMethod
+    public class SvennBolzFib2 : OneDimMethod
     {
         public SvennBolzFib2(double eps = 1e-6, int maxIterations = 50)
             : base(null, null, eps, "М8 Свенн-Больцано-Фибоначчи2", maxIterations)

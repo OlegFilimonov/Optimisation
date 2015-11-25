@@ -3,7 +3,7 @@ using Optimisation.Одномерные;
 
 namespace Optimisation.Одномерные_цепочки
 {
-    internal class Gr2Paul : OneDimMethod
+    public class Gr2Paul : OneDimMethod
     {
         public Gr2Paul(double eps = 1e-6, int maxIterations = 50)
             : base(null, null, eps, "М8 Метод золотого сечения-2 - Пауэлла", maxIterations)

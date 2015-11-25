@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Optimisation.Базовые_и_вспомогательные;
+
 // ReSharper disable InconsistentNaming
 
 namespace Optimisation.Одномерные

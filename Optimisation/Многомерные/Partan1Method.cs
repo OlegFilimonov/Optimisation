@@ -5,37 +5,41 @@ using Optimisation.Одномерные;
 
 namespace Optimisation.Многомерные
 {
-    class Partan1Method : MultiDimMethod
+    public class Partan1Method : MultiDimMethod
     {
         /// <summary>
-        /// Конструктор многомерного Партан-1
+        ///     Конструктор многомерного Партан-1
         /// </summary>
         /// <param name="eps"></param>
         /// <param name="varCount"></param>
         /// <param name="f"></param>
         /// <param name="startVector"></param>
         /// <param name="maxIterations"></param>
-        public Partan1Method(double eps, Delegate f,Vector<double> startVector,int maxIterations = 50) 
-            : base("Партран-1", eps, f, startVector,maxIterations)
+        public Partan1Method(double eps, Delegate f, Vector<double> startVector, int maxIterations = 50)
+            : base("Партран-1", eps, f, startVector, maxIterations)
         {
         }
-        
+
+        public Partan1Method() : base("Партан-1", 1e-5, null, null, 50)
+        {
+        }
+
         public override void Execute()
         {
             //Подготовка
             Vector<double> d;
             var x1 = FH.Point;
-            
-            if (AlphaMethod == null) AlphaMethod = new DavidonMethod(FH.AlphaFunction,FH.AlphaDiffFunction, Eps);
+
+            if (AlphaMethod == null) AlphaMethod = new DavidonMethod(FH.AlphaFunction, FH.AlphaDiffFunction, Eps);
             IterationCount = 0;
-            
+
             //Основной этап
             do
             {
                 //Находим x2
                 FH.Dir = -FH.Grad();
                 FH.Normilize();
-                AlphaMethod.SetSvenInterval(0,1e-6);
+                AlphaMethod.SetSvenInterval(0, 1e-6);
                 AlphaMethod.Execute();
                 var alpha1 = AlphaMethod.Answer;
                 var x2 = x1 + FH.Dir.Multiply(alpha1);
@@ -65,8 +69,7 @@ namespace Optimisation.Многомерные
                 FH.Point = x1;
 
                 IterationCount++;
-
-            } while (KOP1(d)&&KOP1(FH.Grad(FH.Point)));
+            } while (KOP1(d) && KOP1(FH.Grad(FH.Point)));
 
             Answer = FH.Point;
         }

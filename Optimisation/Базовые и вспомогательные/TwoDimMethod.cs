@@ -1,19 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Win32.SafeHandles;
-using Optimisation.Одномерные;
 
 namespace Optimisation.Базовые_и_вспомогательные
 {
     /// <summary>
-    /// Базовый класс метода двумерного поиска
+    ///     Базовый класс метода двумерного поиска
     /// </summary>
     public abstract class TwoDimMethod
     {
+        //Максимальное количество итераций
+        private readonly int MaxIterations;
+
+        protected TwoDimMethod(string name, double eps, FunctionHolderTwoDim f, int maxIterations)
+        {
+            MaxIterations = maxIterations;
+            Name = name;
+            Eps = eps;
+            F = f;
+        }
+
         //Имя
         public string Name { get; set; }
 
@@ -32,17 +37,14 @@ namespace Optimisation.Базовые_и_вспомогательные
         //Функция
         public FunctionHolderTwoDim F { protected get; set; }
 
-        //Максимальное количество итераций
-        private int MaxIterations;
-
         //Сам метод
         public abstract void Execute();
-        
+
         //Свенн-4
         public void SetSven4Interval()
         {
             Normilize(ref F.Dir);
-            if(F.Df(0) > 0) F.invDir();
+            if (F.Df(0) > 0) F.invDir();
             var alpha = 0.01f;
             while (F.Df(alpha) <= 0)
             {
@@ -55,7 +57,7 @@ namespace Optimisation.Базовые_и_вспомогательные
         //Разница векторов
         protected static PointF Minus(PointF x1, PointF x2)
         {
-            return new PointF(x1.X-x2.X,x1.Y-x2.Y);
+            return new PointF(x1.X - x2.X, x1.Y - x2.Y);
         }
 
         protected static double Norm(PointF x)
@@ -69,20 +71,12 @@ namespace Optimisation.Базовые_и_вспомогательные
             x.X = (float) (x.X/norm);
             x.Y = (float) (x.Y/norm);
         }
-        
+
         //Критерий окончания поиска
         protected bool KOP(PointF d)
         {
             if (IterationCount > MaxIterations || Norm(d) < Eps) return false;
             return true;
-        }
-
-        protected TwoDimMethod( string name, double eps, FunctionHolderTwoDim f,int maxIterations)
-        {
-            MaxIterations = maxIterations;
-            Name = name;
-            Eps = eps;
-            F = f;
         }
     }
 }

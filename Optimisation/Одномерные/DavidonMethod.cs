@@ -3,7 +3,7 @@ using Optimisation.Базовые_и_вспомогательные;
 
 namespace Optimisation.Одномерные
 {
-    internal class DavidonMethod : OneDimMethod
+    public class DavidonMethod : OneDimMethod
     {
         public DavidonMethod(Function1D f, Function1D df, double eps = 1e-6, int maxIterations = 50) :
             base(f, df, eps, "Метод ДАВИДОНА", maxIterations)

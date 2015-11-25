@@ -5,15 +5,16 @@ using FPlotLibrary;
 using Optimisation.Базовые_и_вспомогательные;
 using Optimisation.Одномерные;
 using Function1D = Optimisation.Базовые_и_вспомогательные.Function1D;
+
 // ReSharper disable InconsistentNaming
 
 namespace Optimisation.Оформление
 {
     public partial class MainForm
     {
+        private readonly List<FunctionItem> _graphFunctions = new List<FunctionItem>();
         private readonly List<OneDimMethod> _oneDimentionalMethods = new List<OneDimMethod>();
         private readonly List<FunctionHolder> _testingFunctions = new List<FunctionHolder>();
-        private readonly List<FunctionItem> _graphFunctions = new List<FunctionItem>();
 
         private void Initilize1() //Констуктор
         {
@@ -21,7 +22,8 @@ namespace Optimisation.Оформление
             populateMethods1();
         }
 
-        void AddOneDimFunction(string source, Function1D f, Function1D df, double min, string name, Function1D d2f = null)
+        private void AddOneDimFunction(string source, Function1D f, Function1D df, double min, string name,
+            Function1D d2f = null)
         {
             var graphFunction = new FPlotLibrary.Function1D {source = source};
             graphFunction.Compile(true);
@@ -49,7 +51,7 @@ namespace Optimisation.Оформление
                 0.357403D, "Функция #3: 2x^2-e^x", OneDimTestingFunctions.d2f3);
             AddOneDimFunction("return pow(x,4)-14*pow(x,3)+60*pow(x,2)-70*x;", OneDimTestingFunctions.f4,
                 OneDimTestingFunctions.df4, 0.780884D, "Функция #4: x^4-14x^3+60x^2-70x", OneDimTestingFunctions.d2f4);
-            
+
             //заполняем выпадающий список
             foreach (var func in _testingFunctions)
             {

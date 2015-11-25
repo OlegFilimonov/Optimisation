@@ -29,7 +29,7 @@ namespace Optimisation.Оформление
         private void AddTwoDimFunction(string source, Function2D f, Function2D dfx1, Function2D dfx2, PointF start,
             PointF min, string name)
         {
-            var graphFunction = new FPlotLibrary.Function2D { source = source };
+            var graphFunction = new FPlotLibrary.Function2D {source = source};
             graphFunction.Compile(true);
             graphFunction.Color = Color.CornflowerBlue;
             _graphFunctions3.Add(graphFunction);
@@ -145,7 +145,7 @@ namespace Optimisation.Оформление
 
             double minX = ((FunctionHolderTwoDim) testingFunction).Min.X;
             double minY = ((FunctionHolderTwoDim) testingFunction).Min.Y;
-            
+
             const double length = 10;
 
             var x0 = minX - length/2;
@@ -159,7 +159,7 @@ namespace Optimisation.Оформление
 
             graph.y0 = y0;
             graph.y1 = y1;
-            
+
 
             var func = _graphFunctions3[_testingFunctions3.IndexOf(testingFunction)];
 

@@ -1,4 +1,5 @@
 ﻿// ReSharper disable InconsistentNaming
+
 namespace Optimisation.Базовые_и_вспомогательные
 {
     /// <summary>

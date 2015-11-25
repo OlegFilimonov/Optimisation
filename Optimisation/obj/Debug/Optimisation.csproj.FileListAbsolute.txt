@@ -38,3 +38,4 @@ C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\obj\Debug\Optimisat
 C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\MathNet.Numerics.dll
 C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\MathNet.Numerics.xml
 C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\Jace.dll
+C:\Users\Oleg\VisualStudioProjects\Optimisation\Optimisation\bin\Debug\Albatross.Expression.dll

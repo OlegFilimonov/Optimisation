@@ -7,16 +7,15 @@ namespace Optimisation.Базовые_и_вспомогательные
         private readonly Function2D _dfx1;
         private readonly Function2D _dfx2;
 
-        public PointF Start;
+        public PointF Dir;
 
         public PointF Min;
 
-        public PointF Dir;
+        public PointF Start;
 
-        public Function2D F2D { get; }
-
-        public FunctionHolderTwoDim(PointF start, PointF min, PointF dir, Function2D f2D, Function2D dfx1, Function2D dfx2,
-    string name)
+        public FunctionHolderTwoDim(PointF start, PointF min, PointF dir, Function2D f2D, Function2D dfx1,
+            Function2D dfx2,
+            string name)
         {
             Start = start;
             Min = min;
@@ -30,7 +29,7 @@ namespace Optimisation.Базовые_и_вспомогательные
         }
 
         public FunctionHolderTwoDim(PointF start, PointF min, Function2D f2D, Function2D dfx1, Function2D dfx2,
-   string name)
+            string name)
         {
             Start = start;
             Min = min;
@@ -43,9 +42,11 @@ namespace Optimisation.Базовые_и_вспомогательные
             Dir = AntiGrad();
         }
 
+        public Function2D F2D { get; }
+
         public void invDir()
         {
-            Dir.X = - Dir.X;
+            Dir.X = -Dir.X;
             Dir.Y = -Dir.Y;
         }
 
@@ -75,8 +76,8 @@ namespace Optimisation.Базовые_и_вспомогательные
         //Анти-градиент
         public PointF AntiGrad()
         {
-            PointF x = Start;
-            return new PointF((float)-_dfx1(x.X,x.Y),(float)-_dfx2(x.X,x.Y));
+            var x = Start;
+            return new PointF((float) -_dfx1(x.X, x.Y), (float) -_dfx2(x.X, x.Y));
         }
     }
 }

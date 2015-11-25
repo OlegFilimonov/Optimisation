@@ -12,8 +12,8 @@ namespace Optimisation.Оформление
     partial class MainForm
     {
         private readonly List<FunctionItem> _graphFunctions4 = new List<FunctionItem>();
-        private readonly List<TwoDimMethod> _twoDimentionalMethods4 = new List<TwoDimMethod>();
         private readonly List<FunctionHolderTwoDim> _testingFunctions4 = new List<FunctionHolderTwoDim>();
+        private readonly List<TwoDimMethod> _twoDimentionalMethods4 = new List<TwoDimMethod>();
 
         private FunctionHolderTwoDim _currFunctionHolder4;
         private TwoDimMethod _currMethod4;
@@ -37,8 +37,8 @@ namespace Optimisation.Оформление
         private void PopulateFunctions4()
         {
             AddTwoDimFunction4("return 100*pow(y-pow(x,2),2)+pow(1-x,2);", TwoDimTestingFunctions.f19,
-                    TwoDimTestingFunctions.df19x1, TwoDimTestingFunctions.df19x2, new PointF(-1.2f, 1),
-                    new PointF(1, 1), "Функция №19: 100(x2-x1^2)^2+(1-x1)^2");
+                TwoDimTestingFunctions.df19x1, TwoDimTestingFunctions.df19x2, new PointF(-1.2f, 1),
+                new PointF(1, 1), "Функция №19: 100(x2-x1^2)^2+(1-x1)^2");
             AddTwoDimFunction4("return pow(x,2)+3*pow(y,2)+2*x*y;", TwoDimTestingFunctions.f1,
                 TwoDimTestingFunctions.df1x1, TwoDimTestingFunctions.df1x2, new PointF(1, 1),
                 new PointF(0.2558f, -0.1163f), "Функция №10: x1^2+3x2^2+2x1x2");
@@ -89,7 +89,7 @@ namespace Optimisation.Оформление
         private void AddTwoDimFunction4(string source, Function2D f, Function2D dfx1, Function2D dfx2, PointF start,
             PointF min, string name)
         {
-            var graphFunction = new FPlotLibrary.Function2D { source = source };
+            var graphFunction = new FPlotLibrary.Function2D {source = source};
             graphFunction.Compile(true);
             graphFunction.Color = Color.CornflowerBlue;
             _graphFunctions4.Add(graphFunction);
@@ -147,18 +147,18 @@ namespace Optimisation.Оформление
                 startY = testingFunction.Start.Y;
             }
 
-            testingFunction.Start = new PointF((float)startX, (float)startY);
+            testingFunction.Start = new PointF((float) startX, (float) startY);
 
             double minX = testingFunction.Min.X;
             double minY = testingFunction.Min.Y;
 
             const double length = 10;
 
-            var x0 = minX - length / 2;
-            var x1 = minX + length / 2;
+            var x0 = minX - length/2;
+            var x1 = minX + length/2;
 
-            var y0 = minY - length / 2;
-            var y1 = minY + length / 2;
+            var y0 = minY - length/2;
+            var y1 = minY + length/2;
 
             graph.x0 = x0;
             graph.x1 = x1;

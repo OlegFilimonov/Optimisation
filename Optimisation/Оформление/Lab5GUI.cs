@@ -10,14 +10,13 @@ using Optimisation.Одномерные;
 
 namespace Optimisation.Оформление
 {
-
     partial class MainForm
     {
         private readonly List<MultiDimMethod> _multiDimMethods5 = new List<MultiDimMethod>();
-        private int _varCount;
         private Delegate _currFunction5;
         private MultiDimMethod _currMethod5;
-        private List<Function5> _functionList5 = new List<Function5>();
+        private readonly List<Function5> _functionList5 = new List<Function5>();
+        private int _varCount;
 
         private void Initilize5()
         {
@@ -63,9 +62,9 @@ namespace Optimisation.Оформление
             Vector<double> startVector = new DenseVector(_varCount);
             try
             {
-                string text = startingBox5.Text;
-                string[] textValues = text.Split(',');
-                for (int i = 0; i < _varCount; i++)
+                var text = startingBox5.Text;
+                var textValues = text.Split(',');
+                for (var i = 0; i < _varCount; i++)
                 {
                     startVector[i] = double.Parse(textValues[i]);
                 }
@@ -114,9 +113,9 @@ namespace Optimisation.Оформление
             Vector<double> startVector = new DenseVector(_varCount);
             try
             {
-                string text = startingBox5.Text;
-                string[] textValues = text.Split(',');
-                for (int i = 0; i < _varCount; i++)
+                var text = startingBox5.Text;
+                var textValues = text.Split(',');
+                for (var i = 0; i < _varCount; i++)
                 {
                     startVector[i] = double.Parse(textValues[i]);
                 }
@@ -142,7 +141,6 @@ namespace Optimisation.Оформление
             var coord = method.Answer;
             answerBox5.Text = coord.ToString();
             iterBox5.Text = Convert.ToString(method.IterationCount);
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -152,44 +150,15 @@ namespace Optimisation.Оформление
             string report;
             try
             {
-                switch (_varCount)
-                {
-                    case 1:
-                        _currFunction5 = engine.Formula(formulaString)
-                    .Parameter("x1", DataType.FloatingPoint)
-                    .Result(DataType.FloatingPoint)
-                    .Build();
-                        break;
-                    case 2:
-                        _currFunction5 =
-                            engine.Formula(formulaString)
-                    .Parameter("x1", DataType.FloatingPoint)
-                    .Parameter("x2", DataType.FloatingPoint)
-                    .Result(DataType.FloatingPoint)
-                    .Build();
-                        break;
-                    case 3:
-                        _currFunction5 = engine.Formula(formulaString)
-                    .Parameter("x1", DataType.FloatingPoint)
-                    .Parameter("x2", DataType.FloatingPoint)
-                    .Parameter("x3", DataType.FloatingPoint)
-                    .Result(DataType.FloatingPoint)
-                    .Build();
-                        break;
-                    case 4:
-                        _currFunction5 = engine.Formula(formulaString)
-                    .Parameter("x1", DataType.FloatingPoint)
-                    .Parameter("x2", DataType.FloatingPoint)
-                    .Parameter("x3", DataType.FloatingPoint)
-                    .Parameter("x4", DataType.FloatingPoint)
-                    .Result(DataType.FloatingPoint)
-                    .Build();
-                        break;
-                    default:
-                        throw new Exception("Переменных может быть от 1 до 4 включительно");
-                }
+                //Func<Dictionary<string,double>,double> formula = enh
+                //for(int i=0;i<_varCount,i++)
+                //{
+
+                //}
+
+
                 var vars = "f(";
-                for (var k = _varCount; k > 0; k--)
+                for (var k = 0; k < _varCount; k++)
                 {
                     vars += (k == 1) ? $"x{k})" : $"x{k},";
                 }
@@ -202,7 +171,6 @@ namespace Optimisation.Оформление
                 report = $"Ошибка парсинга. Проверьте введенное выражение.\nТекст ошибки: {exp.Message}";
                 MessageBox.Show(report);
             }
-
         }
 
         private void formulaBox_TextChanged(object sender, EventArgs e)

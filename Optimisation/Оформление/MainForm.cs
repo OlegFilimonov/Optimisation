@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Jace;
 using Optimisation.Базовые_и_вспомогательные;
 using Optimisation.Одномерные;
 using Optimisation.Одномерные_цепочки;
 using Optimisation.Тестирование;
 using Function2D = FPlotLibrary.Function2D;
+
 // ReSharper disable CompareOfFloatsByEqualityOperator
 
 namespace Optimisation.Оформление
@@ -39,18 +39,18 @@ namespace Optimisation.Оформление
         private void MakeFunction(FunctionHolder testingFunction)
         {
             //Одномерная функция
-            var minX = ((FunctionHolderOneDim)testingFunction).Min;
+            var minX = ((FunctionHolderOneDim) testingFunction).Min;
             var f = testingFunction.F;
 
             if (_currMethod != null) MakeMethod(_currMethod);
 
             const double length = 1;
 
-            var x0 = minX - length / 2;
-            var x1 = minX + length / 2;
+            var x0 = minX - length/2;
+            var x1 = minX + length/2;
 
-            var y0 = f(minX) - length / 2;
-            var y1 = f(minX) + length / 2;
+            var y0 = f(minX) - length/2;
+            var y1 = f(minX) + length/2;
 
             graph.x0 = x0;
             graph.x1 = x1;
@@ -81,11 +81,11 @@ namespace Optimisation.Оформление
             }
             if (method.Name == "Метод НЬЮТОНА")
             {
-                ((NewtonMethod)method).D2F = _currFunctionHolder.D2F;
+                ((NewtonMethod) method).D2F = _currFunctionHolder.D2F;
             }
             if (method.Name == "М5 - Свенн - дихтомии - Ньютона")
             {
-                ((SvennDihNewt)method).D2F = _currFunctionHolder.D2F;
+                ((SvennDihNewt) method).D2F = _currFunctionHolder.D2F;
             }
             method.F = _currFunctionHolder.F;
             method.Df = _currFunctionHolder.Df;
@@ -107,7 +107,7 @@ namespace Optimisation.Оформление
             }
 
             //Корректируем начальный шаг по формуле
-            var startingH = (startingX == 0f) ? 0.01 : 0.01 * startingX;
+            var startingH = (startingX == 0f) ? 0.01 : 0.01*startingX;
 
             //Точность
             method.Eps = eps;
@@ -121,27 +121,27 @@ namespace Optimisation.Оформление
             //Вывод
             minBox1.Text = DoubleConverter.ToExactString(method.Answer);
             iterBox1.Text = Convert.ToString(method.IterationCount);
-            diffBox1.Text = Convert.ToString(Math.Abs(method.Answer - ((FunctionHolderOneDim)_currFunctionHolder).Min));
+            diffBox1.Text = Convert.ToString(Math.Abs(method.Answer - ((FunctionHolderOneDim) _currFunctionHolder).Min));
             minBox2.Text = DoubleConverter.ToExactString(method.Answer);
             iterBox2.Text = Convert.ToString(method.IterationCount);
-            diffBox2.Text = Convert.ToString(Math.Abs(method.Answer - ((FunctionHolderOneDim)_currFunctionHolder).Min));
+            diffBox2.Text = Convert.ToString(Math.Abs(method.Answer - ((FunctionHolderOneDim) _currFunctionHolder).Min));
 
 
-            var aFunction = new Function2D { source = "return (abs(x-p[0])<p[1])?0:1f;" };
+            var aFunction = new Function2D {source = "return (abs(x-p[0])<p[1])?0:1f;"};
             aFunction.Compile(true);
             aFunction.p[0] = method.A;
             aFunction.p[1] = 0.001F;
             aFunction.lineWidth = 0.00001F;
             aFunction.Color = Color.MediumVioletRed;
 
-            var bFunction = new Function2D { source = "return (abs(x-p[0])<p[1])?0:1f;" };
+            var bFunction = new Function2D {source = "return (abs(x-p[0])<p[1])?0:1f;"};
             bFunction.Compile(true);
             bFunction.p[0] = method.B;
             bFunction.p[1] = 0.001F;
             bFunction.lineWidth = 0.001F;
             bFunction.Color = Color.MediumVioletRed;
 
-            var cFunction = new Function2D { source = "return (abs(x-p[0])<p[1])?0:1f;" };
+            var cFunction = new Function2D {source = "return (abs(x-p[0])<p[1])?0:1f;"};
             cFunction.Compile(true);
             cFunction.p[0] = method.Answer;
             cFunction.p[1] = 0.001F;
@@ -209,11 +209,11 @@ namespace Optimisation.Оформление
                 {
                     if (method is NewtonMethod)
                     {
-                        ((NewtonMethod)method).D2F = function.D2F;
+                        ((NewtonMethod) method).D2F = function.D2F;
                     }
                     if (method is SvennDihNewt)
                     {
-                        ((SvennDihNewt)method).D2F = function.D2F;
+                        ((SvennDihNewt) method).D2F = function.D2F;
                     }
 
                     if ((method is NewtonMethod || method is SvennDihNewt) && (function is FunctionHolderTwoDim))
@@ -227,7 +227,7 @@ namespace Optimisation.Оформление
                     double startingX = 1;
 
                     //Корректируем начальный шаг по формуле
-                    var startingH = (startingX == 0) ? 0.01 : 0.01 * startingX;
+                    var startingH = (startingX == 0) ? 0.01 : 0.01*startingX;
 
                     //Точность
                     method.Eps = eps;
@@ -238,10 +238,10 @@ namespace Optimisation.Оформление
                     //Делаем сам метод
                     method.Execute();
 
-                    var cast = (FunctionHolderOneDim)function;
+                    var cast = (FunctionHolderOneDim) function;
                     var min = cast.Min;
                     var realEps = Math.Abs(method.Answer - cast.Min);
-                    exportList.Add(new ExportOneDim(method.Name, (uint)method.IterationCount, method.Answer, min,
+                    exportList.Add(new ExportOneDim(method.Name, (uint) method.IterationCount, method.Answer, min,
                         method.Eps, realEps));
                 }
                 export1And2.Add(exportList);
@@ -255,11 +255,11 @@ namespace Optimisation.Оформление
                 {
                     if (method is NewtonMethod)
                     {
-                        ((NewtonMethod)method).D2F = function.D2F;
+                        ((NewtonMethod) method).D2F = function.D2F;
                     }
                     if (method is SvennDihNewt)
                     {
-                        ((SvennDihNewt)method).D2F = function.D2F;
+                        ((SvennDihNewt) method).D2F = function.D2F;
                     }
 
                     if ((method is NewtonMethod || method is SvennDihNewt || method is ExtrDav) &&
@@ -274,7 +274,7 @@ namespace Optimisation.Оформление
                     double startingX = 1;
 
                     //Корректируем начальный шаг по формуле
-                    var startingH = (startingX == 0) ? 0.01 : 0.01 * startingX;
+                    var startingH = (startingX == 0) ? 0.01 : 0.01*startingX;
 
                     //Точность
                     method.Eps = eps;
@@ -284,11 +284,11 @@ namespace Optimisation.Оформление
 
                     //Делаем сам метод
                     method.Execute();
-                    var castFunction = (FunctionHolderTwoDim)function;
+                    var castFunction = (FunctionHolderTwoDim) function;
                     var coord = castFunction.GetOffset(method.Answer);
                     var realEps =
                         Math.Abs(Math.Pow(castFunction.Min.X - coord.X, 2) + Math.Pow(castFunction.Min.Y - coord.Y, 2));
-                    exportList.Add(new ExportOneDim(method.Name, (uint)method.IterationCount, coord,
+                    exportList.Add(new ExportOneDim(method.Name, (uint) method.IterationCount, coord,
                         castFunction.Min, method.Eps, realEps));
                 }
                 export3.Add(exportList);
@@ -300,7 +300,6 @@ namespace Optimisation.Оформление
                 var exportList = new List<ExportOneDim>(_twoDimentionalMethods4.Count);
                 foreach (var method in _twoDimentionalMethods4)
                 {
-                   
                     method.F = function;
 
                     //Точность
@@ -312,18 +311,18 @@ namespace Optimisation.Оформление
                     //Делаем сам метод
                     method.Execute();
 
-                    var castFunction = (FunctionHolderTwoDim)function;
+                    var castFunction = function;
                     var coord = method.Answer;
                     var realEps =
                         Math.Abs(Math.Pow(castFunction.Min.X - coord.X, 2) + Math.Pow(castFunction.Min.Y - coord.Y, 2));
-                    exportList.Add(new ExportOneDim(method.Name, (uint)method.IterationCount, coord,
+                    exportList.Add(new ExportOneDim(method.Name, (uint) method.IterationCount, coord,
                         castFunction.Min, method.Eps, realEps));
                 }
                 export4.Add(exportList);
             }
 
             //Запускаем форму
-            var form = new TestForm(export1And2, export3,export4);
+            var form = new TestForm(export1And2, export3, export4);
             form.ShowDialog();
         }
 
@@ -345,10 +344,9 @@ namespace Optimisation.Оформление
         {
             if (_currFunctionHolder is FunctionHolderTwoDim)
             {
-                var cast = (FunctionHolderTwoDim)_currFunctionHolder;
+                var cast = (FunctionHolderTwoDim) _currFunctionHolder;
                 graph.z0 = cast.F2D(cast.Min.X, cast.Min.Y);
                 graph.z1 = trackBar1.Value;
-
             }
             else if (_currFunctionHolder4 != null)
             {
@@ -357,6 +355,12 @@ namespace Optimisation.Оформление
             }
         }
 
-
+        private void formulaBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char) Keys.Enter)
+            {
+                button1_Click(null, null);
+            }
+        }
     }
 }

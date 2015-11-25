@@ -3,7 +3,7 @@ using Optimisation.Одномерные;
 
 namespace Optimisation.Одномерные_цепочки
 {
-    internal class ExtrDav : OneDimMethod
+    public class ExtrDav : OneDimMethod
     {
         public ExtrDav(double eps = 1e-6, int maxIterations = 50)
             : base(null, null, eps, "М7 лин. - куб. интерполяции", maxIterations)
