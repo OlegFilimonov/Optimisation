@@ -1,12 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Application=Microsoft.Office.Interop.Excel.Application;
@@ -15,16 +8,12 @@ namespace OptimisationCat
 {
     public partial class TestForm : MaterialForm
     {
-        private List<TestExport> _exports; 
+        private readonly List<TestExport> _exports;
 
         public TestForm(List<TestExport> exports)
         {
             _exports = exports;
             InitializeComponent();
-            var materialSkinManager = MaterialSkinManager.Instance;
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.Indigo800, Primary.Indigo900, Primary.Indigo500,
-                Accent.LightBlue200, TextShade.WHITE);
         }
 
         private void TestForm_Load(object sender, EventArgs e)

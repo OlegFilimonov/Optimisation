@@ -7,12 +7,12 @@ namespace CORE.Многомерные
     public class HookeJeeves : OptimisationMethod
     {
         public HookeJeeves()
-            : base("Хук-Дживс", 1e-5, null, null)
+            : base("Хук-Дживс [Из методы]", 1e-5, null, null)
         {
         }
 
         public HookeJeeves(double eps, Delegate f, Vector<double> startVector, int maxIterations = 50)
-            : base("Хук-Дживс", eps, f, startVector, maxIterations)
+            : base("Хук-Дживс [Из методы]", eps, f, startVector, maxIterations)
         {
         }
 

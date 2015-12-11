@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CORE.FunctionHolder">
+    <Position X="14.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAQgIAAAAAgAAkAAARAAAAAAAAAAAAAAAQEAAAJAA=</HashCode>
+      <FileName>FunctionHolder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.OneDimMethod">
+    <Position X="8.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAQAAAAQAAgAEAAQAAAAAAAAAAAABsoECAAA=</HashCode>
+      <FileName>OneDimMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.OptimisationMethod">
+    <Position X="1.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAYAAgQEAAQAAAAAAAAAEAAAQgACAAA=</HashCode>
+      <FileName>OptimisationMethod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Многомерные.GenericNewton" Collapsed="true">
+    <Position X="3" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Многомерные\GenericNewton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Многомерные.HookeJeeves" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Многомерные\HookeJeeves.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Многомерные.HookeJeevesPs" Collapsed="true">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAABAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Многомерные\HookeJeevesPS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Многомерные.KvasiNewton" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAQAQAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Многомерные\KvasiNewton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Многомерные.Msg" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Многомерные\MSG.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Многомерные.Partan1" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Многомерные\Partan1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные.Bolzano" Collapsed="true">
+    <Position X="10" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные\Bolzano.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные.BoostedDavidon" Collapsed="true">
+    <Position X="12" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные\BoostedDavidon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные.Dichotomy" Collapsed="true">
+    <Position X="5.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные\Dichotomy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные.Dsk" Collapsed="true">
+    <Position X="10" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные\Dsk.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные.Extrapolation" Collapsed="true">
+    <Position X="7.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные\Extrapolation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные.Fibonacci1" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAQCAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Одномерные\Fibonacci1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные.Fibonacci2" Collapsed="true">
+    <Position X="7.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAQCAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Одномерные\Fibonacci2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные.GoldenRatio1" Collapsed="true">
+    <Position X="12" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACQAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные\GoldenRatio1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные.GoldenRatio2" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные\GoldenRatio2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные.Newton" Collapsed="true">
+    <Position X="5.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные\Newton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные.Paul" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные\Paul.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные_цепочки.BolzPaul" Collapsed="true">
+    <Position X="10" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\bolz-paul.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные_цепочки.DihDav" Collapsed="true">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\dih-dav.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные_цепочки.DihPaul" Collapsed="true">
+    <Position X="12" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\dih-paul.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные_цепочки.ExtrDav" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\extr-dav.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные_цепочки.Fib1Dsk" Collapsed="true">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\fib1-dsk.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные_цепочки.Fib2Dsk" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\fib2-dsk.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные_цепочки.Gr1Extr" Collapsed="true">
+    <Position X="10" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\gr1-extr.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные_цепочки.Gr2Paul" Collapsed="true">
+    <Position X="12" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\gr2-paul.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные_цепочки.SvennBolzFib2" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\svenn-bolz-fib2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные_цепочки.SvennBolzGr1" Collapsed="true">
+    <Position X="5.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\svenn-bolz-gr1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CORE.Одномерные_цепочки.SvennDihNewt" Collapsed="true">
+    <Position X="7.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Одномерные цепочки\svenn-dih-newt.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Delegate Name="CORE.Function1D" Collapsed="true">
+    <Position X="14.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Function1D.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

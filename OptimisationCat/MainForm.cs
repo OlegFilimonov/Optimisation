@@ -39,7 +39,7 @@ namespace OptimisationCat
             PopulateAlphaMethods();
             _materialSkinManager = MaterialSkinManager.Instance;
             _materialSkinManager.AddFormToManage(this);
-            _materialSkinManager.ColorScheme = new ColorScheme(Primary.Indigo800, Primary.Indigo900, Primary.Indigo500,
+            _materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500,
                 Accent.LightBlue200, TextShade.WHITE);
         }
 
@@ -89,6 +89,7 @@ namespace OptimisationCat
             _methods.Add(new Msg());
             _methods.Add(new GenericNewton());
             _methods.Add(new HookeJeeves());
+            _methods.Add(new HookeJeevesPs());
 
             foreach (var method in _methods)
             {

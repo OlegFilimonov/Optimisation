@@ -168,6 +168,16 @@ namespace CORE
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public Vector<double> SimpleGrad(Vector<double> point)
+        {
+            return (point - (point - 0.01))/0.01;
+        }
+
+        /// <summary>
         ///     Градиент с численным дифференцированием
         /// </summary>
         /// <returns></returns>

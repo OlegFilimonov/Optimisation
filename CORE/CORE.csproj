@@ -55,6 +55,7 @@
     <Compile Include="Многомерные\HookeJeeves.cs" />
     <Compile Include="Многомерные\KvasiNewton.cs" />
     <Compile Include="Многомерные\Partan1.cs" />
+    <Compile Include="Многомерные\HookeJeevesPS.cs" />
     <Compile Include="Одномерные цепочки\bolz-paul.cs" />
     <Compile Include="Одномерные цепочки\dih-dav.cs" />
     <Compile Include="Одномерные цепочки\dih-paul.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Одномерные\Paul.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

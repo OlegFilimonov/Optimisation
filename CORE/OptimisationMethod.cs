@@ -39,6 +39,14 @@ namespace CORE
         //Количество итераций
         public int IterationCount { get; protected set; }
 
+        public int MaxIterations
+        {
+            get
+            {
+                return _maxIterations;
+            }
+        }
+
         //Сам метод
         public abstract void Execute();
 

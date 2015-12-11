@@ -1,0 +1,17 @@
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationCat\bin\Debug\OptimisationCat.exe.config
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationCat\bin\Debug\OptimisationCat.exe
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationCat\bin\Debug\OptimisationCat.pdb
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationCat\bin\Debug\MaterialSkin.dll
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationCat\obj\Debug\OptimisationCat.Form1.resources
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationCat\obj\Debug\OptimisationCat.Properties.Resources.resources
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationCat\obj\Debug\OptimisationUnicorn.csproj.GenerateResource.Cache
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationCat\obj\Debug\OptimisationCat.exe
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationCat\obj\Debug\OptimisationCat.pdb
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationCat\bin\Debug\MathNet.Numerics.dll
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationCat\bin\Debug\Jace.dll
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationCat\bin\Debug\MathNet.Numerics.xml
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationCat\obj\Debug\OptimisationUnicorn.csprojResolveAssemblyReference.cache
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationCat\obj\Debug\OptimisationCat.GraphForm.resources
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationCat\bin\Debug\CORE.dll
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationCat\bin\Debug\CORE.pdb
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationCat\bin\Debug\FPlotLibrary.dll

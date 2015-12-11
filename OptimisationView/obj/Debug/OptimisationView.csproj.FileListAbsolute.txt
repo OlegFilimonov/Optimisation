@@ -1,0 +1,10 @@
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationView\bin\Debug\OptimisationView.exe.config
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationView\bin\Debug\OptimisationView.exe
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationView\bin\Debug\OptimisationView.pdb
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationView\obj\Debug\OptimisationView.csprojResolveAssemblyReference.cache
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationView\obj\Debug\OptimisationView.Form1.resources
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationView\obj\Debug\OptimisationView.Properties.Resources.resources
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationView\obj\Debug\OptimisationView.csproj.GenerateResource.Cache
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationView\obj\Debug\OptimisationView.exe
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationView\obj\Debug\OptimisationView.pdb
+C:\Users\Oleg\VisualStudioProjects\Optimisation\OptimisationView\bin\Debug\MaterialSkin.dll

@@ -1,0 +1,7 @@
+C:\Users\Oleg\VisualStudioProjects\Optimisation\CORE\bin\Debug\CORE.dll
+C:\Users\Oleg\VisualStudioProjects\Optimisation\CORE\bin\Debug\CORE.pdb
+C:\Users\Oleg\VisualStudioProjects\Optimisation\CORE\bin\Debug\MathNet.Numerics.dll
+C:\Users\Oleg\VisualStudioProjects\Optimisation\CORE\bin\Debug\MathNet.Numerics.xml
+C:\Users\Oleg\VisualStudioProjects\Optimisation\CORE\obj\Debug\CORE.dll
+C:\Users\Oleg\VisualStudioProjects\Optimisation\CORE\obj\Debug\CORE.pdb
+C:\Users\Oleg\VisualStudioProjects\Optimisation\CORE\obj\Debug\CORE.csprojResolveAssemblyReference.cache
