@@ -35,7 +35,8 @@ namespace CORE.Многомерные
                 }
                 else
                 {
-                    var beta = Math.Pow(curGrad.Norm(2), 2)/Math.Pow(prevGrad.Norm(2), 2);
+                    var gamma = curGrad - prevGrad;
+                    var beta = curGrad*gamma/(prevDir*gamma); //Math.Pow(curGrad.Norm(2), 2)/Math.Pow(prevGrad.Norm(2), 2);
                     Fh.Dir = -curGrad + prevDir*beta;
                 }
 
