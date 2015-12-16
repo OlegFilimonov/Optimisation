@@ -46,3 +46,6 @@ Temporary Items
 *.sdf
 .vs/Optimisation/v14/.suo
 Optimisation/obj/Debug/DesignTimeResolveAssemblyReferences.cache
+.vs/Optimisation/v14/.suo
+CORE/bin/Debug/
+OptimisationCat/obj/debug/
