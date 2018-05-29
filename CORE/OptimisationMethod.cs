@@ -12,7 +12,7 @@ namespace CORE
         private readonly int _maxIterations;
 
         protected OptimisationMethod(string name, double eps, Delegate f, Vector<double> startVector,
-            int maxIterations = 50)
+            int maxIterations = 100)
         {
             _maxIterations = maxIterations;
 

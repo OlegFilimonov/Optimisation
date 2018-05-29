@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using CORE;
@@ -39,7 +40,8 @@ namespace OptimisationCat
             PopulateAlphaMethods();
             _materialSkinManager = MaterialSkinManager.Instance;
             _materialSkinManager.AddFormToManage(this);
-            _materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500,
+            _materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900,
+                Primary.BlueGrey500,
                 Accent.LightBlue200, TextShade.WHITE);
         }
 
@@ -76,25 +78,19 @@ namespace OptimisationCat
             _alphaMethods.Add(new ExtrDav());
             _alphaMethods.Add(new Gr2Paul());
 
-            foreach (var alphaMethod in _alphaMethods)
-            {
-                alphaMethodComboBox.Items.Add(alphaMethod.Name);
-            }
+            foreach (var alphaMethod in _alphaMethods) alphaMethodComboBox.Items.Add(alphaMethod.Name);
         }
 
         private void PopulateMethods()
         {
-            _methods.Add(new Partan1());
-            _methods.Add(new KvasiNewton());
-            _methods.Add(new Msg());
-            _methods.Add(new GenericNewton());
+//            _methods.Add(new Partan1());
+//            _methods.Add(new KvasiNewton());
+//            _methods.Add(new Msg());
+//            _methods.Add(new GenericNewton());
             _methods.Add(new HookeJeeves());
             _methods.Add(new HookeJeevesPs());
 
-            foreach (var method in _methods)
-            {
-                methodComboBox.Items.Add(method.Name);
-            }
+            foreach (var method in _methods) methodComboBox.Items.Add(method.Name);
         }
 
         private void PopulateFunctions()
@@ -178,15 +174,13 @@ namespace OptimisationCat
             {
                 var text = startingPointTextBox.Text;
                 var textValues = text.Split(',');
-                for (var i = 0; i < _varCount; i++)
-                {
-                    start[i] = double.Parse(textValues[i]);
-                }
+                for (var i = 0; i < _varCount; i++) start[i] = double.Parse(textValues[i]);
             }
             catch (Exception)
             {
                 start.Clear();
             }
+
             var fh = new FunctionHolder(_currFunction, start);
             _currMethod.Fh = fh;
             if (_alphaMethodChosen)
@@ -195,6 +189,7 @@ namespace OptimisationCat
                 _currAlphaMethod.Df = fh.AlphaDiffFunction;
                 _currMethod.AlphaMethod = _currAlphaMethod;
             }
+
             double eps;
             try
             {
@@ -205,6 +200,7 @@ namespace OptimisationCat
                 eps = 1e-5;
                 precisionTextBox.Text = @"1e-5";
             }
+
             _currMethod.Eps = eps;
             //Делаем сам метод
             var sw = Stopwatch.StartNew();
@@ -214,7 +210,8 @@ namespace OptimisationCat
             var coord = _currMethod.Answer;
             answerTextBox.Text = @"Answer:" + Environment.NewLine + coord.ToString();
             iterationTextBox.Text = Convert.ToString("Iterations: " + _currMethod.IterationCount);
-            timeTextBox.Text = @"Time (ms):" + Environment.NewLine +((sw.ElapsedMilliseconds == 0) ? ("<1") : (sw.ElapsedMilliseconds.ToString()));
+            timeTextBox.Text = @"Time (ms):" + Environment.NewLine +
+                               (sw.ElapsedMilliseconds == 0 ? "<1" : sw.ElapsedMilliseconds.ToString());
         }
 
         /// <summary>
@@ -269,7 +266,6 @@ namespace OptimisationCat
         /// <param name="functionText"></param>
         private void ParseFunction(string functionText)
         {
-
             if (functionText.Contains(':'))
                 functionText = functionText.Remove(0, functionText.IndexOf(':') + 1);
 
@@ -284,9 +280,8 @@ namespace OptimisationCat
                 {
                     int num;
                     if (int.TryParse(functionText.Substring(index + 1, 1), out num))
-                    {
-                        _varCount = (_varCount < num) ? num : _varCount;
-                    }
+                        _varCount = _varCount < num ? num : _varCount;
+
                     index++;
                 }
                 catch (Exception)
@@ -302,10 +297,8 @@ namespace OptimisationCat
             _currFunction = doubles =>
             {
                 var variables = new Dictionary<string, double>();
-                for (var i = 0; i < doubles.Count; i++)
-                {
-                    variables.Add($"x{i + 1}", doubles[i]);
-                }
+                for (var i = 0; i < doubles.Count; i++) variables.Add($"x{i + 1}", doubles[i]);
+
                 return formula(variables);
             };
 
@@ -320,10 +313,7 @@ namespace OptimisationCat
         /// <param name="e"></param>
         private void functionComboBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char) Keys.Enter)
-            {
-                ParseFunction(functionComboBox.Text);
-            }
+            if (e.KeyChar == (char) Keys.Enter) ParseFunction(functionComboBox.Text);
         }
 
         /// <summary>
@@ -333,7 +323,6 @@ namespace OptimisationCat
         /// <param name="e"></param>
         private void functionComboBox_TextChanged(object sender, EventArgs e)
         {
-            
         }
 
         /// <summary>
@@ -343,7 +332,7 @@ namespace OptimisationCat
         /// <param name="e"></param>
         private void materialFlatButton1_Click(object sender, EventArgs e)
         {
-            var exports = new List<TestExport>(_functions.Count*_methods.Count);
+            var exports = new List<TestExport>(_functions.Count * _methods.Count);
             foreach (var function in _functions)
             {
                 ParseFunction(function);
@@ -356,15 +345,13 @@ namespace OptimisationCat
                     {
                         var text = startingPointTextBox.Text;
                         var textValues = text.Split(',');
-                        for (var i = 0; i < _varCount; i++)
-                        {
-                            start[i] = double.Parse(textValues[i]);
-                        }
+                        for (var i = 0; i < _varCount; i++) start[i] = double.Parse(textValues[i]);
                     }
                     catch (Exception)
                     {
                         start.Clear();
                     }
+
                     var fh = new FunctionHolder(_currFunction, start);
                     _currMethod.Fh = fh;
                     if (_alphaMethodChosen)
@@ -373,6 +360,7 @@ namespace OptimisationCat
                         _currAlphaMethod.Df = fh.AlphaDiffFunction;
                         _currMethod.AlphaMethod = _currAlphaMethod;
                     }
+
                     double eps;
                     try
                     {
@@ -383,6 +371,7 @@ namespace OptimisationCat
                         eps = 1e-5;
                         precisionTextBox.Text = @"1e-5";
                     }
+
                     _currMethod.Eps = eps;
                     //Делаем сам метод
                     var sw = Stopwatch.StartNew();
@@ -390,9 +379,13 @@ namespace OptimisationCat
                     sw.Stop();
                     //Вывод, Двуменрная функция
                     var coord = _currMethod.Answer;
-                    exports.Add(new TestExport(method.Name,function,coord.ToVectorString(),method.IterationCount.ToString(),sw.ElapsedMilliseconds.ToString(),eps.ToString()));
+                    var vectorString = coord.ToVectorString().Replace("\r\n"," ");
+                    exports.Add(new TestExport(method.Name, function,
+                        vectorString,
+                        method.IterationCount.ToString(), sw.ElapsedMilliseconds.ToString(), eps.ToString()));
                 }
             }
+
             var testForm = new TestForm(exports);
             _materialSkinManager.AddFormToManage(testForm);
             testForm.ShowDialog();
